@@ -30,6 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'activesupport', '~> 4.2', '>= 4.2.5'
   s.add_development_dependency 'bundler', '~> 1.0'
   s.add_development_dependency 'rspec', '~> 3.4'
+  s.add_development_dependency 'rake'
   s.add_development_dependency 'rack-test'
   s.add_development_dependency 'vcr'
   s.add_development_dependency 'webmock'
