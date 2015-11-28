@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Maremma do
+describe Maremma::Base do
   let(:url) { "http://example.org" }
   let(:data) { { "name" => "Fred" } }
   let(:post_data) { { "name" => "Jack" } }

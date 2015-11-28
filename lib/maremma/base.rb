@@ -6,7 +6,7 @@ require 'excon'
 require 'uri'
 
 module Maremma
-  class Base
+  class << self
     def get_result(url, content_type: 'json', headers: {}, **options)
       conn = faraday_conn(content_type, options)
       conn = auth_conn(conn, options)
