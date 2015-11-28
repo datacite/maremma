@@ -2,6 +2,8 @@ PATH
   remote: .
   specs:
     maremma (1.0.0)
+      activesupport (~> 4.2, >= 4.2.5)
+      builder (~> 3.2, >= 3.2.2)
       excon (~> 0.45.0)
       faraday (~> 0.9.0)
       faraday-encoding (~> 0.0.1)
@@ -13,7 +15,14 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (4.2.5)
+      i18n (~> 0.7)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
     addressable (2.3.8)
+    builder (3.2.2)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
@@ -24,7 +33,11 @@ GEM
       faraday
     faraday_middleware (0.10.0)
       faraday (>= 0.7.4, < 0.10)
+    hashdiff (0.2.3)
+    i18n (0.7.0)
+    json (1.8.3)
     mini_portile (0.6.2)
+    minitest (5.8.3)
     multi_json (1.11.2)
     multipart-post (2.0.0)
     nokogiri (1.6.6.4)
@@ -47,10 +60,14 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     safe_yaml (1.0.4)
-    vcr (2.9.3)
-    webmock (1.21.0)
+    thread_safe (0.3.5)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    vcr (3.0.0)
+    webmock (1.22.3)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+      hashdiff
 
 PLATFORMS
   ruby

@@ -1,12 +1,25 @@
+require 'active_support/all'
 require 'json'
 require 'nokogiri'
 require 'faraday'
 require 'faraday_middleware'
+require 'faraday/encoding'
 require 'excon'
 require 'uri'
 
+DEFAULT_TIMEOUT = 60
+NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
+                          Faraday::TimeoutError,
+                          Faraday::SSLError,
+                          Faraday::ConnectionFailed,
+                          URI::InvalidURIError,
+                          Encoding::UndefinedConversionError,
+                          ArgumentError,
+                          NoMethodError,
+                          TypeError]
+
 module Maremma
-  class << self
+  class Base
     def get_result(url, content_type: 'json', headers: {}, **options)
       conn = faraday_conn(content_type, options)
       conn = auth_conn(conn, options)
@@ -82,26 +95,26 @@ module Maremma
     end
 
     def parse_response(string)
-      as_json(string) || as_xml(string) || force_utf8(string)
+      from_json(string) || from_xml(string) || from_string(string)
     end
 
     protected
 
-    def as_xml(string)
+    def from_xml(string)
       if Nokogiri::XML(string).errors.empty?
         Hash.from_xml(string)
       else
-        false
+        nil
       end
     end
 
-    def as_json(string)
-      ::ActiveSupport::JSON.decode(string)
-    rescue ::ActiveSupport::JSON.parse_error
-      false
+    def from_json(string)
+      JSON.parse(string)
+    rescue JSON::ParserError
+      nil
     end
 
-    def force_utf8(string)
+    def from_string(string)
       string.gsub(/\s+\n/, "\n").strip.force_encoding('UTF-8')
     end
   end
