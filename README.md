@@ -23,7 +23,7 @@ gem install maremma
 
 ## Usage
 ```ruby
-get_result(url)
+Maremma.get(url)
 ```
 
 ## License

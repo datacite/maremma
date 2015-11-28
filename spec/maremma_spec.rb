@@ -1,35 +1,36 @@
 require 'spec_helper'
 
-describe Maremma::Base do
+describe Maremma do
+  subject { Maremma }
   let(:url) { "http://example.org" }
   let(:data) { { "name" => "Fred" } }
   let(:post_data) { { "name" => "Jack" } }
 
-  context "get_result" do
+  context "get" do
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
-      response = subject.get_result(url)
+      response = subject.get(url)
       expect(response).to eq(data)
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      response = subject.get_result(url, content_type: 'xml')
+      response = subject.get(url, content_type: 'xml')
       expect(response).to eq('hash' => data)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
-      response = subject.get_result(url, content_type: 'html')
+      response = subject.get(url, content_type: 'html')
       expect(response).to eq(data.to_s)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
-      subject.get_result(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
+      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
       expect(stub).to have_been_requested
     end
   end
@@ -37,28 +38,28 @@ describe Maremma::Base do
   context "empty response" do
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/json" })
-      response = subject.get_result(url)
+      response = subject.get(url)
       expect(response).to be_blank
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      response = subject.get_result(url, content_type: 'xml')
+      response = subject.get(url, content_type: 'xml')
       expect(response).to be_blank
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "text/html" })
-      response = subject.get_result(url, content_type: 'html')
+      response = subject.get(url, content_type: 'html')
       expect(response).to be_blank
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      subject.get_result(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -68,25 +69,25 @@ describe Maremma::Base do
 
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => error.to_json, :status => [404], :headers => { "Content-Type" => "application/json" })
-      expect(subject.get_result(url)).to eq(error)
+      expect(subject.get(url)).to eq(error)
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
-      expect(subject.get_result(url, content_type: 'xml')).to eq(error)
+      expect(subject.get(url, content_type: 'xml')).to eq(error)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => error.to_s, :status => [404], :headers => { "Content-Type" => "text/html" })
-      expect(subject.get_result(url, content_type: 'html')).to eq(error)
+      expect(subject.get(url, content_type: 'html')).to eq(error)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
-      subject.get_result(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
+      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
       expect(stub).to have_been_requested
     end
   end
@@ -94,28 +95,28 @@ describe Maremma::Base do
   context "request timeout" do
     it "get json" do
       stub = stub_request(:get, url).to_return(:status => [408])
-      response = subject.get_result(url)
+      response = subject.get(url)
       expect(response).to eq(error: "execution expired", status: 408)
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:status => [408])
-      response = subject.get_result(url, content_type: 'xml')
+      response = subject.get(url, content_type: 'xml')
       expect(response).to eq(error: "execution expired", status: 408)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:status => [408])
-      response = subject.get_result(url, content_type: 'html')
+      response = subject.get(url, content_type: 'html')
       expect(response).to eq(error: "execution expired", status: 408)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:status => [408])
-      subject.get_result(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -123,28 +124,28 @@ describe Maremma::Base do
   context "request timeout internal" do
     it "get json" do
       stub = stub_request(:get, url).to_timeout
-      response = subject.get_result(url)
+      response = subject.get(url)
       expect(response).to eq(error: "execution expired", status: 408)
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_timeout
-      response = subject.get_result(url, content_type: 'xml')
+      response = subject.get(url, content_type: 'xml')
       expect(response).to eq(error: "execution expired", status: 408)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_timeout
-      response = subject.get_result(url, content_type: 'html')
+      response = subject.get(url, content_type: 'html')
       expect(response).to eq(error: "execution expired", status: 408)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_timeout
-      subject.get_result(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -155,7 +156,7 @@ describe Maremma::Base do
     it "redirect" do
       stub_request(:get, url).to_return(status: 301, headers: { location: redirect_url })
       stub_request(:get, redirect_url).to_return(status: 200, body: "Test")
-      response = subject.get_result(url)
+      response = subject.get(url)
       expect(response).to eq("Test")
     end
 
@@ -165,7 +166,7 @@ describe Maremma::Base do
       stub_request(:get, redirect_url+ "/x").to_return(status: 301, headers: { location: redirect_url + "/y" })
       stub_request(:get, redirect_url+ "/y").to_return(status: 301, headers: { location: redirect_url + "/z" })
       stub_request(:get, redirect_url + "/z").to_return(status: 200, body: "Test")
-      response = subject.get_result(url)
+      response = subject.get(url)
       expect(response).to eq("Test")
     end
   end
