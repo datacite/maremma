@@ -19,6 +19,23 @@ NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
                           TypeError]
 
 module Maremma
+  def self.post(url, content_type: 'json', data: {}, headers: {}, **options)
+    conn = faraday_conn(content_type, options)
+    conn = auth_conn(conn, options)
+
+    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
+
+    # make sure we use a 'Host' header
+    headers['Host'] = URI.parse(url).host
+    
+    response = conn.post url, {}, headers do |request|
+      request.body = data
+    end
+    parse_response(response.body)
+  rescue *NETWORKABLE_EXCEPTIONS => error
+    rescue_faraday_error(error)
+  end
+
   def self.get(url, content_type: 'json', headers: {}, **options)
     conn = faraday_conn(content_type, options)
     conn = auth_conn(conn, options)
@@ -28,13 +45,7 @@ module Maremma
     # make sure we use a 'Host' header
     headers['Host'] = URI.parse(url).host
 
-    if options[:data]
-      response = conn.post url, {}, headers do |request|
-        request.body = options[:data]
-      end
-    else
-      response = conn.get url, {}, headers
-    end
+    response = conn.get url, {}, headers
     parse_response(response.body)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)

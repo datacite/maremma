@@ -30,7 +30,7 @@ describe Maremma do
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
-      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
       expect(stub).to have_been_requested
     end
   end
@@ -59,7 +59,7 @@ describe Maremma do
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -87,7 +87,7 @@ describe Maremma do
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
-      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
       expect(stub).to have_been_requested
     end
   end
@@ -116,7 +116,7 @@ describe Maremma do
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:status => [408])
-      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -145,7 +145,7 @@ describe Maremma do
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_timeout
-      subject.get(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
