@@ -27,5 +27,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'multi_json', '~> 1.11.2'
   s.add_dependency 'oj', '~> 2.13.1'
   s.add_development_dependency 'bundler', '~> 1.0'
-  s.add_development_dependency 'rspec', '~> 1.0'
+  s.add_development_dependency 'rspec', '~> 3.4'
+  s.add_development_dependency 'rack-test'
+  s.add_development_dependency 'vcr'
+  s.add_development_dependency 'webmock'
 end
