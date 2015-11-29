@@ -24,6 +24,7 @@ gem install maremma
 ## Usage
 ```ruby
 Maremma.get 'http://dlm.datacite.org/heartbeat' => {"services"=>{"mysql"=>"OK", "memcached"=>"OK", "redis"=>"OK", "sidekiq"=>"OK", "postfix"=>"failed"}, "version"=>"4.3", "status"=>"failed"}
+Maremma.post 'http://example.com', data: { 'foo' => 'baz' }
 ```
 
 ## License

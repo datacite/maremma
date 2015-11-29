@@ -19,33 +19,36 @@ NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
                           TypeError]
 
 module Maremma
-  def self.post(url, content_type: 'json', data: {}, headers: {}, **options)
-    conn = faraday_conn(content_type, options)
+  def self.post(url, options={})
+    options[:content_type] ||= 'json'
+    options[:data] ||= {}
+    options[:headers] ||= {}
+    options[:headers]['Host'] = URI.parse(url).host
+
+    conn = faraday_conn(options[:content_type], options)
     conn = auth_conn(conn, options)
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
-    # make sure we use a 'Host' header
-    headers['Host'] = URI.parse(url).host
-    
-    response = conn.post url, {}, headers do |request|
-      request.body = data
+    response = conn.post url, {}, options[:headers] do |request|
+      request.body = options[:data]
     end
     parse_response(response.body)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
 
-  def self.get(url, content_type: 'json', headers: {}, **options)
-    conn = faraday_conn(content_type, options)
+  def self.get(url, options={})
+    options[:content_type] ||= 'json'
+    options[:headers] ||= {}
+    options[:headers]['Host'] = URI.parse(url).host
+
+    conn = faraday_conn(options[:content_type], options)
     conn = auth_conn(conn, options)
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
-    # make sure we use a 'Host' header
-    headers['Host'] = URI.parse(url).host
-
-    response = conn.get url, {}, headers
+    response = conn.get url, {}, options[:headers]
     parse_response(response.body)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
