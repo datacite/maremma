@@ -66,7 +66,7 @@ module Maremma
 
     Faraday.new do |c|
       c.headers['Accept'] = accept_header
-      c.headers['User-Agent'] = "spinone - http://#{ENV['HOSTNAME']}"
+      c.headers['User-Agent'] = "Maremma - http://#{ENV['HOSTNAME']}"
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all
       c.request  :multipart
       c.request  :json if accept_header == 'application/json'
