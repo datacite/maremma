@@ -12,3 +12,6 @@ deploy:
   on:
     tags: true
     repo: datacite/maremma
+
+notifications:
+  slack: datacite:Wt8En0ALoTA6Kjc5EOKNDWxN
