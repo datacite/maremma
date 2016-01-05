@@ -150,6 +150,36 @@ describe Maremma do
     end
   end
 
+  context "rate limit exceeded" do
+    it "get json" do
+      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      response = subject.get(url)
+      expect(response).to eq(error: "Rate limit soon exceeded", status: 429)
+      expect(stub).to have_been_requested
+    end
+
+    it "get xml" do
+      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      response = subject.get(url, content_type: 'xml')
+      expect(response).to eq(error: "Rate limit soon exceeded", status: 429)
+      expect(stub).to have_been_requested
+    end
+
+    it "get html" do
+      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      response = subject.get(url, content_type: 'html')
+      expect(response).to eq(error: "Rate limit soon exceeded", status: 429)
+      expect(stub).to have_been_requested
+    end
+
+    it "post xml" do
+      stub = stub_request(:post, url).with(:body => post_data.to_xml)
+        .to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      expect(stub).to have_been_requested
+    end
+  end
+
   context "redirect requests" do
     let(:redirect_url) { "http://www.example.org/redirect" }
 

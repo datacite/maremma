@@ -49,6 +49,12 @@ module Maremma
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
     response = conn.get url, {}, options[:headers]
+
+    # return error if we are close to the rate limit, if supported in headers
+    if get_rate_limit_remaining(response.headers) < 10
+      return { error: "Rate limit soon exceeded", status: 429 }
+    end
+
     parse_response(response.body)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
@@ -112,6 +118,13 @@ module Maremma
   end
 
   protected
+
+  # currently supported by Twitter and Github
+  # with slightly different header names
+  # use arbitrary high value if not supported
+  def self.get_rate_limit_remaining(headers)
+    (headers["X-Rate-Limit-Remaining"] || headers["X-RateLimit-Remaining"] || 100).to_i
+  end
 
   def self.from_xml(string)
     if Nokogiri::XML(string).errors.empty?

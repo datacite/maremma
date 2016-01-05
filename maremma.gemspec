@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 1.0'
   s.add_development_dependency 'rspec', '~> 3.4'
   s.add_development_dependency 'rake'
-  s.add_development_dependency 'rack-test'
+  s.add_development_dependency 'rack-test', '~> 0'
   s.add_development_dependency 'vcr'
-  s.add_development_dependency 'webmock'
+  s.add_development_dependency 'webmock', '~> 1.22', '>= 1.22.3'
 end
