@@ -33,7 +33,7 @@ module Maremma
     response = conn.post url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    parse_response(response.body)
+    parse_success_response(response.body)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -52,10 +52,10 @@ module Maremma
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
-      return { error: "Rate limit soon exceeded", status: 429 }
+      return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
     end
 
-    parse_response(response.body)
+    parse_success_response(response.body)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -95,11 +95,25 @@ module Maremma
 
   def self.rescue_faraday_error(error)
     if error.is_a?(Faraday::ResourceNotFound)
-      { error: "resource not found", status: 404 }
+      { 'errors' => [{ 'status' => 404, 'title' => "Not found" }] }
     elsif error.is_a?(Faraday::TimeoutError) || error.is_a?(Faraday::ConnectionFailed) || (error.try(:response) && error.response[:status] == 408)
-      { error: "execution expired", status: 408 }
+      { 'errors' => [{ 'status' => 408, 'title' =>"Request timeout" }] }
     else
-      { error: parse_error_response(error.message), status: 400 }
+      { 'errors' => [{ 'status' => 400, 'title' => parse_error_response(error.message) }] }
+    end
+  end
+
+  def self.parse_success_response(string)
+    string = parse_response(string)
+
+    if string == ""
+      { 'data' => nil }
+    elsif string.is_a?(Hash) && string['data']
+      string
+    elsif string.is_a?(Hash) && string['hash']
+      { 'data' => string['hash'] }
+    else
+      { 'data' => string }
     end
   end
 
@@ -113,11 +127,11 @@ module Maremma
     end
   end
 
+  protected
+
   def self.parse_response(string)
     from_json(string) || from_xml(string) || from_string(string)
   end
-
-  protected
 
   # currently supported by Twitter and Github
   # with slightly different header names
