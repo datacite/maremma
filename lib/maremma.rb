@@ -22,7 +22,7 @@ module Maremma
   def self.post(url, options={})
     options[:content_type] ||= 'json'
     options[:data] ||= {}
-    options[:headers] = set_headers(url, options)
+    options[:headers] = set_request_headers(url, options)
 
     conn = faraday_conn(options[:content_type], options)
 
@@ -38,7 +38,7 @@ module Maremma
 
   def self.get(url, options={})
     options[:content_type] ||= 'json'
-    options[:headers] = set_headers(url, options)
+    options[:headers] = set_request_headers(url, options)
 
     conn = faraday_conn(options[:content_type], options)
 
@@ -80,7 +80,7 @@ module Maremma
     end
   end
 
-  def self.set_headers(url, options)
+  def self.set_request_headers(url, options)
     options[:headers] ||= {}
     options[:headers]['Host'] = URI.parse(url).host
 

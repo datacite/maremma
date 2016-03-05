@@ -283,23 +283,23 @@ describe Maremma do
   context 'authentication' do
     it 'no auth' do
       options = {}
-      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org")
+      expect(subject.set_request_headers(url, options)).to eq("Host"=>"example.org")
     end
 
     it 'bearer' do
       options = { bearer: 'mF_9.B5f-4.1JqM' }
-      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Bearer mF_9.B5f-4.1JqM")
+      expect(subject.set_request_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Bearer mF_9.B5f-4.1JqM")
     end
 
     it 'token' do
       options = { token: '12345' }
-      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Token token=12345")
+      expect(subject.set_request_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Token token=12345")
     end
 
     it 'basic' do
       options = { username: 'foo', password: '12345' }
       basic = Base64.encode64("foo:12345")
-      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Basic #{basic}")
+      expect(subject.set_request_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Basic #{basic}")
     end
   end
 end
