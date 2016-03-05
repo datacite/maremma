@@ -22,11 +22,9 @@ module Maremma
   def self.post(url, options={})
     options[:content_type] ||= 'json'
     options[:data] ||= {}
-    options[:headers] ||= {}
-    options[:headers]['Host'] = URI.parse(url).host
+    options[:headers] = set_headers(url, options)
 
     conn = faraday_conn(options[:content_type], options)
-    conn = auth_conn(conn, options)
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
@@ -40,11 +38,9 @@ module Maremma
 
   def self.get(url, options={})
     options[:content_type] ||= 'json'
-    options[:headers] ||= {}
-    options[:headers]['Host'] = URI.parse(url).host
+    options[:headers] = set_headers(url, options)
 
     conn = faraday_conn(options[:content_type], options)
-    conn = auth_conn(conn, options)
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
@@ -67,12 +63,14 @@ module Maremma
                       "json" => 'application/json' }
     accept_header = content_types.fetch(content_type, content_type)
 
+    user_agent = ENV['HOSTNAME'].present? ? "Maremma - http://#{ENV['HOSTNAME']}" : "Maremma - https://github.com/datacite/maremma"
+
     # redirect limit
     limit = options[:limit] || 10
 
     Faraday.new do |c|
       c.headers['Accept'] = accept_header
-      c.headers['User-Agent'] = "Maremma - http://#{ENV['HOSTNAME']}"
+      c.headers['User-Agent'] = user_agent
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all
       c.request  :multipart
       c.request  :json if accept_header == 'application/json'
@@ -82,15 +80,20 @@ module Maremma
     end
   end
 
-  def self.auth_conn(conn, options)
-    if options[:bearer]
-      conn.authorization :Bearer, options[:bearer]
-    elsif options[:token]
-      conn.authorization :Token, token: options[:token]
-    elsif options[:username]
-      conn.basic_auth(options[:username], options[:password])
+  def self.set_headers(url, options)
+    options[:headers] ||= {}
+    options[:headers]['Host'] = URI.parse(url).host
+
+    if options[:bearer].present?
+      options[:headers]['Authorization'] = "Bearer #{options[:bearer]}"
+    elsif options[:token].present?
+      options[:headers]["Authorization"] = "Token token=#{options[:token]}"
+    elsif options[:username].present?
+      basic = Base64.encode64("#{options[:username]}:#{options[:password].to_s}")
+      options[:headers]["Authorization"] = "Basic #{basic}"
     end
-    conn
+
+    options[:headers]
   end
 
   def self.rescue_faraday_error(error)

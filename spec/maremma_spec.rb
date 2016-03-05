@@ -199,6 +199,14 @@ describe Maremma do
       response = subject.get(url)
       expect(response).to eq("data"=>"Test")
     end
+
+    it "redirect limit 1" do
+      stub_request(:get, url).to_return(status: 301, headers: { location: redirect_url })
+      stub_request(:get, redirect_url).to_return(status: 301, headers: { location: redirect_url + "/x" })
+      stub_request(:get, redirect_url+ "/x").to_return(status: 301, headers: { location: redirect_url + "/y" })
+      response = subject.get(url, limit: 1)
+      expect(response).to eq("errors"=>[{"status"=>400, "title"=>"too many redirects; last one to: http://www.example.org/redirect/x"}])
+    end
   end
 
   context 'parse_error_response' do
@@ -237,6 +245,61 @@ describe Maremma do
     it 'from_string with utf-8' do
       string = "fön  "
       expect(subject.parse_success_response(string)).to eq("data"=>"fön")
+    end
+  end
+
+  context 'connection' do
+    it 'default' do
+      conn = subject.faraday_conn
+      expect(conn.headers).to eq("Accept"=>"application/json",
+                                 "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
+    end
+
+    it 'json' do
+      conn = subject.faraday_conn('json')
+      expect(conn.headers).to eq("Accept"=>"application/json",
+                                 "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
+    end
+
+    it 'xml' do
+      conn = subject.faraday_conn('xml')
+      expect(conn.headers).to eq("Accept"=>"application/xml",
+                                 "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
+    end
+
+    it 'html' do
+      conn = subject.faraday_conn('html')
+      expect(conn.headers).to eq("Accept" => "text/html; charset=UTF-8",
+                                 "User-Agent" => "Maremma - https://github.com/datacite/maremma")
+    end
+
+    it 'other' do
+      conn = subject.faraday_conn('application/x-bibtex')
+      expect(conn.headers).to eq("Accept" => "application/x-bibtex",
+                                 "User-Agent" => "Maremma - https://github.com/datacite/maremma")
+    end
+  end
+
+  context 'authentication' do
+    it 'no auth' do
+      options = {}
+      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org")
+    end
+
+    it 'bearer' do
+      options = { bearer: 'mF_9.B5f-4.1JqM' }
+      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Bearer mF_9.B5f-4.1JqM")
+    end
+
+    it 'token' do
+      options = { token: '12345' }
+      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Token token=12345")
+    end
+
+    it 'basic' do
+      options = { username: 'foo', password: '12345' }
+      basic = Base64.encode64("foo:12345")
+      expect(subject.set_headers(url, options)).to eq("Host"=>"example.org", "Authorization"=>"Basic #{basic}")
     end
   end
 end
