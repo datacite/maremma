@@ -33,6 +33,23 @@ describe Maremma do
       subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
       expect(stub).to have_been_requested
     end
+
+    it "get json with params" do
+      params = { q: "*:*",
+                 fl: "doi,title,description,publisher,publicationYear,resourceType,resourceTypeGeneral,rightsURI,datacentre_symbol,xml,minted,updated",
+                 fq: %w(has_metadata:true is_active:true),
+                 facet: "true",
+                 'facet.field' => %w(resourceType_facet publicationYear datacentre_facet),
+                 'facet.limit' => 10,
+                 'f.resourceType_facet.facet.limit' => 15,
+                 wt: "json" }.compact
+      url = "http://example.org?" + URI.encode_www_form(params)
+      stub = stub_request(:get, url).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
+      response = subject.get(url)
+      expect(response).to eq("data" => data)
+      expect(stub).to have_been_requested
+      expect(url).to eq("http://example.org?q=*%3A*&fl=doi%2Ctitle%2Cdescription%2Cpublisher%2CpublicationYear%2CresourceType%2CresourceTypeGeneral%2CrightsURI%2Cdatacentre_symbol%2Cxml%2Cminted%2Cupdated&fq=has_metadata%3Atrue&fq=is_active%3Atrue&facet=true&facet.field=resourceType_facet&facet.field=publicationYear&facet.field=datacentre_facet&facet.limit=10&f.resourceType_facet.facet.limit=15&wt=json")
+    end
   end
 
   context "empty response" do
