@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # Declary dependencies here, rather than in the Gemfile
-  s.add_dependency 'faraday', '~> 0.9.0'
+  s.add_dependency 'faraday', '~> 0.9.2'
   s.add_dependency 'faraday_middleware', '~> 0.10.0'
   s.add_dependency 'faraday-encoding', '~> 0.0.1'
   s.add_dependency 'excon', '~> 0.45.0'

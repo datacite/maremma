@@ -1,3 +1,9 @@
+## v.2.2 (July 1, 2016)
+
+[maremma 2.2](https://github.com/datacite/maremma/releases/tag/v.2.2) was released on July 1, 2016:
+
+* use `Faraday::FlatParamsEncoder` to enable sending the same URL parameter multiple times with different values
+
 ## v.2.1 (March 5, 2016)
 
 [maremma 2.1](https://github.com/datacite/maremma/releases/tag/v.2.1) was released on March 5, 2016:

@@ -44,7 +44,9 @@ module Maremma
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
-    response = conn.get url, {}, options[:headers]
+    response = conn.get url, {}, options[:headers] do |request|
+      request.options.params_encoder = Faraday::FlatParamsEncoder
+    end
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
