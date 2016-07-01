@@ -34,7 +34,7 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
-    it "get json with params" do
+    it "get json with params", vcr: true do
       params = { q: "*:*",
                  fl: "doi,title,description,publisher,publicationYear,resourceType,resourceTypeGeneral,rightsURI,datacentre_symbol,xml,minted,updated",
                  fq: %w(has_metadata:true is_active:true),
@@ -43,12 +43,13 @@ describe Maremma do
                  'facet.limit' => 10,
                  'f.resourceType_facet.facet.limit' => 15,
                  wt: "json" }.compact
-      url = "http://example.org?" + URI.encode_www_form(params)
-      stub = stub_request(:get, url).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
+      url = "https://search.datacite.org/api?" + URI.encode_www_form(params)
+      expect(url).to eq("https://search.datacite.org/api?q=*%3A*&fl=doi%2Ctitle%2Cdescription%2Cpublisher%2CpublicationYear%2CresourceType%2CresourceTypeGeneral%2CrightsURI%2Cdatacentre_symbol%2Cxml%2Cminted%2Cupdated&fq=has_metadata%3Atrue&fq=is_active%3Atrue&facet=true&facet.field=resourceType_facet&facet.field=publicationYear&facet.field=datacentre_facet&facet.limit=10&f.resourceType_facet.facet.limit=15&wt=json")
       response = subject.get(url)
-      expect(response).to eq("data" => data)
-      expect(stub).to have_been_requested
-      expect(url).to eq("http://example.org?q=*%3A*&fl=doi%2Ctitle%2Cdescription%2Cpublisher%2CpublicationYear%2CresourceType%2CresourceTypeGeneral%2CrightsURI%2Cdatacentre_symbol%2Cxml%2Cminted%2Cupdated&fq=has_metadata%3Atrue&fq=is_active%3Atrue&facet=true&facet.field=resourceType_facet&facet.field=publicationYear&facet.field=datacentre_facet&facet.limit=10&f.resourceType_facet.facet.limit=15&wt=json")
+      facet_fields = response.fetch("data", {}).fetch("facet_counts", {}).fetch("facet_fields", {})
+      expect(facet_fields["datacentre_facet"]).to eq(["CDL.DPLANET - Data-Planet", 861878, "BL.CCDC - The Cambridge Crystallographic Data Centre", 611424, "ETHZ.SEALS - E-Periodica", 511650, "ESTDOI.BIO - TÜ Loodusmuuseum", 487448, "CDL.DIGSCI - Digital Science", 387189, "TIB.R-GATE - ResearchGate", 373556, "GESIS.DIE - Deutsches Institut für Erwachsenenbildung", 373193, "ETHZ.EPICS-BA - E-Pics Bildarchiv", 348365, "TIB.PANGAEA - PANGAEA - Publishing Network for Geoscientific and Environmental Data", 345569, "BL.IMPERIAL - Imperial College London", 189735])
+      expect(facet_fields["resourceType_facet"]).to eq(["Dataset", 2530173, "Text", 1309569, "Other", 872249, "Image", 694451, "Collection", 313746, "Software", 14683, "PhysicalObject", 6688, "Event", 6557, "Audiovisual", 6171, "Film", 967, "Model", 539, "InteractiveResource", 321, "Sound", 240, "Workflow", 218, "Service", 21])
+      expect(facet_fields["publicationYear"]).to eq(["2015", 2044515, "2014", 922708, "2016", 395824, "2011", 337643, "2013", 333117, "2012", 211537, "2005", 162237, "2007", 158014, "2006", 144119, "2010", 142954])
     end
   end
 

@@ -44,9 +44,7 @@ module Maremma
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
-    response = conn.get url, {}, options[:headers] do |request|
-      request.options.params_encoder = Faraday::FlatParamsEncoder
-    end
+    response = conn.get url, {}, options[:headers]
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
@@ -71,6 +69,7 @@ module Maremma
     limit = options[:limit] || 10
 
     Faraday.new do |c|
+      c.options.params_encoder = Faraday::FlatParamsEncoder
       c.headers['Accept'] = accept_header
       c.headers['User-Agent'] = user_agent
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all

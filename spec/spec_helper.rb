@@ -5,6 +5,7 @@ require 'maremma'
 require 'rspec'
 require 'rack/test'
 require 'webmock/rspec'
+require 'vcr'
 
 RSpec.configure do |config|
   config.include WebMock::API
@@ -12,4 +13,11 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+end
+
+VCR.configure do |c|
+  c.cassette_library_dir = "spec/fixtures/vcr_cassettes"
+  c.hook_into :webmock
+  c.ignore_localhost = true
+  c.configure_rspec_metadata!
 end
