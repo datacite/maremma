@@ -29,4 +29,4 @@ Maremma.post 'http://example.com', data: { 'foo' => 'baz' }
 
 ## License
 
-The [MIT License](license.txt) (OSI approved, see more at http://www.opensource.org/licenses/mit-license.php)
+[MIT](license.md)

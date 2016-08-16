@@ -1,3 +1,10 @@
+## v.2.3 (August 16, 2016)
+
+[maremma 2.3](https://github.com/datacite/maremma/releases/tag/v.2.3) was released on August 16, 2016:
+
+* don't set `Host` header by default, as it causes issues with redirection ([#1](https://github.com/datacite/maremma/issues/1)).
+* don't set `Accept` header to `application/json` by default, but rather accept all content types
+
 ## v.2.2 (July 1, 2016)
 
 [maremma 2.2](https://github.com/datacite/maremma/releases/tag/v.2.2) was released on July 1, 2016:
