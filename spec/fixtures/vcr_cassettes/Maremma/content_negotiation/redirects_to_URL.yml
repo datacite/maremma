@@ -1,0 +1,775 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://doi.org/10.5281/ZENODO.21430
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Maremma - https://github.com/datacite/maremma
+      Accept:
+      - text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5
+  response:
+    status:
+      code: 303
+      message: ''
+    headers:
+      Server:
+      - Apache-Coyote/1.1
+      Vary:
+      - Accept
+      Location:
+      - http://zenodo.org/record/21430
+      Expires:
+      - Tue, 16 Aug 2016 09:11:57 GMT
+      Content-Type:
+      - text/html;charset=utf-8
+      Content-Length:
+      - '145'
+      Date:
+      - Tue, 16 Aug 2016 09:04:19 GMT
+    body:
+      encoding: UTF-8
+      string: |-
+        <html><head><title>Handle Redirect</title></head>
+        <body><a href="http://zenodo.org/record/21430">http://zenodo.org/record/21430</a></body></html>
+    http_version: 
+  recorded_at: Tue, 16 Aug 2016 09:04:19 GMT
+- request:
+    method: get
+    uri: http://zenodo.org/record/21430
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Maremma - https://github.com/datacite/maremma
+      Accept:
+      - text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Tue, 16 Aug 2016 09:04:20 GMT
+      Server:
+      - Apache
+      Content-Length:
+      - '67353'
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Type:
+      - text/html; charset=utf-8
+    body:
+      encoding: UTF-8
+      string: "\n\n\n\n\n<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n  <meta charset=\"utf-8\">\n
+        \ <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n  <title>DataCite-ORCID:
+        1.0 - Zenodo</title>\n  <meta name=\"viewport\" content=\"width=device-width,
+        initial-scale=1.0\">\n  <meta name=\"google-site-verification\" content=\"5fPGCLllnWrvFxH9QWI0l1TadV7byeEvfPcyK2VkS_s\"/>\n
+        \ <meta name=\"google-site-verification\" content=\"Rp5zp04IKW-s1IbpTOGB7Z6XY60oloZD5C3kTM-AiY4\"/>\n\n
+        \ <link rel=\"author\" href=\"mailto:info@zenodo.org\"/>\n  <link rel=\"canonical\"
+        href=\"http://zenodo.org/record/21430\"/>\n  <link rel=\"alternate\" type=\"application/rss+xml\"
+        title=\"Zenodo RSS\" href=\"/rss\" />\n  <link rel=\"search\" type=\"application/opensearchdescription+xml\"
+        href=\"/opensearchdescription\" title=\"Zenodo\"/>\n  <link rel=\"unapi-server\"
+        type=\"application/xml\" title=\"unAPI\" href=\"/unapi\"/>\n  <!-- Le HTML5
+        shim, for IE6-8 support of HTML5 elements -->\n  <!--[if lt IE 9]>\n    <script
+        src=\"http://html5shim.googlecode.com/svn/trunk/html5.js\"></script>\n  <![endif]-->\n
+        \ <link rel=\"shortcut icon\" href=\"/favicon.ico\"/>\n  <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,100'
+        rel='stylesheet' type='text/css'>\n\n\n<meta content=\"DataCite-ORCID: 1.0\"
+        name=\"citation_title\" /><meta content=\"Martin Fenner\" name=\"citation_author\"
+        /><meta content=\"Robert Peters\" name=\"citation_author\" />\n<meta content=\"Gudmundur
+        A. Thorisson\" name=\"citation_author\" />\n<meta content=\"Karl Jonathan
+        Ward\" name=\"citation_author\" /><meta content=\"2015/07/25\" name=\"citation_publication_date\"
+        /><meta content=\"10.5281/zenodo.21430\" name=\"citation_doi\" /><meta content=\"orcid\"
+        name=\"citation_keywords\" />\n<meta content=\"datacite\" name=\"citation_keywords\"
+        />\n<meta content=\"ruby\" name=\"citation_keywords\" /><meta content=\"http://zenodo.org/record/21430\"
+        name=\"citation_abstract_html_url\" /><link rel=\"alternate\" type=\"application/zip\"
+        href=\"https://zenodo.org/record/21430/files/DataCite-ORCID-v.1.0.zip\"><meta
+        name=\"twitter:card\" content=\"summary\">\n<meta name=\"twitter:site\" content=\"@zenodo_org\"><meta
+        content=\"DataCite-ORCID: 1.0\" property=\"og:title\" /><meta content=\"DataCite-ORCID
+        is a Ruby Sinatra web application to allow users to claim DataCite DOIs for
+        their ORCID profile.&amp;nbsp;1.0 was released on July 25, 2015 with the following
+        changes:\n\n\n\tuse ENV variables and dotenv (#1)\n\tupdated Vagrantfile and
+        Chef cookbooks (#2)\n\tuse sentry for error tracking (#4)\n\tremove obsolete
+        cucumber tests (#5)\n\" property=\"og:description\" /><meta content=\"http://zenodo.org/record/21430\"
+        property=\"og:url\" /><meta content=\"Zenodo\" property=\"og:site_name\" />\n\n\n
+        \ <link rel=\"stylesheet\" type=\"text/css\" href=\"/gen/invenio.css?df58f184\"/>\n</head>\n<body
+        lang=\"en\" itemscope itemtype=\"http://schema.org/WebPage\">\n  <div id=\"wrap\">\n<div
+        class=\"modal fade\" id=\"sign-in-modal\" tabindex=\"-1\" role=\"dialog\"
+        aria-labelledby=\"sign-in-label\" aria-hidden=\"true\">\n  <div class=\"modal-dialog
+        modal-sm\">\n    <div class=\"modal-content\">\n      <div class=\"modal-header\"
+        align=\"center\" style=\"background-color: #eeeeee;\">\n        <button type=\"button\"
+        class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n
+        \       <h3 class=\"modal-title\" id=\"sign-in-label\">Sign In</h3>\n      </div>\n
+        \     <div class=\"modal-body\">\n        <div class=\"row\">\n          <div
+        class=\"col-md-12\">\n          <br /><a href=\"https://zenodo.org/oauth/login/github/?next=%2Frecord%2F21430\"
+        class=\"btn btn-default btn-lg btn-block\"><i class=\"fa fa-github\"></i>
+        Sign in with GitHub</a>\n          <br /><a href=\"https://zenodo.org/oauth/login/orcid/?next=%2Frecord%2F21430\"
+        class=\"btn btn-default btn-lg btn-block\"><img src=\"/img/orcid.png\"></i>
+        Sign in with ORCID</a>\n          </div>\n        </div>\n      </div>\n      <div
+        class=\"modal-body\" align=\"center\">\n          <h3>&mdash; OR &mdash;</h3>\n
+        \     </div>\n      <div class=\"modal-body\">\n        <div class=\"row\">\n
+        \         <div class=\"col-md-12\">\n            <form class=\"form-signin\"
+        action=\"https://zenodo.org/youraccount/login\" method=\"POST\">\n            <input
+        id=\"referer\" name=\"referer\" type=\"hidden\" value=\"/record/21430\">\n
+        \           <input id=\"login_method\" name=\"login_method\" type=\"hidden\"
+        value=\"Local\">\n            <div class=\"form-group\">\n              <input
+        class=\"form-control\" id=\"nickname\" name=\"nickname\" placeholder=\"Username
+        or email\" type=\"text\" value=\"\">\n            </div>\n            <div
+        class=\"form-group\">\n              <input class=\"form-control\" id=\"password\"
+        name=\"password\" placeholder=\"Password\" type=\"password\" value=\"\">\n\n
+        \             <label class=\"checkbox\">\n                <input class=\"checkbox\"
+        id=\"remember\" name=\"remember\" type=\"checkbox\" value=\"y\"> Remember
+        Me\n              </label>\n              <button class=\"btn btn-info btn-lg
+        btn-block\" id=\"submit\" name=\"submit\" type=\"submit\"><i class=\"fa fa-sign-in\"></i>
+        Sign in</button>\n            </form>\n            <p class=\"text-center\"><br><small>\n
+        \             <a href=\"/youraccount/lost\">\n                Lost your password?\n
+        \             </a>\n            </small></p>\n          </div>\n        </div>\n
+        \       </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n<div class=\"modal
+        fade\" id=\"sign-up-modal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\"
+        aria-hidden=\"true\">\n  <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n
+        \     <div class=\"modal-header\">\n        <button type=\"button\" class=\"close\"
+        data-dismiss=\"modal\" aria-hidden=\"true\">&times;</button>\n        <h3
+        class=\"modal-title\" id=\"sign-in-label\">Sign In</h3>\n      </div>\n      <div
+        class=\"modal-body\">\n        <p>One fine body&hellip;</p>\n      </div>\n
+        \   </div>\n  </div>\n</div><header class=\"gradient\">\n    <div class=\"container
+        headerbg\">\n      <div class=\"container\">\n        <div class=\"row\">\n
+        \         <div class=\"col-md-3\">\n            <a href=\"/\"><img id=\"logoimg\"
+        src=\"/img/zenodo.svg\" onerror=\"this.src=/img/zenodo.png; this.src=null;\"
+        alt=\"Zenodo\"></a><br>\n          </div>\n          <div class=\"col-md-9
+        pull-right hidden-sm hidden-xs\">\n            <h1 style=\"padding-top: 50px;
+        color: #00488c; font-size: 60px; line-height: 60px; text-align:right;\">Research.
+        Shared.</h1>\n          </div>\n        </div>\n      </div>\n      <div class=\"container\"
+        style=\"height:37px;\">\n        <ul class=\"nav nav-tabs\"><li><a href=\"/\">Search</a></li><li><a
+        href=\"/communities/\">Communities</a></li><li class=\"dropdown\"><a class=\"dropdown-toggle\"
+        data-toggle=\"dropdown\" href=\"#\">Browse<b class=\"caret\"></b></a>\n            <ul
+        class=\"dropdown-menu\"><li><a href=\"/collection/datasets\">Datasets</a></li><li><a
+        href=\"/collection/lessons\">Lessons</a></li><li><a href=\"/collection/images\">Images</a></li><li><a
+        href=\"/collection/posters\">Posters</a></li><li><a href=\"/collection/presentations\">Presentations</a></li><li><a
+        href=\"/collection/publications\">Publications</a></li><li><a href=\"/collection/software\">Software</a></li><li><a
+        href=\"/collection/videos\">Video/Audio</a></li></ul>\n          </li><li><a
+        href=\"/deposit/\">Upload</a></li><li class=\"dropdown\"><a class=\"dropdown-toggle\"
+        data-toggle=\"dropdown\" href=\"#\">Get started<b class=\"caret\"></b></a>\n
+        \           <ul class=\"dropdown-menu\"><li><a href=\"/faq\">FAQ</a></li><li><a
+        href=\"/features\">Features</a></li></ul>\n          </li>\n          <li
+        class=\"pull-right\">\n              <button class=\"btn btn-default\" data-toggle=\"modal\"
+        data-target=\"#sign-in-modal\"><i class=\"fa fa-sign-in\"></i> Sign In</button>\n
+        \             <button class=\"btn btn-warning\" onclick=\"window.location='https://zenodo.org/youraccount/register'\"><i
+        class=\"fa fa-edit\"></i> Sign Up</button>\n          </li>\n        </ul>\n
+        \     </div>\n    </div>\n  </header>\n    <div class=\"container phone-margin\">\n
+        \ <div class=\"row\">\n    <div class=\"col-sm-12 col-md-12 col-pad-0\">\n
+        \ \n    \n  \n\n    </div>\n  </div>\n\n\n\n<div class=\"row\" itemscope=\"\"
+        itemtype=\"http://schema.org/Code\">\n  <div class=\"col-sm-8 col-md-8\">\n
+        \   \n<p><time itemprop=\"datePublished\" datetime=\"2015-07-25\" data-toggle=\"tooltip\"
+        title=\"Publication date\">25 July 2015</time> <span class=\"pull-right\"><a
+        href=\"/search?p=980__a:software\" class=\"label label-inverse\">Software</a>
+        <a href=\"/search?p=542__l:open\" class=\"label label-success\">Open access</a></span></p>\n<h1
+        itemprop=\"name\">DataCite-ORCID: 1.0</h1>\n<p id=\"authors_short\" class=\"authors_list
+        collapse in\">\n<a itemprop=\"creator\" href=\"/search?f=author&amp;p=Martin%20Fenner&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Martin
+        Fenner</span></span></a> ; <a itemprop=\"creator\" href=\"/search?f=author&amp;p=Karl%20Jonathan%20Ward&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Karl
+        Jonathan Ward</span></span></a> ; <a itemprop=\"creator\" href=\"/search?f=author&amp;p=Gudmundur%20A.%20Thorisson&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Gudmundur
+        A. Thorisson</span></span></a> ; <a itemprop=\"creator\" href=\"/search?f=author&amp;p=Robert%20Peters&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Robert
+        Peters</span></span></a>\n</p>\n<p id=\"authors_long\" class=\"authors_list
+        collapse\">\n<a itemprop=\"creator\" href=\"/search?f=author&amp;p=Martin%20Fenner&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Martin
+        Fenner</span></span></a><br><small><span itemprop=\"affiliation\">ORCID EU<span></small><br><a
+        itemprop=\"creator\" href=\"/search?f=author&amp;p=Karl%20Jonathan%20Ward&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Karl
+        Jonathan Ward</span></span></a><br><small><span itemprop=\"affiliation\">CrossRef<span></small><br><a
+        itemprop=\"creator\" href=\"/search?f=author&amp;p=Gudmundur%20A.%20Thorisson&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Gudmundur
+        A. Thorisson</span></span></a><br><small><span itemprop=\"affiliation\">ORCID
+        EU<span></small><br><a itemprop=\"creator\" href=\"/search?f=author&amp;p=Robert%20Peters&amp;ln=en\"
+        ><span itemscope itemtype=\"http://schema.org/Person\"><span itemprop=\"name\">Robert
+        Peters</span></span></a><br><small><span itemprop=\"affiliation\">ORCID<span></small>\n</p>\n\n<p><small><a
+        href=\"#\" class=\"text-muted\" data-toggle=\"collapse\" data-target=\".authors_list\">(show
+        affiliations)</a></small></p>\n\n\n\n\n\n\n\n\n\n\n\n\n<p><span itemprop=\"description\"><p>DataCite-ORCID
+        is a Ruby Sinatra web application to allow users to claim DataCite DOIs for
+        their ORCID profile.&nbsp;1.0 was released on July 25, 2015 with the following
+        changes:</p>\n\n<ul>\n\t<li>use ENV variables and dotenv (#1)</li>\n\t<li>updated
+        Vagrantfile and Chef cookbooks (#2)</li>\n\t<li>use sentry for error tracking
+        (#4)</li>\n\t<li>remove obsolete cucumber tests (#5)</li>\n</ul></span></p>\n\n\n
+        \   <div class=\"panel-group\" id=\"record_detail\">\n      <div class=\"panel
+        panel-default\" id=\"preview\">\n  <div class=\"panel-heading\">\n    <a class=\"panel-toggle\"
+        data-toggle=\"collapse\" href=\"#collapseOne\">\n      Preview\n      <span
+        class=\"pull-right show-on-collapsed\"><i class=\"glyphicon glyphicon-chevron-right\"></i></span>\n
+        \     <span class=\"pull-right hide-on-collapsed\"><i class=\"glyphicon glyphicon-chevron-down\"></i></span>\n
+        \   </a>\n  </div>\n  <div id=\"collapseOne\" class=\"collapse in\">\n      <iframe
+        id=\"preview-iframe\" width=\"100%\" height=\"400\" style=\"border: none;\"></iframe>\n
+        \ </div>\n</div>\n<div class=\"panel panel-default\" id=\"files\">\n  <div
+        class=\"panel-heading\">\n    <a class=\"panel-toggle\" data-toggle=\"collapse\"
+        href=\"#collapseTwo\">\n      Files\n      <span class=\"pull-right show-on-collapsed\"><i
+        class=\"glyphicon glyphicon-chevron-right\"></i></span>\n      <span class=\"pull-right
+        hide-on-collapsed\"><i class=\"glyphicon glyphicon-chevron-down\"></i></span>\n
+        \   </a>\n  </div>\n  <div class=\"collapse in\" id=\"collapseTwo\">\n  \n
+        \ <table class=\"table table-striped\" >\n  <thead>\n    <tr class=\"\">\n
+        \     <th>Name</th>\n      <th>Date</th>\n      <th>Size</th>\n      <th></th>\n
+        \   </tr>\n  </thead>\n  <tbody>\n    <tr class=\"\">\n        <td><a class=\"forcewrap\"
+        href=\"https://zenodo.org/record/21430/files/DataCite-ORCID-v.1.0.zip\">DataCite-ORCID-v.1.0.zip</a></td>\n
+        \       <td class=\"nowrap\">25 Jul 2015</td>\n        <td class=\"nowrap\">438.0
+        kB</td>\n        <td class=\"nowrap\"><span class=\"pull-right\"><button class=\"btn
+        preview-link btn-xs btn-default\" data-filename=\"DataCite-ORCID-v.1.0.zip\"><i
+        class=\"fa fa-eye\"></i> Preview</button> <a class=\"btn btn-xs btn-default\"
+        href=\"https://zenodo.org/record/21430/files/DataCite-ORCID-v.1.0.zip\"><i
+        class=\"fa fa-download\"></i> Download</a></span></td>\n      </tr></tbody>\n
+        \ </table>\n  </div>\n</div>\n\n      \n    </div></div>\n  <div class=\"col-sm-4
+        col-md-4\">\n\n<div class=\"altmetric-embed  well\" data-badge-type=\"donut\"
+        data-badge-details=\"left\" data-hide-no-mentions=\"true\" data-doi=\"10.5281/zenodo.21430\"></div>\n\n\n\n\n<div
+        class=\"well metadata\">\n\n<small class=\"text-muted\">Available in</small>\n<a
+        href=\"https://github.com/datacite/DataCite-ORCID/tree/v.1.0\"><img src=\"/img/github.png\"
+        class=\"img-thumbnail\" width=\"100%\" /></a>\n</div>\n\n\n<div class=\"well
+        metadata\">\n  <dl>\n    <dt>Publication date:</dt><dd>25 July 2015</dd>\n
+        \   \n    \n    <dt>DOI</dt>\n    <dd>\n      \n      \n        \n        \n
+        \     \n      <span class=\"get-badge\" data-toggle=\"tooltip\" data-placement=\"bottom\"
+        title=\"Get the DOI badge!\">\n        <img data-toggle=\"modal\" data-target=\"[data-modal='10.5281-zenodo.21430']\"
+        src=\"https://zenodo.org/badge/doi/10.5281/zenodo.21430.svg\" alt=\"10.5281/zenodo.21430\"/>\n
+        \     </span>\n      <div class=\"modal fade badge-modal\" data-modal='10.5281-zenodo.21430'>\n
+        \       <div class=\"modal-dialog\">\n          <div class=\"modal-content\">\n
+        \           <div class=\"modal-body\">\n              <h4>Zenodo DOI Badge</h4>\n\n
+        \             <h4><small>Markdown</small><h4>\n              <pre>[![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.21430.svg)](http://dx.doi.org/10.5281/zenodo.21430)</pre>\n\n
+        \             <h4><small>reStructedText</small><h4>\n              <pre>..
+        image:: https://zenodo.org/badge/doi/10.5281/zenodo.21430.svg\n   :target:
+        http://dx.doi.org/10.5281/zenodo.21430</pre>\n\n              <h4><small>HTML</small><h4>\n
+        \             <pre>&lt;a href=\"http://dx.doi.org/10.5281/zenodo.21430\"&gt;&lt;img
+        src=\"https://zenodo.org/badge/doi/10.5281/zenodo.21430.svg\" alt=\"10.5281/zenodo.21430\"&gt;&lt;/a&gt;</pre>\n\n
+        \             <h4><small>Image URL</small><h4>\n              <pre>https://zenodo.org/badge/doi/10.5281/zenodo.21430.svg</pre>\n\n
+        \             <h4><small>DOI URL</small><h4>\n              <pre>http://dx.doi.org/10.5281/zenodo.21430</pre>\n
+        \           </div>\n          </div>\n        </div>\n      </div></dd>\n
+        \   \n    \n    \n    <dt>Keyword(s):</dt><dd><span class=\"label label-default\"
+        itemprop=\"keywords\"><a href=\"/search?f=keyword&amp;p=%22orcid%22&amp;ln=en\">orcid</a></span>
+        <span class=\"label label-default\" itemprop=\"keywords\"><a href=\"/search?f=keyword&amp;p=%22datacite%22&amp;ln=en\">datacite</a></span>
+        <span class=\"label label-default\" itemprop=\"keywords\"><a href=\"/search?f=keyword&amp;p=%22ruby%22&amp;ln=en\">ruby</a></span></dd>\n
+        \   \n    \n    \n    \n    \n    <dt>Grants:</dt><dd>ODIN - ORCID and DATACITE
+        Interoperability Network (312788)</dd>\n    \n    \n    <dt>Related publications
+        and datasets:</dt>\n        <dd>Supplement to:<br />\n        <a href=\"https://github.com/datacite/DataCite-ORCID/tree/v.1.0\">https://github.com/datacite/DataCite-ORCID/tree/v.1.0</a>\n
+        \   <dt>Collections:</dt><dd><a href=\"/collection/software?ln=en\" class=\"navtrail\">Software</a><br
+        /><a href=\"/collection/open?ln=en\" class=\"navtrail\">Open Access</a></dd>\n
+        \   <dt>License (for files):</dt><dd><a href=\"http://www.opensource.org/licenses/mit-license.php\">MIT
+        license</a></dd>\n    \n    <dt>Uploaded by:</dt>\n    <dd><a href=\"/yourmessages/write?sent_to_user_nicks=mhfenner\">mhfenner</a>
+        (on 25 July 2015)</dd>\n    \n  </dl>\n</div>\n\n    <div class=\"well\">\n
+        \     <a href=\"/youraccount/register\" class=\"btn btn-warning signup pull-right
+        btn-lg\">Sign Up</a>\n      <h4>New to Zenodo?</h4>\n      <p>Read more about
+        <a href=\"/features\">features and benefits</a>.</p>\n    </div>\n\n\n<div
+        class=\"well\">\n  <span class=\"pull-right hidden-sm\" rel=\"tooltip\" title=\"QR-code
+        for easy mobile access to this page.\"></span>\n  <h4>Share </h4>\n  <!--
+        AddThis Button BEGIN -->\n<div class=\"addthis_toolbox addthis_default_style
+        addthis_32x32_style\">\n<a class=\"addthis_button_mendeley\"></a>\n<a class=\"addthis_button_citeulike\"></a>\n<a
+        class=\"addthis_button_twitter\"></a>\n<a class=\"addthis_button_preferred_1\"></a>\n<a
+        class=\"addthis_button_preferred_2\"></a>\n<a class=\"addthis_button_compact\"></a>\n</div>\n<script
+        type=\"text/javascript\">\nvar addthis_config = {\n  \"data_track_addressbar\":
+        true\n};\nvar addthis_share = {\n  url: \"http://dx.doi.org/10.5281/zenodo.21430\"\n};\n</script>\n<script
+        type=\"text/javascript\" src=\"//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5137aff66ad9c2a1\"></script>\n<!--
+        AddThis Button END -->\n\n  <h4>Cite as </h4>\n  \n<div class='citationformat'
+        data-doi=\"10.5281/zenodo.21430\">\n    <p class=\"citation\">Martin Fenner
+        et al.. (2015). DataCite-ORCID: 1.0. Zenodo. <a href=\"http://dx.doi.org/10.5281/zenodo.21430\"
+        title=\"DOI\" target=\"_blank\">10.5281/zenodo.21430</a></p>\n    <p>\n        <select
+        class=\"styles form-control\">\n        <option value=\"\">Select citation
+        style...</option>\n        \n<option value=\"acm-sig-proceedings\">acm-sig-proceedings</option>\n<option
+        value=\"acm-sig-proceedings-long-author-list\">acm-sig-proceedings-long-author-list</option>\n<option
+        value=\"acm-sigchi-proceedings\">acm-sigchi-proceedings</option>\n<option
+        value=\"acm-siggraph\">acm-siggraph</option>\n<option value=\"acm-transactions-on-information-systems\">acm-transactions-on-information-systems</option>\n<option
+        value=\"acs-chemical-biology\">acs-chemical-biology</option>\n<option value=\"acs-nano\">acs-nano</option>\n<option
+        value=\"acta-materialia\">acta-materialia</option>\n<option value=\"acta-naturae\">acta-naturae</option>\n<option
+        value=\"acta-palaeontologica-polonica\">acta-palaeontologica-polonica</option>\n<option
+        value=\"acta-universitatis-agriculturae-sueciae\">acta-universitatis-agriculturae-sueciae</option>\n<option
+        value=\"administrative-science-quarterly\">administrative-science-quarterly</option>\n<option
+        value=\"advanced-engineering-materials\">advanced-engineering-materials</option>\n<option
+        value=\"advanced-materials\">advanced-materials</option>\n<option value=\"advances-in-complex-systems\">advances-in-complex-systems</option>\n<option
+        value=\"aging-cell\">aging-cell</option>\n<option value=\"aids\">aids</option>\n<option
+        value=\"all\">all</option>\n<option value=\"allergy\">allergy</option>\n<option
+        value=\"alternatives-to-animal-experimentation\">alternatives-to-animal-experimentation</option>\n<option
+        value=\"american-anthropological-association\">american-anthropological-association</option>\n<option
+        value=\"american-antiquity\">american-antiquity</option>\n<option value=\"american-association-for-cancer-research\">american-association-for-cancer-research</option>\n<option
+        value=\"american-association-of-petroleum-geologists\">american-association-of-petroleum-geologists</option>\n<option
+        value=\"american-chemical-society\">american-chemical-society</option>\n<option
+        value=\"american-chemical-society-with-titles\">american-chemical-society-with-titles</option>\n<option
+        value=\"american-chemical-society-with-titles-brackets\">american-chemical-society-with-titles-brackets</option>\n<option
+        value=\"american-geophysical-union\">american-geophysical-union</option>\n<option
+        value=\"american-heart-association\">american-heart-association</option>\n<option
+        value=\"american-institute-of-physics\">american-institute-of-physics</option>\n<option
+        value=\"american-journal-of-archaeology\">american-journal-of-archaeology</option>\n<option
+        value=\"american-journal-of-botany\">american-journal-of-botany</option>\n<option
+        value=\"american-journal-of-epidemiology\">american-journal-of-epidemiology</option>\n<option
+        value=\"american-journal-of-human-genetics\">american-journal-of-human-genetics</option>\n<option
+        value=\"american-journal-of-medical-genetics\">american-journal-of-medical-genetics</option>\n<option
+        value=\"american-journal-of-pathology\">american-journal-of-pathology</option>\n<option
+        value=\"american-journal-of-physical-anthropology\">american-journal-of-physical-anthropology</option>\n<option
+        value=\"american-journal-of-political-science\">american-journal-of-political-science</option>\n<option
+        value=\"american-medical-association\">american-medical-association</option>\n<option
+        value=\"american-medical-association-alphabetical\">american-medical-association-alphabetical</option>\n<option
+        value=\"american-medical-association-no-et-al\">american-medical-association-no-et-al</option>\n<option
+        value=\"american-medical-association-no-url\">american-medical-association-no-url</option>\n<option
+        value=\"american-meteorological-society\">american-meteorological-society</option>\n<option
+        value=\"american-physics-society\">american-physics-society</option>\n<option
+        value=\"american-physiological-society\">american-physiological-society</option>\n<option
+        value=\"american-phytopathological-society\">american-phytopathological-society</option>\n<option
+        value=\"american-phytopathological-society-numeric\">american-phytopathological-society-numeric</option>\n<option
+        value=\"american-society-for-microbiology\">american-society-for-microbiology</option>\n<option
+        value=\"american-society-of-civil-engineers\">american-society-of-civil-engineers</option>\n<option
+        value=\"american-society-of-mechanical-engineers\">american-society-of-mechanical-engineers</option>\n<option
+        value=\"amiens\">amiens</option>\n<option value=\"analytica-chimica-acta\">analytica-chimica-acta</option>\n<option
+        value=\"anesthesia-and-analgesia\">anesthesia-and-analgesia</option>\n<option
+        value=\"angewandte-chemie\">angewandte-chemie</option>\n<option value=\"animal-behaviour\">animal-behaviour</option>\n<option
+        value=\"annalen-des-naturhistorischen-museums-wien\">annalen-des-naturhistorischen-museums-wien</option>\n<option
+        value=\"annales\">annales</option>\n<option value=\"annals-of-biomedical-engineering\">annals-of-biomedical-engineering</option>\n<option
+        value=\"annals-of-botany\">annals-of-botany</option>\n<option value=\"annals-of-neurology\">annals-of-neurology</option>\n<option
+        value=\"annals-of-the-association-of-american-geographers\">annals-of-the-association-of-american-geographers</option>\n<option
+        value=\"annual-reviews-alphabetically\">annual-reviews-alphabetically</option>\n<option
+        value=\"annual-reviews-by-appearance\">annual-reviews-by-appearance</option>\n<option
+        value=\"antarctic-science\">antarctic-science</option>\n<option value=\"antonie-van-leeuwenhoek\">antonie-van-leeuwenhoek</option>\n<option
+        value=\"apa\">apa</option>\n<option value=\"apa5th\">apa5th</option>\n<option
+        value=\"applied-spectroscopy\">applied-spectroscopy</option>\n<option value=\"apsa\">apsa</option>\n<option
+        value=\"archives-of-physical-medicine-and-rehabilitation\">archives-of-physical-medicine-and-rehabilitation</option>\n<option
+        value=\"art-history\">art-history</option>\n<option value=\"arzneimitteltherapie\">arzneimitteltherapie</option>\n<option
+        value=\"asa\">asa</option>\n<option value=\"asa-cssa-sssa\">asa-cssa-sssa</option>\n<option
+        value=\"associacao-brasileira-de-normas-tecnicas\">associacao-brasileira-de-normas-tecnicas</option>\n<option
+        value=\"associacao-brasileira-de-normas-tecnicas-ufmg-face-full\">associacao-brasileira-de-normas-tecnicas-ufmg-face-full</option>\n<option
+        value=\"associacao-brasileira-de-normas-tecnicas-ufmg-face-initials\">associacao-brasileira-de-normas-tecnicas-ufmg-face-initials</option>\n<option
+        value=\"associacao-brasileira-de-normas-tecnicas-ufpr\">associacao-brasileira-de-normas-tecnicas-ufpr</option>\n<option
+        value=\"australian-historical-studies\">australian-historical-studies</option>\n<option
+        value=\"australian-journal-of-grape-and-wine-research\">australian-journal-of-grape-and-wine-research</option>\n<option
+        value=\"australian-legal\">australian-legal</option>\n<option value=\"avian-pathology\">avian-pathology</option>\n<option
+        value=\"aviation-space-and-environmental-medicine\">aviation-space-and-environmental-medicine</option>\n<option
+        value=\"basic-and-applied-ecology\">basic-and-applied-ecology</option>\n<option
+        value=\"bba-biochimica-et-biophysica-acta\">bba-biochimica-et-biophysica-acta</option>\n<option
+        value=\"behavioral-ecology-and-sociobiology\">behavioral-ecology-and-sociobiology</option>\n<option
+        value=\"bibtex\">bibtex</option>\n<option value=\"biochemistry\">biochemistry</option>\n<option
+        value=\"bioconjugate-chemistry\">bioconjugate-chemistry</option>\n<option
+        value=\"bioelectromagnetics\">bioelectromagnetics</option>\n<option value=\"bioessays\">bioessays</option>\n<option
+        value=\"bioinformatics\">bioinformatics</option>\n<option value=\"biological-psychiatry\">biological-psychiatry</option>\n<option
+        value=\"bioorganic-and-medicinal-chemistry-letters\">bioorganic-and-medicinal-chemistry-letters</option>\n<option
+        value=\"biophysical-journal\">biophysical-journal</option>\n<option value=\"bioresource-technology\">bioresource-technology</option>\n<option
+        value=\"biotechnology-and-bioengineering\">biotechnology-and-bioengineering</option>\n<option
+        value=\"biotropica\">biotropica</option>\n<option value=\"blank\">blank</option>\n<option
+        value=\"blood\">blood</option>\n<option value=\"bluebook-inline\">bluebook-inline</option>\n<option
+        value=\"bluebook-law-review\">bluebook-law-review</option>\n<option value=\"bluebook2\">bluebook2</option>\n<option
+        value=\"bmc-bioinformatics\">bmc-bioinformatics</option>\n<option value=\"bmj\">bmj</option>\n<option
+        value=\"bone\">bone</option>\n<option value=\"bone-marrow-transplantation\">bone-marrow-transplantation</option>\n<option
+        value=\"brain\">brain</option>\n<option value=\"brazilian-journal-of-nature-conservation\">brazilian-journal-of-nature-conservation</option>\n<option
+        value=\"briefings-in-bioinformatics\">briefings-in-bioinformatics</option>\n<option
+        value=\"british-ecological-society\">british-ecological-society</option>\n<option
+        value=\"british-journal-of-anaesthesia\">british-journal-of-anaesthesia</option>\n<option
+        value=\"british-journal-of-cancer\">british-journal-of-cancer</option>\n<option
+        value=\"british-journal-of-haematology\">british-journal-of-haematology</option>\n<option
+        value=\"british-journal-of-pharmacology\">british-journal-of-pharmacology</option>\n<option
+        value=\"british-journal-of-political-science\">british-journal-of-political-science</option>\n<option
+        value=\"british-psychological-society\">british-psychological-society</option>\n<option
+        value=\"building-structure\">building-structure</option>\n<option value=\"bulletin-de-la-societe-prehistorique-francaise\">bulletin-de-la-societe-prehistorique-francaise</option>\n<option
+        value=\"canadian-journal-of-fisheries-and-aquatic-sciences\">canadian-journal-of-fisheries-and-aquatic-sciences</option>\n<option
+        value=\"cancer-chemotherapy-and-pharmacology\">cancer-chemotherapy-and-pharmacology</option>\n<option
+        value=\"catholic-biblical-association\">catholic-biblical-association</option>\n<option
+        value=\"cell\">cell</option>\n<option value=\"cell-calcium\">cell-calcium</option>\n<option
+        value=\"cell-numeric\">cell-numeric</option>\n<option value=\"cell-transplantation\">cell-transplantation</option>\n<option
+        value=\"centaurus\">centaurus</option>\n<option value=\"cerebral-cortex\">cerebral-cortex</option>\n<option
+        value=\"chemical-research-in-toxicology\">chemical-research-in-toxicology</option>\n<option
+        value=\"chest\">chest</option>\n<option value=\"chicago-annotated-bibliography\">chicago-annotated-bibliography</option>\n<option
+        value=\"chicago-author-date\">chicago-author-date</option>\n<option value=\"chicago-author-date-basque\">chicago-author-date-basque</option>\n<option
+        value=\"chicago-author-date-de\">chicago-author-date-de</option>\n<option
+        value=\"chicago-dated-note-biblio-no-ibid\">chicago-dated-note-biblio-no-ibid</option>\n<option
+        value=\"chicago-fullnote-bibliography\">chicago-fullnote-bibliography</option>\n<option
+        value=\"chicago-fullnote-bibliography-no-ibid\">chicago-fullnote-bibliography-no-ibid</option>\n<option
+        value=\"chicago-library-list\">chicago-library-list</option>\n<option value=\"chicago-note-biblio-no-ibid\">chicago-note-biblio-no-ibid</option>\n<option
+        value=\"chicago-note-bibliography\">chicago-note-bibliography</option>\n<option
+        value=\"chicago-quick-copy\">chicago-quick-copy</option>\n<option value=\"chinese-gb7714-1987-numeric\">chinese-gb7714-1987-numeric</option>\n<option
+        value=\"chinese-gb7714-2005-numeric\">chinese-gb7714-2005-numeric</option>\n<option
+        value=\"circulation\">circulation</option>\n<option value=\"cities\">cities</option>\n<option
+        value=\"climatic-change\">climatic-change</option>\n<option value=\"clinical-cancer-research\">clinical-cancer-research</option>\n<option
+        value=\"clinical-infectious-diseases\">clinical-infectious-diseases</option>\n<option
+        value=\"clinical-neurophysiology\">clinical-neurophysiology</option>\n<option
+        value=\"clinical-orthopaedics-and-related-research\">clinical-orthopaedics-and-related-research</option>\n<option
+        value=\"cns-and-neurological-disorders-drug-targets\">cns-and-neurological-disorders-drug-targets</option>\n<option
+        value=\"cold-spring-harbor-laboratory-press\">cold-spring-harbor-laboratory-press</option>\n<option
+        value=\"conservation-biology\">conservation-biology</option>\n<option value=\"copernicus-publications\">copernicus-publications</option>\n<option
+        value=\"council-of-science-editors\">council-of-science-editors</option>\n<option
+        value=\"council-of-science-editors-author-date\">council-of-science-editors-author-date</option>\n<option
+        value=\"critical-care-medicine\">critical-care-medicine</option>\n<option
+        value=\"culture-medicine-and-psychiatry\">culture-medicine-and-psychiatry</option>\n<option
+        value=\"current-opinion\">current-opinion</option>\n<option value=\"current-protocols\">current-protocols</option>\n<option
+        value=\"currents-in-biblical-research\">currents-in-biblical-research</option>\n<option
+        value=\"cytometry\">cytometry</option>\n<option value=\"dendrochronologia\">dendrochronologia</option>\n<option
+        value=\"din-1505-2\">din-1505-2</option>\n<option value=\"din-1505-2-numeric\">din-1505-2-numeric</option>\n<option
+        value=\"diplo\">diplo</option>\n<option value=\"drug-and-alcohol-dependence\">drug-and-alcohol-dependence</option>\n<option
+        value=\"drugs-of-today\">drugs-of-today</option>\n<option value=\"early-medieval-europe\">early-medieval-europe</option>\n<option
+        value=\"earth-surface-processes-and-landforms\">earth-surface-processes-and-landforms</option>\n<option
+        value=\"ecological-modelling\">ecological-modelling</option>\n<option value=\"ecology\">ecology</option>\n<option
+        value=\"ecology-letters\">ecology-letters</option>\n<option value=\"ecoscience\">ecoscience</option>\n<option
+        value=\"ecosystems\">ecosystems</option>\n<option value=\"elsevier-harvard\">elsevier-harvard</option>\n<option
+        value=\"elsevier-harvard-without-titles\">elsevier-harvard-without-titles</option>\n<option
+        value=\"elsevier-radiological\">elsevier-radiological</option>\n<option value=\"elsevier-vancouver\">elsevier-vancouver</option>\n<option
+        value=\"elsevier-with-titles\">elsevier-with-titles</option>\n<option value=\"elsevier-with-titles-alphabetical\">elsevier-with-titles-alphabetical</option>\n<option
+        value=\"elsevier-without-titles\">elsevier-without-titles</option>\n<option
+        value=\"emerald-harvard\">emerald-harvard</option>\n<option value=\"entomologia-experimentalis-et-applicata\">entomologia-experimentalis-et-applicata</option>\n<option
+        value=\"environmental-and-engineering-geoscience\">environmental-and-engineering-geoscience</option>\n<option
+        value=\"environmental-and-experimental-botany\">environmental-and-experimental-botany</option>\n<option
+        value=\"environmental-conservation\">environmental-conservation</option>\n<option
+        value=\"environmental-health-perspectives\">environmental-health-perspectives</option>\n<option
+        value=\"environmental-microbiology\">environmental-microbiology</option>\n<option
+        value=\"epidemiologie-et-sante-animale\">epidemiologie-et-sante-animale</option>\n<option
+        value=\"ergoscience\">ergoscience</option>\n<option value=\"ethics-book-reviews\">ethics-book-reviews</option>\n<option
+        value=\"european-cells-and-materials\">european-cells-and-materials</option>\n<option
+        value=\"european-heart-journal\">european-heart-journal</option>\n<option
+        value=\"european-journal-of-immunology\">european-journal-of-immunology</option>\n<option
+        value=\"european-journal-of-neuroscience\">european-journal-of-neuroscience</option>\n<option
+        value=\"european-journal-of-ophthalmology\">european-journal-of-ophthalmology</option>\n<option
+        value=\"european-journal-of-radiology\">european-journal-of-radiology</option>\n<option
+        value=\"european-journal-of-soil-science\">european-journal-of-soil-science</option>\n<option
+        value=\"european-respiratory-journal\">european-respiratory-journal</option>\n<option
+        value=\"european-retail-research\">european-retail-research</option>\n<option
+        value=\"european-union-format\">european-union-format</option>\n<option value=\"eye\">eye</option>\n<option
+        value=\"fachhochschule-vorarlberg\">fachhochschule-vorarlberg</option>\n<option
+        value=\"febs-journal\">febs-journal</option>\n<option value=\"fems\">fems</option>\n<option
+        value=\"fertility-and-sterility\">fertility-and-sterility</option>\n<option
+        value=\"fish-and-fisheries\">fish-and-fisheries</option>\n<option value=\"foerster-geisteswissenschaft\">foerster-geisteswissenschaft</option>\n<option
+        value=\"fold-and-r\">fold-and-r</option>\n<option value=\"french1\">french1</option>\n<option
+        value=\"french2\">french2</option>\n<option value=\"french3\">french3</option>\n<option
+        value=\"french4\">french4</option>\n<option value=\"freshwater-biology\">freshwater-biology</option>\n<option
+        value=\"frontiers\">frontiers</option>\n<option value=\"fungal-ecology\">fungal-ecology</option>\n<option
+        value=\"future-medicine-journals\">future-medicine-journals</option>\n<option
+        value=\"gastroenterology\">gastroenterology</option>\n<option value=\"geneses\">geneses</option>\n<option
+        value=\"genetics\">genetics</option>\n<option value=\"genome-biology\">genome-biology</option>\n<option
+        value=\"genome-biology-and-evolution\">genome-biology-and-evolution</option>\n<option
+        value=\"geochimica-et-cosmochimica-acta\">geochimica-et-cosmochimica-acta</option>\n<option
+        value=\"geoderma\">geoderma</option>\n<option value=\"geological-magazine\">geological-magazine</option>\n<option
+        value=\"geological-society-of-america\">geological-society-of-america</option>\n<option
+        value=\"geology\">geology</option>\n<option value=\"geomorphology\">geomorphology</option>\n<option
+        value=\"geopolitics\">geopolitics</option>\n<option value=\"global-change-biology\">global-change-biology</option>\n<option
+        value=\"global-ecology-and-biogeography\">global-ecology-and-biogeography</option>\n<option
+        value=\"gost-r-7-0-5-2008\">gost-r-7-0-5-2008</option>\n<option value=\"gost-r-7-0-5-2008-csl-1-0\">gost-r-7-0-5-2008-csl-1-0</option>\n<option
+        value=\"gost-r-7-0-5-2008-numeric\">gost-r-7-0-5-2008-numeric</option>\n<option
+        value=\"graefes-archive-clinical-and-experimental-ophthalmology\">graefes-archive-clinical-and-experimental-ophthalmology</option>\n<option
+        value=\"harvard-anglia-ruskin\">harvard-anglia-ruskin</option>\n<option value=\"harvard-cardiff-university\">harvard-cardiff-university</option>\n<option
+        value=\"harvard-european-archaeology\">harvard-european-archaeology</option>\n<option
+        value=\"harvard-imperial-college-london\">harvard-imperial-college-london</option>\n<option
+        value=\"harvard-institut-fur-praxisforschung-de\">harvard-institut-fur-praxisforschung-de</option>\n<option
+        value=\"harvard-kings-college-london\">harvard-kings-college-london</option>\n<option
+        value=\"harvard-leeds-metropolitan-university\">harvard-leeds-metropolitan-university</option>\n<option
+        value=\"harvard-limerick\">harvard-limerick</option>\n<option value=\"harvard-manchester-business-school\">harvard-manchester-business-school</option>\n<option
+        value=\"harvard-oxford-brookes-university\">harvard-oxford-brookes-university</option>\n<option
+        value=\"harvard-sheffield\">harvard-sheffield</option>\n<option value=\"harvard-sheffield1\">harvard-sheffield1</option>\n<option
+        value=\"harvard-staffordshire-university\">harvard-staffordshire-university</option>\n<option
+        value=\"harvard-university-of-gloucestershire\">harvard-university-of-gloucestershire</option>\n<option
+        value=\"harvard-university-of-leeds\">harvard-university-of-leeds</option>\n<option
+        value=\"harvard-university-of-sunderland\">harvard-university-of-sunderland</option>\n<option
+        value=\"harvard-university-of-the-west-of-england\">harvard-university-of-the-west-of-england</option>\n<option
+        value=\"harvard-university-of-wolverhampton\">harvard-university-of-wolverhampton</option>\n<option
+        value=\"harvard-university-west-london\">harvard-university-west-london</option>\n<option
+        value=\"harvard1\">harvard1</option>\n<option value=\"harvard1-unisa-gbfe\">harvard1-unisa-gbfe</option>\n<option
+        value=\"harvard1de\">harvard1de</option>\n<option value=\"harvard3\">harvard3</option>\n<option
+        value=\"harvard7de\">harvard7de</option>\n<option value=\"hawaii-international-conference-on-system-sciences-proceedings\">hawaii-international-conference-on-system-sciences-proceedings</option>\n<option
+        value=\"health-services-research\">health-services-research</option>\n<option
+        value=\"hepatology\">hepatology</option>\n<option value=\"heredity\">heredity</option>\n<option
+        value=\"histoire-at-politique\">histoire-at-politique</option>\n<option value=\"histoire-et-mesure\">histoire-et-mesure</option>\n<option
+        value=\"history-and-theory\">history-and-theory</option>\n<option value=\"history-of-the-human-sciences\">history-of-the-human-sciences</option>\n<option
+        value=\"hong-kong-journal-of-radiology\">hong-kong-journal-of-radiology</option>\n<option
+        value=\"hormone-and-metabolic-research\">hormone-and-metabolic-research</option>\n<option
+        value=\"human-resource-management-journal\">human-resource-management-journal</option>\n<option
+        value=\"hwr-berlin\">hwr-berlin</option>\n<option value=\"hydrogeology-journal\">hydrogeology-journal</option>\n<option
+        value=\"hydrological-sciences-journal\">hydrological-sciences-journal</option>\n<option
+        value=\"hypotheses-in-the-life-sciences\">hypotheses-in-the-life-sciences</option>\n<option
+        value=\"ieee\">ieee</option>\n<option value=\"ieee-w-url\">ieee-w-url</option>\n<option
+        value=\"immunological-reviews\">immunological-reviews</option>\n<option value=\"inflammatory-bowel-diseases\">inflammatory-bowel-diseases</option>\n<option
+        value=\"information-communication-and-society\">information-communication-and-society</option>\n<option
+        value=\"institute-of-physics-harvard\">institute-of-physics-harvard</option>\n<option
+        value=\"institute-of-physics-numeric\">institute-of-physics-numeric</option>\n<option
+        value=\"inter-research-science-center\">inter-research-science-center</option>\n<option
+        value=\"inter-ro\">inter-ro</option>\n<option value=\"international-journal-of-audiology\">international-journal-of-audiology</option>\n<option
+        value=\"international-journal-of-cancer\">international-journal-of-cancer</option>\n<option
+        value=\"international-journal-of-exercise-science\">international-journal-of-exercise-science</option>\n<option
+        value=\"international-journal-of-hydrogen-energy\">international-journal-of-hydrogen-energy</option>\n<option
+        value=\"international-journal-of-production-economics\">international-journal-of-production-economics</option>\n<option
+        value=\"international-journal-of-psychoanalysis\">international-journal-of-psychoanalysis</option>\n<option
+        value=\"international-journal-of-radiation-oncology-biology-physics\">international-journal-of-radiation-oncology-biology-physics</option>\n<option
+        value=\"international-journal-of-solids-and-structures\">international-journal-of-solids-and-structures</option>\n<option
+        value=\"international-journal-of-tropical-biology-and-conservation\">international-journal-of-tropical-biology-and-conservation</option>\n<option
+        value=\"international-organization\">international-organization</option>\n<option
+        value=\"international-pig-veterinary-society-congress-proceedings\">international-pig-veterinary-society-congress-proceedings</option>\n<option
+        value=\"international-studies-association\">international-studies-association</option>\n<option
+        value=\"investigative-radiology\">investigative-radiology</option>\n<option
+        value=\"invisu\">invisu</option>\n<option value=\"irish-historical-studies\">irish-historical-studies</option>\n<option
+        value=\"iso690-author-date-cs\">iso690-author-date-cs</option>\n<option value=\"iso690-author-date-en\">iso690-author-date-en</option>\n<option
+        value=\"iso690-author-date-fr\">iso690-author-date-fr</option>\n<option value=\"iso690-numeric-cs\">iso690-numeric-cs</option>\n<option
+        value=\"iso690-numeric-en\">iso690-numeric-en</option>\n<option value=\"iso690-numeric-fr\">iso690-numeric-fr</option>\n<option
+        value=\"iso690-numeric-lt\">iso690-numeric-lt</option>\n<option value=\"iso690-numeric-sk\">iso690-numeric-sk</option>\n<option
+        value=\"javnost-the-public\">javnost-the-public</option>\n<option value=\"journal-of-alzheimers-disease\">journal-of-alzheimers-disease</option>\n<option
+        value=\"journal-of-applied-animal-science\">journal-of-applied-animal-science</option>\n<option
+        value=\"journal-of-applied-ecology\">journal-of-applied-ecology</option>\n<option
+        value=\"journal-of-archaeological-research\">journal-of-archaeological-research</option>\n<option
+        value=\"journal-of-bacteriology\">journal-of-bacteriology</option>\n<option
+        value=\"journal-of-biological-chemistry\">journal-of-biological-chemistry</option>\n<option
+        value=\"journal-of-chemical-ecology\">journal-of-chemical-ecology</option>\n<option
+        value=\"journal-of-clinical-investigation\">journal-of-clinical-investigation</option>\n<option
+        value=\"journal-of-clinical-oncology\">journal-of-clinical-oncology</option>\n<option
+        value=\"journal-of-community-health\">journal-of-community-health</option>\n<option
+        value=\"journal-of-dental-research\">journal-of-dental-research</option>\n<option
+        value=\"journal-of-elections-public-opinion-and-parties\">journal-of-elections-public-opinion-and-parties</option>\n<option
+        value=\"journal-of-evolutionary-biology\">journal-of-evolutionary-biology</option>\n<option
+        value=\"journal-of-field-ornithology\">journal-of-field-ornithology</option>\n<option
+        value=\"journal-of-fish-diseases\">journal-of-fish-diseases</option>\n<option
+        value=\"journal-of-food-protection\">journal-of-food-protection</option>\n<option
+        value=\"journal-of-forensic-sciences\">journal-of-forensic-sciences</option>\n<option
+        value=\"journal-of-geography-in-higher-education\">journal-of-geography-in-higher-education</option>\n<option
+        value=\"journal-of-health-economics\">journal-of-health-economics</option>\n<option
+        value=\"journal-of-hearing-science\">journal-of-hearing-science</option>\n<option
+        value=\"journal-of-hellenic-studies\">journal-of-hellenic-studies</option>\n<option
+        value=\"journal-of-hepatology\">journal-of-hepatology</option>\n<option value=\"journal-of-mammalogy\">journal-of-mammalogy</option>\n<option
+        value=\"journal-of-management-information-systems\">journal-of-management-information-systems</option>\n<option
+        value=\"journal-of-marketing\">journal-of-marketing</option>\n<option value=\"journal-of-molecular-biology\">journal-of-molecular-biology</option>\n<option
+        value=\"journal-of-molecular-endocrinology\">journal-of-molecular-endocrinology</option>\n<option
+        value=\"journal-of-neurophysiology\">journal-of-neurophysiology</option>\n<option
+        value=\"journal-of-neurosurgery\">journal-of-neurosurgery</option>\n<option
+        value=\"journal-of-orthopaedic-trauma\">journal-of-orthopaedic-trauma</option>\n<option
+        value=\"journal-of-paleontology\">journal-of-paleontology</option>\n<option
+        value=\"journal-of-petrology\">journal-of-petrology</option>\n<option value=\"journal-of-pollination-ecology\">journal-of-pollination-ecology</option>\n<option
+        value=\"journal-of-pragmatics\">journal-of-pragmatics</option>\n<option value=\"journal-of-psychiatry-and-neuroscience\">journal-of-psychiatry-and-neuroscience</option>\n<option
+        value=\"journal-of-shoulder-and-elbow-surgery\">journal-of-shoulder-and-elbow-surgery</option>\n<option
+        value=\"journal-of-social-archaeology\">journal-of-social-archaeology</option>\n<option
+        value=\"journal-of-studies-on-alcohol-and-drugs\">journal-of-studies-on-alcohol-and-drugs</option>\n<option
+        value=\"journal-of-superconductivity-and-novel-magnetism\">journal-of-superconductivity-and-novel-magnetism</option>\n<option
+        value=\"journal-of-the-academy-of-nutrition-and-dietetics\">journal-of-the-academy-of-nutrition-and-dietetics</option>\n<option
+        value=\"journal-of-the-air-and-waste-management-association\">journal-of-the-air-and-waste-management-association</option>\n<option
+        value=\"journal-of-the-american-college-of-cardiology\">journal-of-the-american-college-of-cardiology</option>\n<option
+        value=\"journal-of-the-american-society-of-nephrology\">journal-of-the-american-society-of-nephrology</option>\n<option
+        value=\"journal-of-the-american-water-resources-association\">journal-of-the-american-water-resources-association</option>\n<option
+        value=\"journal-of-the-royal-anthropological-institute\">journal-of-the-royal-anthropological-institute</option>\n<option
+        value=\"journal-of-the-torrey-botanical-society\">journal-of-the-torrey-botanical-society</option>\n<option
+        value=\"journal-of-thrombosis-and-haemostasis\">journal-of-thrombosis-and-haemostasis</option>\n<option
+        value=\"journal-of-tropical-ecology\">journal-of-tropical-ecology</option>\n<option
+        value=\"journal-of-vertebrate-paleontology\">journal-of-vertebrate-paleontology</option>\n<option
+        value=\"journal-of-wildlife-diseases\">journal-of-wildlife-diseases</option>\n<option
+        value=\"journal-of-wildlife-management\">journal-of-wildlife-management</option>\n<option
+        value=\"journalistica\">journalistica</option>\n<option value=\"juristische-zitierweise-deutsch\">juristische-zitierweise-deutsch</option>\n<option
+        value=\"karger-journals\">karger-journals</option>\n<option value=\"karger-journals-author-date\">karger-journals-author-date</option>\n<option
+        value=\"kidney-international\">kidney-international</option>\n<option value=\"knee-surgery-sports-traumatology-arthroscopy\">knee-surgery-sports-traumatology-arthroscopy</option>\n<option
+        value=\"kolner-zeitschrift-fur-soziologie-und-sozialpsychologie\">kolner-zeitschrift-fur-soziologie-und-sozialpsychologie</option>\n<option
+        value=\"kritische-ausgabe\">kritische-ausgabe</option>\n<option value=\"lancet\">lancet</option>\n<option
+        value=\"language\">language</option>\n<option value=\"language-in-society\">language-in-society</option>\n<option
+        value=\"law1-de\">law1-de</option>\n<option value=\"le-mouvement-social\">le-mouvement-social</option>\n<option
+        value=\"les-journees-de-la-recherche-porcine\">les-journees-de-la-recherche-porcine</option>\n<option
+        value=\"lethaia\">lethaia</option>\n<option value=\"lettres-et-sciences-humaines-fr\">lettres-et-sciences-humaines-fr</option>\n<option
+        value=\"leviathan\">leviathan</option>\n<option value=\"lichenologist\">lichenologist</option>\n<option
+        value=\"limnology-and-oceanography\">limnology-and-oceanography</option>\n<option
+        value=\"lncs\">lncs</option>\n<option value=\"lncs2\">lncs2</option>\n<option
+        value=\"macromolecular-reaction-engineering\">macromolecular-reaction-engineering</option>\n<option
+        value=\"mammal-review\">mammal-review</option>\n<option value=\"manchester-university-press\">manchester-university-press</option>\n<option
+        value=\"marine-policy\">marine-policy</option>\n<option value=\"matej-bel-university-faculty-of-natural-sciences\">matej-bel-university-faculty-of-natural-sciences</option>\n<option
+        value=\"mbio\">mbio</option>\n<option value=\"mcgill-guide-v7\">mcgill-guide-v7</option>\n<option
+        value=\"mcgill-legal\">mcgill-legal</option>\n<option value=\"mcrj7\">mcrj7</option>\n<option
+        value=\"medecine-sciences\">medecine-sciences</option>\n<option value=\"media-culture-and-society\">media-culture-and-society</option>\n<option
+        value=\"medicine-and-science-in-sports-and-exercise\">medicine-and-science-in-sports-and-exercise</option>\n<option
+        value=\"metabolic-engineering\">metabolic-engineering</option>\n<option value=\"metallurgical-and-materials-transactions\">metallurgical-and-materials-transactions</option>\n<option
+        value=\"meteoritics-and-planetary-science\">meteoritics-and-planetary-science</option>\n<option
+        value=\"methods-information-medicine\">methods-information-medicine</option>\n<option
+        value=\"mhra\">mhra</option>\n<option value=\"microbial-ecology\">microbial-ecology</option>\n<option
+        value=\"microscopy-and-microanalysis\">microscopy-and-microanalysis</option>\n<option
+        value=\"mis-quarterly\">mis-quarterly</option>\n<option value=\"mla\">mla</option>\n<option
+        value=\"mla-notes\">mla-notes</option>\n<option value=\"mla-underline\">mla-underline</option>\n<option
+        value=\"mla-url\">mla-url</option>\n<option value=\"molecular-biochemical-parasitology\">molecular-biochemical-parasitology</option>\n<option
+        value=\"molecular-biology-and-evolution\">molecular-biology-and-evolution</option>\n<option
+        value=\"molecular-ecology\">molecular-ecology</option>\n<option value=\"molecular-psychiatry\">molecular-psychiatry</option>\n<option
+        value=\"molecular-psychiatry-letters\">molecular-psychiatry-letters</option>\n<option
+        value=\"molecular-therapy\">molecular-therapy</option>\n<option value=\"multidisciplinary-digital-publishing-institute\">multidisciplinary-digital-publishing-institute</option>\n<option
+        value=\"multiple-sclerosis-journal\">multiple-sclerosis-journal</option>\n<option
+        value=\"nano-biomedicine-and-engineering\">nano-biomedicine-and-engineering</option>\n<option
+        value=\"nanotechnology\">nanotechnology</option>\n<option value=\"national-archives-of-australia\">national-archives-of-australia</option>\n<option
+        value=\"national-library-of-medicine-grant\">national-library-of-medicine-grant</option>\n<option
+        value=\"nature\">nature</option>\n<option value=\"nature-neuroscience-brief-communication\">nature-neuroscience-brief-communication</option>\n<option
+        value=\"nature-no-superscript\">nature-no-superscript</option>\n<option value=\"neuropsychologia\">neuropsychologia</option>\n<option
+        value=\"neuropsychopharmacology\">neuropsychopharmacology</option>\n<option
+        value=\"neurorehabilitation-and-neural-repair\">neurorehabilitation-and-neural-repair</option>\n<option
+        value=\"neuroreport\">neuroreport</option>\n<option value=\"neuroscience-research\">neuroscience-research</option>\n<option
+        value=\"new-england-journal-of-medicine\">new-england-journal-of-medicine</option>\n<option
+        value=\"new-phytologist\">new-phytologist</option>\n<option value=\"new-solutions\">new-solutions</option>\n<option
+        value=\"new-zealand-plant-protection\">new-zealand-plant-protection</option>\n<option
+        value=\"north-west-university-harvard\">north-west-university-harvard</option>\n<option
+        value=\"northeastern-naturalist\">northeastern-naturalist</option>\n<option
+        value=\"nucleic-acids-research\">nucleic-acids-research</option>\n<option
+        value=\"oecologia\">oecologia</option>\n<option value=\"oikos\">oikos</option>\n<option
+        value=\"oncogene\">oncogene</option>\n<option value=\"ophthalmology\">ophthalmology</option>\n<option
+        value=\"optical-society-of-america\">optical-society-of-america</option>\n<option
+        value=\"oral-oncology\">oral-oncology</option>\n<option value=\"organic-geochemistry\">organic-geochemistry</option>\n<option
+        value=\"organization-science\">organization-science</option>\n<option value=\"oryx\">oryx</option>\n<option
+        value=\"oscola\">oscola</option>\n<option value=\"oscola-no-ibid\">oscola-no-ibid</option>\n<option
+        value=\"osterreichische-zeitschrift-fur-politikwissenschaft\">osterreichische-zeitschrift-fur-politikwissenschaft</option>\n<option
+        value=\"oxford-art-journal\">oxford-art-journal</option>\n<option value=\"padagogische-hochschule-heidelberg\">padagogische-hochschule-heidelberg</option>\n<option
+        value=\"palaeontologia-electronica\">palaeontologia-electronica</option>\n<option
+        value=\"palaeontology\">palaeontology</option>\n<option value=\"paleobiology\">paleobiology</option>\n<option
+        value=\"pbsjournals-asbp\">pbsjournals-asbp</option>\n<option value=\"pediatric-nephrology\">pediatric-nephrology</option>\n<option
+        value=\"pharmacoeconomics\">pharmacoeconomics</option>\n<option value=\"plant-biology\">plant-biology</option>\n<option
+        value=\"plant-cell\">plant-cell</option>\n<option value=\"plant-physiology\">plant-physiology</option>\n<option
+        value=\"plos\">plos</option>\n<option value=\"pnas\">pnas</option>\n<option
+        value=\"political-studies\">political-studies</option>\n<option value=\"politische-vierteljahresschrift\">politische-vierteljahresschrift</option>\n<option
+        value=\"pontifical-biblical-institute\">pontifical-biblical-institute</option>\n<option
+        value=\"presses-universitaires-de-rennes\">presses-universitaires-de-rennes</option>\n<option
+        value=\"proceedings-of-the-royal-society-b\">proceedings-of-the-royal-society-b</option>\n<option
+        value=\"protein-science\">protein-science</option>\n<option value=\"proteomics\">proteomics</option>\n<option
+        value=\"psychiatry-and-clinical-neurosciences\">psychiatry-and-clinical-neurosciences</option>\n<option
+        value=\"public-health-nutrition\">public-health-nutrition</option>\n<option
+        value=\"radiopaedia\">radiopaedia</option>\n<option value=\"research-policy\">research-policy</option>\n<option
+        value=\"resources-conservation-and-recycling\">resources-conservation-and-recycling</option>\n<option
+        value=\"revista-brasileira-de-botanica\">revista-brasileira-de-botanica</option>\n<option
+        value=\"revue-de-medecine-veterinaire\">revue-de-medecine-veterinaire</option>\n<option
+        value=\"revue-dhistoire-moderne-et-contemporaine\">revue-dhistoire-moderne-et-contemporaine</option>\n<option
+        value=\"rockefeller-university-press\">rockefeller-university-press</option>\n<option
+        value=\"romanian-humanities\">romanian-humanities</option>\n<option value=\"rose-school\">rose-school</option>\n<option
+        value=\"royal-society-of-chemistry\">royal-society-of-chemistry</option>\n<option
+        value=\"rtf-scan\">rtf-scan</option>\n<option value=\"sage-harvard\">sage-harvard</option>\n<option
+        value=\"sage-vancouver\">sage-vancouver</option>\n<option value=\"sbl-fullnote-bibliography\">sbl-fullnote-bibliography</option>\n<option
+        value=\"scandinavian-political-studies\">scandinavian-political-studies</option>\n<option
+        value=\"science\">science</option>\n<option value=\"science-of-the-total-environment\">science-of-the-total-environment</option>\n<option
+        value=\"science-translational-medicine\">science-translational-medicine</option>\n<option
+        value=\"science-without-title\">science-without-title</option>\n<option value=\"sexual-development\">sexual-development</option>\n<option
+        value=\"small-wiley\">small-wiley</option>\n<option value=\"social-science-and-medicine\">social-science-and-medicine</option>\n<option
+        value=\"social-studies-of-science\">social-studies-of-science</option>\n<option
+        value=\"sociedade-brasileira-de-computacao\">sociedade-brasileira-de-computacao</option>\n<option
+        value=\"societe-nationale-des-groupements-techniques-veterinaires\">societe-nationale-des-groupements-techniques-veterinaires</option>\n<option
+        value=\"society-for-american-archaeology\">society-for-american-archaeology</option>\n<option
+        value=\"society-for-general-microbiology\">society-for-general-microbiology</option>\n<option
+        value=\"society-for-historical-archaeology\">society-for-historical-archaeology</option>\n<option
+        value=\"socio-economic-review\">socio-economic-review</option>\n<option value=\"spanish-legal\">spanish-legal</option>\n<option
+        value=\"spie-bios\">spie-bios</option>\n<option value=\"spie-journals\">spie-journals</option>\n<option
+        value=\"spip-cite\">spip-cite</option>\n<option value=\"springer-author-date\">springer-author-date</option>\n<option
+        value=\"springer-plasmonics\">springer-plasmonics</option>\n<option value=\"springer-vancouver\">springer-vancouver</option>\n<option
+        value=\"standards-in-genomic-sciences\">standards-in-genomic-sciences</option>\n<option
+        value=\"stroke\">stroke</option>\n<option value=\"stuttgart-media-university\">stuttgart-media-university</option>\n<option
+        value=\"surgical-neurology-international\">surgical-neurology-international</option>\n<option
+        value=\"tah-gkw\">tah-gkw</option>\n<option value=\"tah-soz\">tah-soz</option>\n<option
+        value=\"taylor-and-francis-harvard-x\">taylor-and-francis-harvard-x</option>\n<option
+        value=\"tgm-wien-diplom\">tgm-wien-diplom</option>\n<option value=\"the-academy-of-management-review\">the-academy-of-management-review</option>\n<option
+        value=\"the-accounting-review\">the-accounting-review</option>\n<option value=\"the-american-journal-of-gastroenterology\">the-american-journal-of-gastroenterology</option>\n<option
+        value=\"the-american-journal-of-geriatric-pharmacotherapy\">the-american-journal-of-geriatric-pharmacotherapy</option>\n<option
+        value=\"the-american-journal-of-psychiatry\">the-american-journal-of-psychiatry</option>\n<option
+        value=\"the-british-journal-of-psychiatry\">the-british-journal-of-psychiatry</option>\n<option
+        value=\"the-british-journal-of-sociology\">the-british-journal-of-sociology</option>\n<option
+        value=\"the-embo-journal\">the-embo-journal</option>\n<option value=\"the-historical-journal\">the-historical-journal</option>\n<option
+        value=\"the-holocene\">the-holocene</option>\n<option value=\"the-isme-journal\">the-isme-journal</option>\n<option
+        value=\"the-journal-of-comparative-neurology\">the-journal-of-comparative-neurology</option>\n<option
+        value=\"the-journal-of-eukaryotic-microbiology\">the-journal-of-eukaryotic-microbiology</option>\n<option
+        value=\"the-journal-of-experimental-biology\">the-journal-of-experimental-biology</option>\n<option
+        value=\"the-journal-of-immunology\">the-journal-of-immunology</option>\n<option
+        value=\"the-journal-of-neuropsychiatry-and-clinical-neurosciences\">the-journal-of-neuropsychiatry-and-clinical-neurosciences</option>\n<option
+        value=\"the-journal-of-neuroscience\">the-journal-of-neuroscience</option>\n<option
+        value=\"the-journal-of-physiology\">the-journal-of-physiology</option>\n<option
+        value=\"the-journal-of-the-acoustical-society-of-america\">the-journal-of-the-acoustical-society-of-america</option>\n<option
+        value=\"the-journal-of-urology\">the-journal-of-urology</option>\n<option
+        value=\"the-neuroscientist\">the-neuroscientist</option>\n<option value=\"the-oncologist\">the-oncologist</option>\n<option
+        value=\"the-open-university-a251\">the-open-university-a251</option>\n<option
+        value=\"the-open-university-harvard\">the-open-university-harvard</option>\n<option
+        value=\"the-open-university-m801\">the-open-university-m801</option>\n<option
+        value=\"the-open-university-numeric\">the-open-university-numeric</option>\n<option
+        value=\"the-pharmacogenomics-journal\">the-pharmacogenomics-journal</option>\n<option
+        value=\"the-plant-journal\">the-plant-journal</option>\n<option value=\"theory-culture-and-society\">theory-culture-and-society</option>\n<option
+        value=\"tissue-engineering\">tissue-engineering</option>\n<option value=\"toxicon\">toxicon</option>\n<option
+        value=\"traces\">traces</option>\n<option value=\"traffic\">traffic</option>\n<option
+        value=\"transportation-research-record\">transportation-research-record</option>\n<option
+        value=\"trends-journal\">trends-journal</option>\n<option value=\"tu-wien-dissertation\">tu-wien-dissertation</option>\n<option
+        value=\"turabian-fullnote-bibliography\">turabian-fullnote-bibliography</option>\n<option
+        value=\"un-eclac-cepal-english\">un-eclac-cepal-english</option>\n<option
+        value=\"un-eclac-cepal-spanish\">un-eclac-cepal-spanish</option>\n<option
+        value=\"unctad-english\">unctad-english</option>\n<option value=\"unified-style-linguistics\">unified-style-linguistics</option>\n<option
+        value=\"unisa-harvard\">unisa-harvard</option>\n<option value=\"unisa-harvard3\">unisa-harvard3</option>\n<option
+        value=\"universidad-evangelica-del-paraguay\">universidad-evangelica-del-paraguay</option>\n<option
+        value=\"universita-di-bologna-lettere\">universita-di-bologna-lettere</option>\n<option
+        value=\"universitat-heidelberg-historisches-seminar\">universitat-heidelberg-historisches-seminar</option>\n<option
+        value=\"universite-de-liege-histoire\">universite-de-liege-histoire</option>\n<option
+        value=\"universite-laval-com\">universite-laval-com</option>\n<option value=\"university-of-melbourne\">university-of-melbourne</option>\n<option
+        value=\"urban-forestry-and-urban-greening\">urban-forestry-and-urban-greening</option>\n<option
+        value=\"urban-habitats\">urban-habitats</option>\n<option value=\"urban-studies\">urban-studies</option>\n<option
+        value=\"us-geological-survey\">us-geological-survey</option>\n<option value=\"user-modeling-and-useradapted-interaction\">user-modeling-and-useradapted-interaction</option>\n<option
+        value=\"vancouver\">vancouver</option>\n<option value=\"vancouver-brackets\">vancouver-brackets</option>\n<option
+        value=\"vancouver-superscript\">vancouver-superscript</option>\n<option value=\"vancouver-superscript-bracket-only-year\">vancouver-superscript-bracket-only-year</option>\n<option
+        value=\"veterinary-medicine-austria\">veterinary-medicine-austria</option>\n<option
+        value=\"veterinary-record\">veterinary-record</option>\n<option value=\"vienna-legal\">vienna-legal</option>\n<option
+        value=\"vingtieme-siecle\">vingtieme-siecle</option>\n<option value=\"virology\">virology</option>\n<option
+        value=\"water-environment-research\">water-environment-research</option>\n<option
+        value=\"water-research\">water-research</option>\n<option value=\"water-science-and-technology\">water-science-and-technology</option>\n<option
+        value=\"wceam2010\">wceam2010</option>\n<option value=\"wetlands\">wetlands</option>\n<option
+        value=\"wheaton-college-phd-in-biblical-and-theological-studies\">wheaton-college-phd-in-biblical-and-theological-studies</option>\n<option
+        value=\"who-europe-harvard\">who-europe-harvard</option>\n<option value=\"who-europe-numeric\">who-europe-numeric</option>\n<option
+        value=\"world-journal-of-biological-psychiatry\">world-journal-of-biological-psychiatry</option>\n<option
+        value=\"yeast\">yeast</option>\n<option value=\"zdravniski-vestnik\">zdravniski-vestnik</option>\n<option
+        value=\"zeitschrift-fur-medienwissenschaft\">zeitschrift-fur-medienwissenschaft</option>\n\n</select>\n
+        \   </p>\n</div>\n\n\n</div>\n    \n<div class=\"well\">\n    <h4>Export</h4>\n
+        \   <a href=\"/record/21430/export/hx\">BibTeX</a>,\n    <a href=\"/record/21430/export/dcite3\">DataCite</a>,\n
+        \   <a href=\"/record/21430/export/xd\">DC</a>,\n    <a href=\"/record/21430/export/xe\">EndNote</a>,\n
+        \   <a href=\"/record/21430/export/xn\">NLM</a>,\n    <a href=\"/record/21430/export/xw\">RefWorks</a></li>\n
+        \   <a href=\"/record/21430/export/hm\">MARC</a>,\n    <a href=\"/record/21430/export/xm\">MARCXML</a>\n</div>\n
+        \ </div>\n</div>\n\n<div class=\"modal fade\" id=\"sharemodal\" tabindex=\"-1\"
+        role=\"dialog\" aria-labelledby=\"sharemodalabel\" aria-hidden=\"true\">\n
+        \ <div class=\"modal-dialog\">\n    <div class=\"modal-content\">\n      <div
+        class=\"modal-header\">\n        <button type=\"button\" class=\"close\" data-dismiss=\"modal\"
+        aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n
+        \       <h4 class=\"modal-title\" id=\"sharemodalabel\"><i class=\"fa fa-share\"></i>
+        Share link</h4>\n      </div>\n      <div class=\"modal-body\">\n\n        <form>\n
+        \       <div class=\"form-group\">\n          <label class=\"control-label\">Link
+        to record</label>\n          <input class=\" form-control\" id=\"full_name\"
+        name=\"full_name\" type=\"text\" value=\"\">\n          <div class=\"help-block\"><small>Required.</small></div>\n
+        \       </div>\n        <hr />\n        <div class=\"form-group\">\n          <label
+        class=\"control-label\">Expiry date</label>\n          <input class=\" form-control\"
+        id=\"full_name\" name=\"full_name\" type=\"text\" value=\"\">\n          <div
+        class=\"help-block\"><small>Optional.</small></div>\n        </div>\n        </form>\n
+        \     </div>\n      <div class=\"modal-footer\">\n        <button type=\"button\"
+        class=\"btn btn-default\" data-dismiss=\"modal\"><i class=\"fa fa-times\"></i>Close</button>\n
+        \       <button type=\"button\" class=\"btn btn-primary\">Save link</button>\n
+        \     </div>\n    </div>\n  </div>\n</div>\n\n\n      <div id=\"push\"></div>\n
+        \   </div>\n  </div>\n  <div class=\"container phone-margin\"></div><footer
+        id=\"footer\">\n  <div class=\"container phone-margin\">\n    <div class=\"row\">\n
+        \     <div class=\"col-sm-2 col-md-2\"><ul><li><a href=\"/about\">About</a></li><li><a
+        href=\"/contact\">Contact</a></li><li><a href=\"/policies\">Policies</a></li></ul></div>\n
+        \     <div class=\"col-sm-2 col-md-2\"><ul><li><a href=\"/features\">Features</a></li><li><a
+        href=\"/faq\">FAQ</a></li><li><a href=\"/dev\">API</a></li></ul></div>\n      <div
+        class=\"col-lg-offset-1 col-sm-2 col-md-2 hidden-sm\">\n        <p align=\"center\"><small>Powered
+        by:</small></p>\n        <div align=\"center\">\n        <a href=\"http://invenio-software.org\"><img
+        src=\"/img/logo_white.png\" width=\"100px\"></a><br />\n        <a href=\"http://information-technology.web.cern.ch/about/computer-centre\"
+        style=\"font-size:19px;\">CERN Data Centre</a><br />\n        </div>\n      </div>\n
+        \     <div class=\"col-sm-5 col-md-5\"><span class=\"pull-right partners hidden-sm\">\n
+        \       <p align=\"right\"><small>Funded by:</small></p>\n        <a href=\"http://cern.ch\"><img
+        src=\"/img/cern.png\" width=\"60px\" height=\"60px\"></a>\n        <a href=\"http://www.openaire.eu\"><img
+        src=\"/img/openaire.png\" width=\"80px\" height=\"60px\"></a>\n        <a
+        href=\"http://ec.europa.eu/programmes/horizon2020/\"><img src=\"/img/eu.png\"
+        width=\"88px\" height=\"60px\"></a><br>\n        </span>\n      </div>\n    </div>\n
+        \   <div class=\"row\">\n      <div class=\"col-sm-12 col-md-12\" style=\"text-align:
+        center; padding-top: 20px\">\n        <p><small><a href=\"/terms\">Terms of
+        use</a> | <a href=\"/privacy-policy\">Privacy policy</a> | <a href=\"/support\">Support/Feedback</a></small></p>\n
+        \     </div>\n    </div>\n  </div>\n</footer>\n  \n  <script type=\"text/javascript\"
+        src=\"/gen/almond.js?45848f67\"></script>\n  <script type=\"text/javascript\"
+        src=\"/gen/jquery.js?fb9b122a\"></script>\n  <script type=\"text/javascript\"
+        src=\"/gen/invenio.js?b5e36c9c\"></script>\n  \n\n<script>\nrequire(['jquery'],
+        function($) {\n  $(function () {\n    var reloadTab = function(target, path,
+        idx) {\n      if( !$('#record_content' + idx).hasClass(\"loaded\") ){\n        $.post(path,
+        function(data) {\n          $('#record_content' + idx).html(data);\n          $('#record_content'
+        + idx).addClass(\"loaded\");\n          $(target).removeClass(\"loading\");\n
+        \       });\n      }\n    };\n\n    $('#record_detail a.tablink').on('click',
+        function(event) {\n      var path = $(event.target).attr('href');\n      var
+        idx = $(event.target).data('idx');\n      //event.preventDefault();\n      //event.stopImmediatePropagation();\n
+        \     if (typeof(window.history.pushState) == 'function') {\n        window.history.pushState({path:path},
+        document.title, path);\n      } else {\n        window.location.hash = '#!'
+        + path;\n      }\n      if( !$('#record_content' + idx).hasClass(\"loaded\")
+        ){\n        $(event.target).addClass(\"loading\");\n        reloadTab(event.target,
+        path, idx);\n      }\n    });\n  });\n\n  \n    $(function () {\n      $('.preview-link').on('click',
+        function(event) {\n        $('#preview').show();\n        var filename = encodeURIComponent($(event.target).data('filename'));\n
+        \       $('#preview-iframe').attr(\"src\",\"/record/21430/preview?filename=\"+filename);\n
+        \     });\n\n      var previewbutton = $('.preview-link:first');\n      if
+        (previewbutton.html()) {\n        previewbutton.click();\n      } else {\n
+        \       $('#preview').hide();\n      }\n    });\n  \n});\n</script>\n<script>\nrequire(['js/citationformatter/citationformatter'],
+        function(formatter) {\n    formatter.attachTo('.citationformat', { lang: 'en-GB'});\n});\n</script>\n\n
+        \ <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>\n
+        \ <script type=\"text/javascript\" src=\"https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\"></script>\n
+        \ <script type=\"text/javascript\">\n  var _paq = _paq || [];\n  _paq.push([\"setDomains\",
+        [\"*.zenodo.org\",\"*.zenodo.cern.ch\",\"*.zenodo.eu\",\"*.zenodo.net\"]]);\n
+        \ _paq.push([\"trackPageView\"]);\n  _paq.push([\"enableLinkTracking\"]);\n\n
+        \ (function() {\n    var u=((\"https:\" == document.location.protocol) ? \"https\"
+        : \"http\") + \"://piwik.web.cern.ch/\";\n    _paq.push([\"setTrackerUrl\",
+        u+\"piwik.php\"]);\n    _paq.push([\"setSiteId\", \"57\"]);\n    var d=document,
+        g=d.createElement(\"script\"), s=d.getElementsByTagName(\"script\")[0]; g.type=\"text/javascript\";\n
+        \   g.defer=true; g.async=true; g.src=u+\"piwik.js\"; s.parentNode.insertBefore(g,s);\n
+        \ })();\n  </script>\n</body>\n</html>"
+    http_version: 
+  recorded_at: Tue, 16 Aug 2016 09:04:22 GMT
+recorded_with: VCR 3.0.3
