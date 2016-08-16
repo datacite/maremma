@@ -20,11 +20,10 @@ NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
 
 module Maremma
   def self.post(url, options={})
-    options[:content_type] ||= 'json'
     options[:data] ||= {}
     options[:headers] = set_request_headers(url, options)
 
-    conn = faraday_conn(options[:content_type], options)
+    conn = faraday_conn(options)
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
@@ -37,10 +36,9 @@ module Maremma
   end
 
   def self.get(url, options={})
-    options[:content_type] ||= 'json'
     options[:headers] = set_request_headers(url, options)
 
-    conn = faraday_conn(options[:content_type], options)
+    conn = faraday_conn(options)
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
@@ -56,34 +54,45 @@ module Maremma
     rescue_faraday_error(error)
   end
 
-  def self.faraday_conn(content_type = 'json', options = {})
-    # use short version for html, xml and json
-    content_types = { "html" => 'text/html; charset=UTF-8',
-                      "xml" => 'application/xml',
-                      "json" => 'application/json' }
-    accept_header = content_types.fetch(content_type, content_type)
+  def self.faraday_conn(options = {})
+    # make sure we have headers
+    options[:headers] ||= {}
 
-    user_agent = ENV['HOSTNAME'].present? ? "Maremma - http://#{ENV['HOSTNAME']}" : "Maremma - https://github.com/datacite/maremma"
-
-    # redirect limit
+    # set redirect limit
     limit = options[:limit] || 10
 
     Faraday.new do |c|
       c.options.params_encoder = Faraday::FlatParamsEncoder
-      c.headers['Accept'] = accept_header
-      c.headers['User-Agent'] = user_agent
+      c.headers['Accept'] = options[:headers]['Accept']
+      c.headers['User-Agent'] = options[:headers]['User-Agent']
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all
       c.request  :multipart
-      c.request  :json if accept_header == 'application/json'
+      c.request  :json if options[:headers]['Accept'] == 'application/json'
       c.use      Faraday::Response::RaiseError
       c.response :encoding
       c.adapter  :excon
     end
   end
 
-  def self.set_request_headers(url, options)
+  def self.set_request_headers(url, options={})
     options[:headers] ||= {}
-    options[:headers]['Host'] = URI.parse(url).host
+
+    # set useragent
+    options[:headers]['User-Agent'] = ENV['HOSTNAME'].present? ? "Maremma - http://#{ENV['HOSTNAME']}" : "Maremma - https://github.com/datacite/maremma"
+
+    if options[:host]
+      options[:headers]['Host'] = URI.parse(url).host
+    end
+
+    if options[:content_type].present?
+      accept_headers = { "html" => 'text/html; charset=UTF-8',
+                         "xml" => 'application/xml',
+                         "json" => 'application/json' }
+      options[:headers]['Accept'] = accept_headers.fetch(options[:content_type], options[:content_type])
+    else
+      # accept all content
+      options[:headers]['Accept'] ||= "text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5"
+    end
 
     if options[:bearer].present?
       options[:headers]['Authorization'] = "Bearer #{options[:bearer]}"
