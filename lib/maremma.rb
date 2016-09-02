@@ -109,7 +109,9 @@ module Maremma
   def self.rescue_faraday_error(error)
     if error.is_a?(Faraday::ResourceNotFound)
       { 'errors' => [{ 'status' => 404, 'title' => "Not found" }] }
-    elsif error.is_a?(Faraday::TimeoutError) || error.is_a?(Faraday::ConnectionFailed) || (error.try(:response) && error.response[:status] == 408)
+    elsif error.is_a?(Faraday::ConnectionFailed)
+      { 'errors' => [{ 'status' => "403", 'title' => parse_error_response(error.message) }] }
+    elsif error.is_a?(Faraday::TimeoutError) || (error.try(:response) && error.response[:status] == 408)
       { 'errors' => [{ 'status' => 408, 'title' =>"Request timeout" }] }
     else
       { 'errors' => [{ 'status' => 400, 'title' => parse_error_response(error.message) }] }

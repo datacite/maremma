@@ -140,6 +140,35 @@ describe Maremma do
     end
   end
 
+  context "connection failed" do
+    it "get json" do
+      stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
+      response = subject.get(url)
+      expect(response).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
+      expect(stub).to have_been_requested
+    end
+
+    it "get xml" do
+      stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
+      response = subject.get(url, content_type: 'xml')
+      expect(response).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
+      expect(stub).to have_been_requested
+    end
+
+    it "get html" do
+      stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
+      response = subject.get(url, content_type: 'html')
+      expect(response).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
+      expect(stub).to have_been_requested
+    end
+
+    it "post xml" do
+      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      expect(stub).to have_been_requested
+    end
+  end
+
   context "request timeout internal" do
     it "get json" do
       stub = stub_request(:get, url).to_timeout

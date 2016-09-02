@@ -1,3 +1,9 @@
+## v.2.3.1 (September 2, 2016)
+
+[maremma 2.3.1](https://github.com/datacite/maremma/releases/tag/v.2.3.1) was released on September 2, 2016:
+
+* handle `Faraday::ConnectionFailed` errors with an appropriate error message
+
 ## v.2.3 (August 16, 2016)
 
 [maremma 2.3](https://github.com/datacite/maremma/releases/tag/v.2.3) was released on August 16, 2016:
