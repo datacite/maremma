@@ -2,13 +2,13 @@ require 'bundler/setup'
 Bundler.setup
 
 require "codeclimate-test-reporter"
+CodeClimate::TestReporter.start
+
 require 'maremma'
 require 'rspec'
 require 'rack/test'
 require 'webmock/rspec'
 require 'vcr'
-
-CodeClimate::TestReporter.start
 
 RSpec.configure do |config|
   config.include WebMock::API
