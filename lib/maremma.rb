@@ -80,6 +80,7 @@ module Maremma
     # set useragent
     options[:headers]['User-Agent'] = ENV['HOSTNAME'].present? ? "Maremma - http://#{ENV['HOSTNAME']}" : "Maremma - https://github.com/datacite/maremma"
 
+    # set host, needed for some services behind proxy
     if options[:host]
       options[:headers]['Host'] = URI.parse(url).host
     end
@@ -141,8 +142,6 @@ module Maremma
       string
     end
   end
-
-  protected
 
   def self.parse_response(string)
     from_json(string) || from_xml(string) || from_string(string)

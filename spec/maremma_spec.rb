@@ -296,6 +296,11 @@ describe Maremma do
       expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
     end
 
+    it 'from_json with data' do
+      string = '{ "data": { "word": "abc" }}'
+      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
+    end
+
     it 'from_xml' do
       string = "<word>abc</word>"
       expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
@@ -364,6 +369,18 @@ describe Maremma do
       options = { username: 'foo', password: '12345' }
       basic = Base64.encode64("foo:12345")
       expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header, "Authorization"=>"Basic #{basic}")
+    end
+  end
+
+  context 'host' do
+    it 'empty' do
+      options = {}
+      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header)
+    end
+
+    it 'true' do
+      options = { host: true}
+      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Host"=>"example.org", "Accept"=>accept_header)
     end
   end
 end
