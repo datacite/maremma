@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maremma (2.3)
+    maremma (2.3.1)
       activesupport (~> 4.2, >= 4.2.5)
       builder (~> 3.2, >= 3.2.2)
       excon (~> 0.45.0)
@@ -23,9 +23,12 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.4.0)
     builder (3.2.2)
+    codeclimate-test-reporter (0.5.0)
+      simplecov (>= 0.7.1, < 1.0.0)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     excon (0.45.4)
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
@@ -63,6 +66,11 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     safe_yaml (1.0.4)
+    simplecov (0.11.2)
+      docile (~> 1.1.0)
+      json (~> 1.8)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.0)
     thread_safe (0.3.5)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -77,6 +85,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.0)
+  codeclimate-test-reporter
   maremma!
   rack-test (~> 0)
   rake
