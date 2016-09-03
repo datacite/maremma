@@ -1,5 +1,6 @@
 # Maremma
 
+[![Gem Version](https://badge.fury.io/rb/maremma.svg)](https://badge.fury.io/rb/maremma)
 [![Build Status](https://travis-ci.org/datacite/maremma.svg?branch=master)](https://travis-ci.org/datacite/maremma)
 [![Code Climate](https://codeclimate.com/github/datacite/maremma/badges/gpa.svg)](https://codeclimate.com/github/datacite/maremma)
 
@@ -23,7 +24,13 @@ gem install maremma
 
 ## Usage
 ```ruby
-Maremma.get 'http://dlm.datacite.org/heartbeat' => {"services"=>{"mysql"=>"OK", "memcached"=>"OK", "redis"=>"OK", "sidekiq"=>"OK", "postfix"=>"failed"}, "version"=>"4.3", "status"=>"failed"}
+Maremma.get 'http://dlm.datacite.org/heartbeat' => { "data" => { "services"=>{ "mysql"=>"OK",
+                                                                               "memcached"=>"OK",
+                                                                               "redis"=>"OK",
+                                                                               "sidekiq"=>"OK",
+                                                                               "postfix"=>"failed" },
+                                                                 "version"=>"4.3",
+                                                                 "status"=>"failed" }}
 Maremma.post 'http://example.com', data: { 'foo' => 'baz' }
 ```
 
