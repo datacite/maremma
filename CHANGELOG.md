@@ -1,3 +1,10 @@
+## v.2.4 (November 6, 2016)
+
+[maremma 2.4](https://github.com/datacite/maremma/releases/tag/v.2.4) was released on November, 2016:
+
+* set `Content-type` and `Accept` headers separately. This is a breaking change
+* upgrade `codeclimate-test-reporter` gem
+
 ## v.2.3.1 (September 2, 2016)
 
 [maremma 2.3.1](https://github.com/datacite/maremma/releases/tag/v.2.3.1) was released on September 2, 2016:
