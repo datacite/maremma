@@ -63,7 +63,7 @@ module Maremma
 
     Faraday.new do |c|
       c.options.params_encoder = Faraday::FlatParamsEncoder
-      c.headers['Content-type'] = options[:headers]['Content-type']
+      c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
       c.headers['Accept'] = options[:headers]['Accept']
       c.headers['User-Agent'] = options[:headers]['User-Agent']
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all
