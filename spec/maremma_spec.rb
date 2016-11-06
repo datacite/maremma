@@ -17,21 +17,21 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      response = subject.get(url, content_type: 'xml')
+      response = subject.get(url, accept: 'xml')
       expect(response).to eq("data" => data)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
-      response = subject.get(url, content_type: 'html')
+      response = subject.get(url, accept: 'html')
       expect(response).to eq("data" => data.to_s)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(data) }
       expect(stub).to have_been_requested
     end
 
@@ -64,21 +64,21 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      response = subject.get(url, content_type: 'xml')
+      response = subject.get(url, accept: 'xml')
       expect(response).to eq("data" => nil)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "text/html" })
-      response = subject.get(url, content_type: 'html')
+      response = subject.get(url, accept: 'html')
       expect(response).to eq("data" => nil)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to eq("data" => nil) }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response).to eq("data" => nil) }
       expect(stub).to have_been_requested
     end
   end
@@ -94,19 +94,19 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
-      expect(subject.get(url, content_type: 'xml')).to eq(error)
+      expect(subject.get(url, accept: 'xml')).to eq(error)
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => error.to_s, :status => [404], :headers => { "Content-Type" => "text/html" })
-      expect(subject.get(url, content_type: 'html')).to eq(error)
+      expect(subject.get(url, accept: 'html')).to eq(error)
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
       expect(stub).to have_been_requested
     end
   end
@@ -121,21 +121,21 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:status => [408])
-      response = subject.get(url, content_type: 'xml')
+      response = subject.get(url, accept: 'xml')
       expect(response).to eq("errors"=>[{"status"=>408, "title"=>"Request timeout"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:status => [408])
-      response = subject.get(url, content_type: 'html')
+      response = subject.get(url, accept: 'html')
       expect(response).to eq("errors"=>[{"status"=>408, "title"=>"Request timeout"}])
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:status => [408])
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -150,21 +150,21 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
-      response = subject.get(url, content_type: 'xml')
+      response = subject.get(url, accept: 'xml')
       expect(response).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
-      response = subject.get(url, content_type: 'html')
+      response = subject.get(url, accept: 'html')
       expect(response).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -179,21 +179,21 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_timeout
-      response = subject.get(url, content_type: 'xml')
+      response = subject.get(url, accept: 'xml')
       expect(response).to eq("errors"=>[{"status"=>408, "title"=>"Request timeout"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_timeout
-      response = subject.get(url, content_type: 'html')
+      response = subject.get(url, accept: 'html')
       expect(response).to eq("errors"=>[{"status"=>408, "title"=>"Request timeout"}])
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_timeout
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -208,14 +208,14 @@ describe Maremma do
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
-      response = subject.get(url, content_type: 'xml')
+      response = subject.get(url, accept: 'xml')
       expect(response).to eq("errors"=>[{"status"=>429, "title"=>"Too many requests"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
-      response = subject.get(url, content_type: 'html')
+      response = subject.get(url, accept: 'html')
       expect(response).to eq("errors"=>[{"status"=>429, "title"=>"Too many requests"}])
       expect(stub).to have_been_requested
     end
@@ -223,7 +223,7 @@ describe Maremma do
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml)
         .to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
-      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -268,7 +268,7 @@ describe Maremma do
 
     it "returns content as bibtex", vcr: true do
       url = "https://doi.org/10.5281/ZENODO.21430"
-      response = subject.get(url, content_type: "application/x-bibtex")
+      response = subject.get(url, accept: "application/x-bibtex")
       expect(response.fetch("data", nil)).to eq("@data{198243d2-ed8a-4126-867e-5fff1e80dcfc,\n  doi = {10.5281/ZENODO.21430},\n  url = {http://dx.doi.org/10.5281/ZENODO.21430},\n  author = {Martin Fenner; Karl Jonathan Ward; Gudmundur A. Thorisson; Robert Peters; },\n  publisher = {Zenodo},\n  title = {DataCite-ORCID: 1.0},\n  year = {2015}\n}")
     end
   end
@@ -325,25 +325,25 @@ describe Maremma do
     end
 
     it 'json' do
-      headers = subject.set_request_headers(url, content_type: 'json')
+      headers = subject.set_request_headers(url, accept: 'json')
       expect(headers).to eq("Accept"=>"application/json",
                             "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
     end
 
     it 'xml' do
-      headers = subject.set_request_headers(url, content_type: 'xml')
+      headers = subject.set_request_headers(url, accept: 'xml')
       expect(headers).to eq("Accept"=>"application/xml",
                             "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
     end
 
     it 'html' do
-      headers = subject.set_request_headers(url, content_type: 'html')
+      headers = subject.set_request_headers(url, accept: 'html')
       expect(headers).to eq("Accept" => "text/html; charset=UTF-8",
                             "User-Agent" => "Maremma - https://github.com/datacite/maremma")
     end
 
     it 'other' do
-      headers = subject.set_request_headers(url, content_type: 'application/x-bibtex')
+      headers = subject.set_request_headers(url, accept: 'application/x-bibtex')
       expect(headers).to eq("Accept" => "application/x-bibtex",
                             "User-Agent" => "Maremma - https://github.com/datacite/maremma")
     end
