@@ -2,7 +2,7 @@
 
 [maremma 2.5](https://github.com/datacite/maremma/releases/tag/v.2.5) was released on November 18, 2016:
 
-* support `HEAD` and `DELETE` requests
+* support `HEAD`, `PUT` and `DELETE` requests
 * return `headers` hash in the response
 
 ## v.2.4 (November 6, 2016)
