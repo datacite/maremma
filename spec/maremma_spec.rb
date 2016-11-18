@@ -11,21 +11,21 @@ describe Maremma do
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
       response = subject.get(url)
-      expect(response).to eq("data" => data)
+      expect(response).to eq("data" => data, "headers"=>{"Content-Type"=>"application/json"})
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "application/xml" })
       response = subject.get(url, accept: 'xml')
-      expect(response).to eq("data" => data)
+      expect(response).to eq("data"=>data, "headers"=>{"Content-Type"=>"application/xml"})
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
       response = subject.get(url, accept: 'html')
-      expect(response).to eq("data" => data.to_s)
+      expect(response).to eq("data" => data.to_s, "headers"=>{"Content-Type"=>"text/html"})
       expect(stub).to have_been_requested
     end
 
@@ -48,9 +48,9 @@ describe Maremma do
       expect(url).to eq("https://search.datacite.org/api?q=*%3A*&fl=doi%2Ctitle%2Cdescription%2Cpublisher%2CpublicationYear%2CresourceType%2CresourceTypeGeneral%2CrightsURI%2Cdatacentre_symbol%2Cxml%2Cminted%2Cupdated&fq=has_metadata%3Atrue&fq=is_active%3Atrue&facet=true&facet.field=resourceType_facet&facet.field=publicationYear&facet.field=datacentre_facet&facet.limit=10&f.resourceType_facet.facet.limit=15&wt=json")
       response = subject.get(url)
       facet_fields = response.fetch("data", {}).fetch("facet_counts", {}).fetch("facet_fields", {})
-      expect(facet_fields["datacentre_facet"]).to eq(["CDL.DPLANET - Data-Planet", 862673, "BL.CCDC - The Cambridge Crystallographic Data Centre", 617281, "ETHZ.SEALS - E-Periodica", 511747, "ESTDOI.BIO - TÜ Loodusmuuseum", 487448, "CDL.DIGSCI - Digital Science", 431015, "TIB.R-GATE - ResearchGate", 391313, "GESIS.DIE - Deutsches Institut für Erwachsenenbildung", 373193, "ETHZ.EPICS-BA - E-Pics Bildarchiv", 355076, "TIB.PANGAEA - PANGAEA - Publishing Network for Geoscientific and Environmental Data", 346849, "BL.IMPERIAL - Imperial College London", 190482])
-      expect(facet_fields["resourceType_facet"]).to eq(["Dataset", 2598715, "Text", 1390919, "Other", 873873, "Image", 704151, "Collection", 351593, "Software", 15895, "Audiovisual", 7098, "Event", 6711, "PhysicalObject", 6680, "Film", 920, "Model", 556, "InteractiveResource", 372, "Sound", 243, "Workflow", 221, "Service", 21])
-      expect(facet_fields["publicationYear"]).to eq(["2015", 2040850, "2014", 936486, "2016", 522234, "2011", 339370, "2013", 335358, "2012", 214191, "2005", 163347, "2007", 159146, "2006", 146147, "2010", 144512])
+      expect(facet_fields["datacentre_facet"].each_slice(2).first).to eq(["CDL.DPLANET - Data-Planet", 866179])
+      expect(facet_fields["resourceType_facet"].each_slice(2).first).to eq(["Dataset", 2868231])
+      expect(facet_fields["publicationYear"].each_slice(2).first).to eq(["2015", 2048329])
     end
   end
 
@@ -58,21 +58,21 @@ describe Maremma do
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/json" })
       response = subject.get(url)
-      expect(response).to eq("data" => nil)
+      expect(response).to eq("data"=>nil, "headers"=>{"Content-Type"=>"application/json"})
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
       response = subject.get(url, accept: 'xml')
-      expect(response).to eq("data" => nil)
+      expect(response).to eq("data"=>nil, "headers"=>{"Content-Type"=>"application/xml"})
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "text/html" })
       response = subject.get(url, accept: 'html')
-      expect(response).to eq("data" => nil)
+      expect(response).to eq("data" => nil, "headers"=>{"Content-Type"=>"text/html"})
       expect(stub).to have_been_requested
     end
 
@@ -136,6 +136,24 @@ describe Maremma do
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:status => [408])
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response).to be_nil }
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context "head" do
+    it "head" do
+      stub = stub_request(:head, url).to_return(:status => 200, :headers => { "Content-Type" => "application/json" })
+      response = subject.head(url)
+      expect(response).to eq("headers"=>{"Content-Type"=>"application/json"})
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context "delete" do
+    it "delete" do
+      stub = stub_request(:delete, url).to_return(:status => 204, :headers => { "Content-Type" => "text/html" })
+      response = subject.delete(url)
+      expect(response).to eq("data"=>nil, "headers"=>{"Content-Type"=>"text/html"})
       expect(stub).to have_been_requested
     end
   end
@@ -235,7 +253,7 @@ describe Maremma do
       stub_request(:get, url).to_return(status: 301, headers: { location: redirect_url })
       stub_request(:get, redirect_url).to_return(status: 200, body: "Test")
       response = subject.get(url)
-      expect(response).to eq("data"=>"Test")
+      expect(response).to eq("data"=>"Test", "headers"=>{})
     end
 
     it "redirect four times" do
@@ -245,7 +263,7 @@ describe Maremma do
       stub_request(:get, redirect_url+ "/y").to_return(status: 301, headers: { location: redirect_url + "/z" })
       stub_request(:get, redirect_url + "/z").to_return(status: 200, body: "Test")
       response = subject.get(url)
-      expect(response).to eq("data"=>"Test")
+      expect(response).to eq("data"=>"Test", "headers"=>{})
     end
 
     it "redirect limit 1" do
@@ -259,17 +277,26 @@ describe Maremma do
 
   context "content negotiation" do
     it "redirects to URL", vcr: true do
-      url = "http://doi.org/10.5281/ZENODO.21430"
+      url = "https://doi.org/10.5281/ZENODO.21430"
       response = subject.get(url)
       doc = Nokogiri::HTML(response.fetch("data", ""))
       title = doc.at_css("head title").text
-      expect(title).to eq("DataCite-ORCID: 1.0 - Zenodo")
+      expect(title).to eq("DataCite-ORCID: 1.0 | Zenodo")
     end
 
     it "returns content as bibtex", vcr: true do
       url = "https://doi.org/10.5281/ZENODO.21430"
       response = subject.get(url, accept: "application/x-bibtex")
-      expect(response.fetch("data", nil)).to eq("@data{198243d2-ed8a-4126-867e-5fff1e80dcfc,\n  doi = {10.5281/ZENODO.21430},\n  url = {http://dx.doi.org/10.5281/ZENODO.21430},\n  author = {Martin Fenner; Karl Jonathan Ward; Gudmundur A. Thorisson; Robert Peters; },\n  publisher = {Zenodo},\n  title = {DataCite-ORCID: 1.0},\n  year = {2015}\n}")
+      expect(response.fetch("data", nil)).to eq("@misc{https://doi.org/10.5281/ZENODO.21430,\n  doi = {10.5281/ZENODO.21430},\n  url = {https://doi.org/10.5281/ZENODO.21430},\n  author = {Martin Fenner and Karl Jonathan Ward and Gudmundur A. Thorisson and Robert Peters},\n  publisher = {Zenodo},\n  title = {DataCite-ORCID: 1.0},\n  year = {2015}\n}")
+    end
+  end
+
+  context "link headers" do
+    it "parses link headers", vcr: true do
+      url = "https://search.datacite.org/works/10.5281/ZENODO.21430"
+      response = subject.get(url)
+      headers = response.fetch("headers", {}).fetch("Link", "").split(", ")
+      expect(headers.first).to eq("<https://doi.org/10.5281/ZENODO.21430> ; rel=\"identifier\"")
     end
   end
 
@@ -293,27 +320,27 @@ describe Maremma do
   context 'parse_success_response' do
     it 'from_json' do
       string = '{ "word": "abc" }'
-      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
+      expect(subject.parse_success_response(string)).to eq("word"=>"abc")
     end
 
     it 'from_json with data' do
       string = '{ "data": { "word": "abc" }}'
-      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
+      expect(subject.parse_success_response(string)).to eq("word"=>"abc")
     end
 
     it 'from_xml' do
       string = "<word>abc</word>"
-      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
+      expect(subject.parse_success_response(string)).to eq("word"=>"abc")
     end
 
     it 'from_string' do
       string = "abc"
-      expect(subject.parse_success_response(string)).to eq("data"=>"abc")
+      expect(subject.parse_success_response(string)).to eq("abc")
     end
 
     it 'from_string with utf-8' do
       string = "fön  "
-      expect(subject.parse_success_response(string)).to eq("data"=>"fön")
+      expect(subject.parse_success_response(string)).to eq("fön")
     end
   end
 

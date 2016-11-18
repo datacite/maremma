@@ -1,6 +1,13 @@
+## v.2.5 (November 18, 2016)
+
+[maremma 2.5](https://github.com/datacite/maremma/releases/tag/v.2.5) was released on November 18, 2016:
+
+* support `HEAD` and `DELETE` requests
+* return `headers` hash in the response
+
 ## v.2.4 (November 6, 2016)
 
-[maremma 2.4](https://github.com/datacite/maremma/releases/tag/v.2.4) was released on November, 2016:
+[maremma 2.4](https://github.com/datacite/maremma/releases/tag/v.2.4) was released on November 6, 2016:
 
 * set `Content-type` and `Accept` headers separately. This is a breaking change
 * upgrade `codeclimate-test-reporter` gem

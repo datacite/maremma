@@ -30,7 +30,22 @@ module Maremma
     response = conn.post url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    parse_success_response(response.body)
+    { "data" => parse_success_response(response.body), "headers" => response.headers }
+  rescue *NETWORKABLE_EXCEPTIONS => error
+    rescue_faraday_error(error)
+  end
+
+  def self.delete(url, options={})
+    options[:data] ||= {}
+    options[:headers] = set_request_headers(url, options)
+
+    conn = faraday_conn(options)
+
+    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
+
+    response = conn.delete url, {}, options[:headers]
+
+    { "data" => parse_success_response(response.body), "headers" => response.headers }
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -49,7 +64,26 @@ module Maremma
       return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
     end
 
-    parse_success_response(response.body)
+    { "data" => parse_success_response(response.body), "headers" => response.headers }
+  rescue *NETWORKABLE_EXCEPTIONS => error
+    rescue_faraday_error(error)
+  end
+
+  def self.head(url, options={})
+    options[:headers] = set_request_headers(url, options)
+
+    conn = faraday_conn(options)
+
+    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
+
+    response = conn.head url, {}, options[:headers]
+
+    # return error if we are close to the rate limit, if supported in headers
+    if get_rate_limit_remaining(response.headers) < 10
+      return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
+    end
+
+    { "headers" => response.headers }
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -131,13 +165,13 @@ module Maremma
     string = parse_response(string)
 
     if string == ""
-      { 'data' => nil }
+      nil
     elsif string.is_a?(Hash) && string['data']
-      string
+      string['data']
     elsif string.is_a?(Hash) && string['hash']
-      { 'data' => string['hash'] }
+      string['hash']
     else
-      { 'data' => string }
+      string
     end
   end
 
