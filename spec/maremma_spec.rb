@@ -347,67 +347,62 @@ describe Maremma do
   context 'accept headers' do
     it 'default' do
       headers = subject.set_request_headers(url)
-      expect(headers).to eq("Accept"=>"text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5",
-                            "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
+      expect(headers["Accept"]).to eq("text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5")
     end
 
     it 'json' do
       headers = subject.set_request_headers(url, accept: 'json')
-      expect(headers).to eq("Accept"=>"application/json",
-                            "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
+      expect(headers["Accept"]).to eq("application/json")
     end
 
     it 'xml' do
       headers = subject.set_request_headers(url, accept: 'xml')
-      expect(headers).to eq("Accept"=>"application/xml",
-                            "User-Agent"=>"Maremma - https://github.com/datacite/maremma")
+      expect(headers["Accept"]).to eq("application/xml")
     end
 
     it 'html' do
       headers = subject.set_request_headers(url, accept: 'html')
-      expect(headers).to eq("Accept" => "text/html; charset=UTF-8",
-                            "User-Agent" => "Maremma - https://github.com/datacite/maremma")
+      expect(headers["Accept"]).to eq("text/html; charset=UTF-8")
     end
 
     it 'other' do
       headers = subject.set_request_headers(url, accept: 'application/x-bibtex')
-      expect(headers).to eq("Accept" => "application/x-bibtex",
-                            "User-Agent" => "Maremma - https://github.com/datacite/maremma")
+      expect(headers["Accept"]).to eq("application/x-bibtex")
     end
   end
 
   context 'authentication' do
     it 'no auth' do
       options = {}
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header)
+      expect(subject.set_request_headers(url, options)["Authorization"]).to be nil
     end
 
     it 'bearer' do
       options = { bearer: 'mF_9.B5f-4.1JqM' }
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header, "Authorization"=>"Bearer mF_9.B5f-4.1JqM")
+      expect(subject.set_request_headers(url, options)["Authorization"]).to eq("Bearer mF_9.B5f-4.1JqM")
     end
 
     it 'token' do
       options = { token: '12345' }
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header, "Authorization"=>"Token token=12345")
+      expect(subject.set_request_headers(url, options)["Authorization"]).to eq("Token token=12345")
     end
 
     it 'basic' do
       options = { username: 'foo', password: '12345' }
       basic = Base64.encode64("foo:12345")
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header, "Authorization"=>"Basic #{basic}")
+      expect(subject.set_request_headers(url, options)["Authorization"]).to eq("Basic #{basic}")
     end
   end
 
   context 'host' do
     it 'empty' do
       options = {}
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Accept"=>accept_header)
+      expect(subject.set_request_headers(url, options)["Host"]).to be nil
     end
 
     it 'true' do
       options = { host: true}
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma - https://github.com/datacite/maremma", "Host"=>"example.org", "Accept"=>accept_header)
+      expect(subject.set_request_headers(url, options)["Host"]).to eq("example.org")
     end
   end
 end
