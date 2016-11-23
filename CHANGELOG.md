@@ -1,3 +1,9 @@
+## v.2.5.4 (November 23, 2016)
+
+[maremma 2.5](https://github.com/datacite/maremma/releases/tag/v.2.5.4) was released on November 23, 2016:
+
+* fixed regression error in parsing response body
+
 ## v.2.5 (November 18, 2016)
 
 [maremma 2.5](https://github.com/datacite/maremma/releases/tag/v.2.5) was released on November 18, 2016:

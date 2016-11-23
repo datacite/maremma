@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maremma (2.5)
+    maremma (2.5.4)
       activesupport (~> 4.2, >= 4.2.5)
       builder (~> 3.2, >= 3.2.2)
       excon (~> 0.45.0)
@@ -24,7 +24,8 @@ GEM
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     builder (3.2.2)
-    codeclimate-test-reporter (1.0.0)
+    codeclimate-test-reporter (1.0.3)
+      simplecov
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
@@ -46,7 +47,7 @@ GEM
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     oj (2.13.1)
-    public_suffix (2.0.3)
+    public_suffix (2.0.4)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)

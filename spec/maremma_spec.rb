@@ -320,27 +320,32 @@ describe Maremma do
   context 'parse_success_response' do
     it 'from_json' do
       string = '{ "word": "abc" }'
-      expect(subject.parse_success_response(string)).to eq("word"=>"abc")
+      expect(subject.parse_success_response(string)).to eq({"data"=>{"word"=>"abc"}})
     end
 
     it 'from_json with data' do
       string = '{ "data": { "word": "abc" }}'
-      expect(subject.parse_success_response(string)).to eq("word"=>"abc")
+      expect(subject.parse_success_response(string)).to eq({"data"=>{"word"=>"abc"}})
+    end
+
+    it 'from_json with data and meta' do
+      string = '{ "data": { "word": "abc" }, "meta": { "total": 12 }}'
+      expect(subject.parse_success_response(string)).to eq({"data"=>{"word"=>"abc"},"meta"=>{"total"=>12}})
     end
 
     it 'from_xml' do
       string = "<word>abc</word>"
-      expect(subject.parse_success_response(string)).to eq("word"=>"abc")
+      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
     end
 
     it 'from_string' do
       string = "abc"
-      expect(subject.parse_success_response(string)).to eq("abc")
+      expect(subject.parse_success_response(string)).to eq("data"=>"abc")
     end
 
     it 'from_string with utf-8' do
       string = "fön  "
-      expect(subject.parse_success_response(string)).to eq("fön")
+      expect(subject.parse_success_response(string)).to eq("data"=>"fön")
     end
   end
 

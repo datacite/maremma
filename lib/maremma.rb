@@ -30,7 +30,7 @@ module Maremma
     response = conn.post url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    { "data" => parse_success_response(response.body), "headers" => response.headers }
+    parse_success_response(response.body).merge("headers" => response.headers)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -46,7 +46,7 @@ module Maremma
     response = conn.put url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    { "data" => parse_success_response(response.body), "headers" => response.headers }
+    parse_success_response(response.body).merge("headers" => response.headers)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -61,7 +61,7 @@ module Maremma
 
     response = conn.delete url, {}, options[:headers]
 
-    { "data" => parse_success_response(response.body), "headers" => response.headers }
+    parse_success_response(response.body).merge("headers" => response.headers)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -80,7 +80,7 @@ module Maremma
       return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
     end
 
-    { "data" => parse_success_response(response.body), "headers" => response.headers }
+    parse_success_response(response.body).merge("headers" => response.headers)
   rescue *NETWORKABLE_EXCEPTIONS => error
     rescue_faraday_error(error)
   end
@@ -181,13 +181,13 @@ module Maremma
     string = parse_response(string)
 
     if string == ""
-      nil
+      { 'data' => nil }
     elsif string.is_a?(Hash) && string['data']
-      string['data']
-    elsif string.is_a?(Hash) && string['hash']
-      string['hash']
-    else
       string
+    elsif string.is_a?(Hash) && string['hash']
+      { 'data' => string['hash'] }
+    else
+      { 'data' => string }
     end
   end
 
