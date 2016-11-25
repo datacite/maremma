@@ -38,6 +38,12 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
+      expect(stub).to have_been_requested
+    end
+
     it "get json with params", vcr: true do
       params = { q: "*:*",
                  fl: "doi,title,description,publisher,publicationYear,resourceType,resourceTypeGeneral,rightsURI,datacentre_symbol,xml,minted,updated",
@@ -96,6 +102,12 @@ describe Maremma do
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to eq("data" => nil) }
       expect(stub).to have_been_requested
     end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/xml" })
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to eq("data" => nil) }
+      expect(stub).to have_been_requested
+    end
   end
 
   context "not found" do
@@ -127,6 +139,12 @@ describe Maremma do
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
       expect(stub).to have_been_requested
     end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
+      expect(stub).to have_been_requested
+    end
   end
 
   context "request timeout" do
@@ -156,6 +174,12 @@ describe Maremma do
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
       expect(stub).to have_been_requested
     end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:status => [408])
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
+      expect(stub).to have_been_requested
+    end
   end
 
   context "head" do
@@ -173,6 +197,7 @@ describe Maremma do
       response = subject.delete(url)
       expect(response.body).to eq("data"=>nil)
       expect(response.headers).to eq("Content-Type"=>"text/html")
+      expect(response.status).to eq(204)
       expect(stub).to have_been_requested
     end
   end
@@ -204,6 +229,12 @@ describe Maremma do
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
       expect(stub).to have_been_requested
     end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
+      expect(stub).to have_been_requested
+    end
   end
 
   context "request timeout internal" do
@@ -231,6 +262,12 @@ describe Maremma do
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_timeout
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
+      expect(stub).to have_been_requested
+    end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_timeout
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
       expect(stub).to have_been_requested
     end
   end
@@ -261,6 +298,13 @@ describe Maremma do
       stub = stub_request(:post, url).with(:body => post_data.to_xml)
         .to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
+      expect(stub).to have_been_requested
+    end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml)
+        .to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
       expect(stub).to have_been_requested
     end
   end

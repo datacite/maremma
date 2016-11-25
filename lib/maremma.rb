@@ -38,7 +38,21 @@ module Maremma
   end
 
   def self.put(url, options={})
-    self.post(url, options={})
+    options[:data] ||= {}
+    options[:headers] = set_request_headers(url, options)
+
+    conn = faraday_conn(options)
+
+    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
+
+    response = conn.put url, {}, options[:headers] do |request|
+      request.body = options[:data]
+    end
+    OpenStruct.new(body: parse_success_response(response.body),
+                   headers: response.headers,
+                   status: response.status)
+  rescue *NETWORKABLE_EXCEPTIONS => error
+    OpenStruct.new(body: rescue_faraday_error(error))
   end
 
   def self.delete(url, options={})
