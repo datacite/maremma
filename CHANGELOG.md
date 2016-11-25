@@ -1,3 +1,10 @@
+## v.3.0 (November 25, 2016)
+
+[maremma 3.0](https://github.com/datacite/maremma/releases/tag/v.3.0) was released on November 25, 2016:
+
+* return full Faraday response object with response.body, response.headers and response.status
+* fix issue when response.body contains multiple hashes including one named `data`
+
 ## v.2.5.4 (November 23, 2016)
 
 [maremma 2.5](https://github.com/datacite/maremma/releases/tag/v.2.5.4) was released on November 23, 2016:
