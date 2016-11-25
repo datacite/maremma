@@ -30,25 +30,15 @@ module Maremma
     response = conn.post url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    parse_success_response(response.body).merge("headers" => response.headers)
+    OpenStruct.new(body: parse_success_response(response.body),
+                   headers: response.headers,
+                   status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    rescue_faraday_error(error)
+    OpenStruct.new(body: rescue_faraday_error(error))
   end
 
   def self.put(url, options={})
-    options[:data] ||= {}
-    options[:headers] = set_request_headers(url, options)
-
-    conn = faraday_conn(options)
-
-    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
-
-    response = conn.put url, {}, options[:headers] do |request|
-      request.body = options[:data]
-    end
-    parse_success_response(response.body).merge("headers" => response.headers)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    rescue_faraday_error(error)
+    self.post(url, options={})
   end
 
   def self.delete(url, options={})
@@ -61,9 +51,11 @@ module Maremma
 
     response = conn.delete url, {}, options[:headers]
 
-    parse_success_response(response.body).merge("headers" => response.headers)
+    OpenStruct.new(body: parse_success_response(response.body),
+                   headers: response.headers,
+                   status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    rescue_faraday_error(error)
+    OpenStruct.new(body: rescue_faraday_error(error))
   end
 
   def self.get(url, options={})
@@ -77,12 +69,15 @@ module Maremma
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
-      return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
+      return OpenStruct.new(body: { "errors" => [{ 'status' => 429, 'title' => "Too many requests" }] },
+                            headers: response.headers,
+                            status: response.status)
     end
-
-    parse_success_response(response.body).merge("headers" => response.headers)
+    OpenStruct.new(body: parse_success_response(response.body),
+                   headers: response.headers,
+                   status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    rescue_faraday_error(error)
+    OpenStruct.new(body: rescue_faraday_error(error))
   end
 
   def self.head(url, options={})
@@ -96,12 +91,14 @@ module Maremma
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
-      return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
+      return OpenStruct.new(body: { "errors" => [{ 'status' => 429, 'title' => "Too many requests" }] },
+                            headers: response.headers,
+                            status: response.status)
     end
-
-    { "headers" => response.headers }
+    OpenStruct.new(headers: response.headers,
+                   status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    rescue_faraday_error(error)
+    OpenStruct.new(body: rescue_faraday_error(error))
   end
 
   def self.faraday_conn(options = {})
@@ -180,14 +177,14 @@ module Maremma
   def self.parse_success_response(string)
     string = parse_response(string)
 
-    if string == ""
-      { 'data' => nil }
+    if string.blank?
+      { "data" => nil }
+    elsif string.is_a?(Hash) && string['hash']
+      { "data" => string['hash'] }
     elsif string.is_a?(Hash) && string['data']
       string
-    elsif string.is_a?(Hash) && string['hash']
-      { 'data' => string['hash'] }
     else
-      { 'data' => string }
+      { "data" => string }
     end
   end
 

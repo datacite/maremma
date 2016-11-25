@@ -10,7 +10,7 @@ http_interactions:
       User-Agent:
       - Maremma - https://github.com/datacite/maremma
       Accept:
-      - application/x-bibtex
+      - text/x-bibliography; style=apa
   response:
     status:
       code: 303
@@ -23,20 +23,20 @@ http_interactions:
       Location:
       - http://data.datacite.org/10.5281%2FZENODO.21430
       Expires:
-      - Fri, 25 Nov 2016 13:12:37 GMT
+      - Fri, 25 Nov 2016 13:15:41 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
       - '179'
       Date:
-      - Fri, 25 Nov 2016 12:50:05 GMT
+      - Fri, 25 Nov 2016 12:50:08 GMT
     body:
       encoding: UTF-8
       string: |-
         <html><head><title>Handle Redirect</title></head>
         <body><a href="http://data.datacite.org/10.5281%2FZENODO.21430">http://data.datacite.org/10.5281%2FZENODO.21430</a></body></html>
     http_version: 
-  recorded_at: Fri, 25 Nov 2016 12:50:07 GMT
+  recorded_at: Fri, 25 Nov 2016 12:50:09 GMT
 - request:
     method: get
     uri: http://data.datacite.org/10.5281%2FZENODO.21430
@@ -47,7 +47,7 @@ http_interactions:
       User-Agent:
       - Maremma - https://github.com/datacite/maremma
       Accept:
-      - application/x-bibtex
+      - text/x-bibliography; style=apa
   response:
     status:
       code: 200
@@ -56,9 +56,9 @@ http_interactions:
       Server:
       - openresty/1.11.2.1
       Date:
-      - Fri, 25 Nov 2016 12:50:07 GMT
+      - Fri, 25 Nov 2016 12:50:09 GMT
       Content-Type:
-      - application/x-bibtex
+      - text/x-bibliography;charset=iso-8859-1
       Cache-Control:
       - no-transform, max-age=3600
       Last-Modified:
@@ -79,15 +79,10 @@ http_interactions:
       - close
     body:
       encoding: UTF-8
-      string: |
-        @misc{https://doi.org/10.5281/ZENODO.21430,
-          doi = {10.5281/ZENODO.21430},
-          url = {https://doi.org/10.5281/ZENODO.21430},
-          author = {Martin Fenner and Karl Jonathan Ward and Gudmundur A. Thorisson and Robert Peters},
-          publisher = {Zenodo},
-          title = {DataCite-ORCID: 1.0},
-          year = {2015}
-        }
+      string: 'Martin Fenner, Karl Jonathan Ward, Gudmundur A. Thorisson, & Robert
+        Peters. (2015). DataCite-ORCID: 1.0. Zenodo. https://doi.org/10.5281/ZENODO.21430
+
+'
     http_version: 
-  recorded_at: Fri, 25 Nov 2016 12:50:07 GMT
+  recorded_at: Fri, 25 Nov 2016 12:50:09 GMT
 recorded_with: VCR 3.0.3

@@ -23,20 +23,20 @@ http_interactions:
       Location:
       - http://zenodo.org/record/21430
       Expires:
-      - Fri, 18 Nov 2016 13:06:03 GMT
+      - Fri, 25 Nov 2016 13:35:05 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
       - '145'
       Date:
-      - Fri, 18 Nov 2016 12:23:30 GMT
+      - Fri, 25 Nov 2016 12:49:37 GMT
     body:
       encoding: UTF-8
       string: |-
         <html><head><title>Handle Redirect</title></head>
         <body><a href="http://zenodo.org/record/21430">http://zenodo.org/record/21430</a></body></html>
     http_version: 
-  recorded_at: Fri, 18 Nov 2016 12:23:31 GMT
+  recorded_at: Fri, 25 Nov 2016 12:49:40 GMT
 - request:
     method: get
     uri: http://zenodo.org/record/21430
@@ -56,19 +56,27 @@ http_interactions:
       Server:
       - nginx/1.10.2
       Date:
-      - Fri, 18 Nov 2016 12:23:31 GMT
+      - Fri, 25 Nov 2016 12:49:45 GMT
       Content-Type:
       - text/html
       Content-Length:
       - '185'
       Location:
       - https://zenodo.org/record/21430
+      X-Cache:
+      - MISS from IMP-cache
+      X-Cache-Lookup:
+      - MISS from IMP-cache:3128
+      Via:
+      - 1.0 IMP-cache (squid/3.1.20)
+      Connection:
+      - keep-alive
     body:
       encoding: UTF-8
       string: "<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body
         bgcolor=\"white\">\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>nginx/1.10.2</center>\r\n</body>\r\n</html>\r\n"
     http_version: 
-  recorded_at: Fri, 18 Nov 2016 12:23:31 GMT
+  recorded_at: Fri, 25 Nov 2016 12:49:48 GMT
 - request:
     method: get
     uri: https://zenodo.org/record/21430
@@ -88,7 +96,7 @@ http_interactions:
       Server:
       - nginx/1.10.2
       Date:
-      - Fri, 18 Nov 2016 12:23:31 GMT
+      - Fri, 25 Nov 2016 12:49:56 GMT
       Content-Type:
       - text/html; charset=utf-8
       Content-Length:
@@ -524,5 +532,5 @@ http_interactions:
         dWU7IGcuc3JjPXUrInBpd2lrLmpzIjsgcy5wYXJlbnROb2RlLmluc2VydEJl
         Zm9yZShnLHMpOwp9KSgpOwo8L3NjcmlwdD4KICA8L2JvZHk+CjwvaHRtbD4=
     http_version: 
-  recorded_at: Fri, 18 Nov 2016 12:23:31 GMT
+  recorded_at: Fri, 25 Nov 2016 12:50:00 GMT
 recorded_with: VCR 3.0.3
