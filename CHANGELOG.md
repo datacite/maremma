@@ -1,3 +1,9 @@
+## v.3.0.2 (December 10, 2016)
+
+[maremma 3.0.2](https://github.com/datacite/maremma/releases/tag/v.3.0.2) was released on December 10, 2016:
+
+* strip newline at end of base64 encode username:password for basic authentication
+
 ## v.3.0 (November 25, 2016)
 
 [maremma 3.0](https://github.com/datacite/maremma/releases/tag/v.3.0) was released on November 25, 2016:

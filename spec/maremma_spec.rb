@@ -463,7 +463,7 @@ describe Maremma do
 
     it 'basic' do
       options = { username: 'foo', password: '12345' }
-      basic = Base64.encode64("foo:12345")
+      basic = Base64.encode64("foo:12345").rstrip
       expect(subject.set_request_headers(url, options)["Authorization"]).to eq("Basic #{basic}")
     end
   end

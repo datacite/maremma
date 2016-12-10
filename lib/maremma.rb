@@ -169,7 +169,7 @@ module Maremma
     elsif options[:token].present?
       options[:headers]["Authorization"] = "Token token=#{options[:token]}"
     elsif options[:username].present?
-      basic = Base64.encode64("#{options[:username]}:#{options[:password].to_s}")
+      basic = Base64.encode64("#{options[:username]}:#{options[:password].to_s}").rstrip
       options[:headers]["Authorization"] = "Basic #{basic}"
     end
 
