@@ -70,6 +70,14 @@ describe Maremma do
       expect(response.headers).to eq("Content-Type"=>"application/json")
       expect(stub).to have_been_requested
     end
+
+    it "get xml raw" do
+      stub = stub_request(:get, url).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "application/xml" })
+      response = subject.get(url, accept: 'xml', raw: true)
+      expect(response.body).to eq("data"=>data.to_xml)
+      expect(response.headers).to eq("Content-Type"=>"application/xml")
+      expect(stub).to have_been_requested
+    end
   end
 
   context "empty response" do

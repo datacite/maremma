@@ -1,3 +1,9 @@
+## v.3.1 (December 10, 2016)
+
+[maremma 3.1](https://github.com/datacite/maremma/releases/tag/v.3.1) was released on December 10, 2016:
+
+* added `:raw` option to disable automatic parsing of JSON and XML responses.
+
 ## v.3.0.2 (December 10, 2016)
 
 [maremma 3.0.2](https://github.com/datacite/maremma/releases/tag/v.3.0.2) was released on December 10, 2016:

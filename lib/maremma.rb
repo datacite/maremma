@@ -30,7 +30,7 @@ module Maremma
     response = conn.post url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    OpenStruct.new(body: parse_success_response(response.body),
+    OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
@@ -48,7 +48,7 @@ module Maremma
     response = conn.put url, {}, options[:headers] do |request|
       request.body = options[:data]
     end
-    OpenStruct.new(body: parse_success_response(response.body),
+    OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
@@ -65,7 +65,7 @@ module Maremma
 
     response = conn.delete url, {}, options[:headers]
 
-    OpenStruct.new(body: parse_success_response(response.body),
+    OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
@@ -87,7 +87,7 @@ module Maremma
                             headers: response.headers,
                             status: response.status)
     end
-    OpenStruct.new(body: parse_success_response(response.body),
+    OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
@@ -188,8 +188,8 @@ module Maremma
     end
   end
 
-  def self.parse_success_response(string)
-    string = parse_response(string)
+  def self.parse_success_response(string, options={})
+    string = parse_response(string, options)
 
     if string.blank?
       { "data" => nil }
@@ -212,7 +212,9 @@ module Maremma
     end
   end
 
-  def self.parse_response(string)
+  def self.parse_response(string, options={})
+    return string if options[:raw]
+
     from_json(string) || from_xml(string) || from_string(string)
   end
 
