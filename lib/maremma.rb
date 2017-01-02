@@ -34,7 +34,9 @@ module Maremma
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    OpenStruct.new(body: rescue_faraday_error(error))
+    error_response = rescue_faraday_error(error)
+    OpenStruct.new(body: error_response,
+                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
   end
 
   def self.put(url, options={})
@@ -52,7 +54,9 @@ module Maremma
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    OpenStruct.new(body: rescue_faraday_error(error))
+    error_response = rescue_faraday_error(error)
+    OpenStruct.new(body: error_response,
+                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
   end
 
   def self.delete(url, options={})
@@ -69,7 +73,9 @@ module Maremma
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    OpenStruct.new(body: rescue_faraday_error(error))
+    error_response = rescue_faraday_error(error)
+    OpenStruct.new(body: error_response,
+                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
   end
 
   def self.get(url, options={})
@@ -91,7 +97,9 @@ module Maremma
                    headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    OpenStruct.new(body: rescue_faraday_error(error))
+    error_response = rescue_faraday_error(error)
+    OpenStruct.new(body: error_response,
+                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
   end
 
   def self.head(url, options={})
@@ -112,7 +120,9 @@ module Maremma
     OpenStruct.new(headers: response.headers,
                    status: response.status)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    OpenStruct.new(body: rescue_faraday_error(error))
+    error_response = rescue_faraday_error(error)
+    OpenStruct.new(body: error_response,
+                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
   end
 
   def self.faraday_conn(options = {})
@@ -127,7 +137,7 @@ module Maremma
       c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
       c.headers['Accept'] = options[:headers]['Accept']
       c.headers['User-Agent'] = options[:headers]['User-Agent']
-      c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all
+      c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
       c.request  :multipart
       c.request  :json if options[:headers]['Accept'] == 'application/json'
       c.use      Faraday::Response::RaiseError

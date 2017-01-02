@@ -32,6 +32,14 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
+    it "head html" do
+      stub = stub_request(:head, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
+      response = subject.head(url, accept: 'html')
+      expect(response.body).to be_nil
+      expect(response.headers).to eq("Content-Type"=>"text/html")
+      expect(stub).to have_been_requested
+    end
+
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
@@ -142,6 +150,13 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
+    it "head html" do
+      stub = stub_request(:head, url).to_return(:body => error.to_s, :status => [404], :headers => { "Content-Type" => "text/html" })
+      response = subject.head(url, accept: 'html')
+      expect(response.status).to eq(404)
+      expect(stub).to have_been_requested
+    end
+
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [404], :headers => { "Content-Type" => "application/xml" })
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
@@ -177,6 +192,13 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
+    it "head html" do
+      stub = stub_request(:head, url).to_return(:status => [408])
+      response = subject.head(url, accept: 'html')
+      expect(response.status).to eq(408)
+      expect(stub).to have_been_requested
+    end
+
     it "post xml" do
       stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:status => [408])
       subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
@@ -186,15 +208,6 @@ describe Maremma do
     it "put xml" do
       stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:status => [408])
       subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
-      expect(stub).to have_been_requested
-    end
-  end
-
-  context "head" do
-    it "head" do
-      stub = stub_request(:head, url).to_return(:status => 200, :headers => { "Content-Type" => "application/json" })
-      response = subject.head(url)
-      expect(response.headers).to eq("Content-Type"=>"application/json")
       expect(stub).to have_been_requested
     end
   end
@@ -343,6 +356,18 @@ describe Maremma do
       stub_request(:get, redirect_url+ "/x").to_return(status: 301, headers: { location: redirect_url + "/y" })
       response = subject.get(url, limit: 1)
       expect(response.body).to eq("errors"=>[{"status"=>400, "title"=>"too many redirects; last one to: http://www.example.org/redirect/x"}])
+    end
+
+    it "redirect limit 0" do
+      stub_request(:get, url).to_return(status: 301, headers: { location: redirect_url })
+      response = subject.get(url, limit: 0)
+      expect(response.headers["Location"]).to eq("http://www.example.org/redirect")
+    end
+
+    it "redirect limit 0 head" do
+      stub_request(:head, url).to_return(status: 301, headers: { location: redirect_url })
+      response = subject.head(url, limit: 0)
+      expect(response.headers["Location"]).to eq("http://www.example.org/redirect")
     end
   end
 

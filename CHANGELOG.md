@@ -1,3 +1,10 @@
+## v.3.1.1 (January 2, 2017)
+
+[maremma 3.1.1](https://github.com/datacite/maremma/releases/tag/v.3.1.1) was released on January 2, 2017:
+
+* added option to disable redirects by setting `limit` to 0.
+* return status code for errors
+
 ## v.3.1 (December 10, 2016)
 
 [maremma 3.1](https://github.com/datacite/maremma/releases/tag/v.3.1) was released on December 10, 2016:
