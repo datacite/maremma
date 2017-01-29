@@ -6,6 +6,7 @@ require 'faraday_middleware'
 require 'faraday/encoding'
 require 'excon'
 require 'uri'
+require 'addressable/uri'
 
 DEFAULT_TIMEOUT = 60
 NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
@@ -20,6 +21,8 @@ NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
 
 module Maremma
   def self.post(url, options={})
+    is_valid_url?(url)
+
     options[:data] ||= {}
     options[:headers] = set_request_headers(url, options)
 
@@ -40,6 +43,8 @@ module Maremma
   end
 
   def self.put(url, options={})
+    is_valid_url?(url)
+
     options[:data] ||= {}
     options[:headers] = set_request_headers(url, options)
 
@@ -60,6 +65,8 @@ module Maremma
   end
 
   def self.delete(url, options={})
+    is_valid_url?(url)
+
     options[:data] ||= {}
     options[:headers] = set_request_headers(url, options)
 
@@ -79,6 +86,8 @@ module Maremma
   end
 
   def self.get(url, options={})
+    is_valid_url?(url)
+
     options[:headers] = set_request_headers(url, options)
 
     conn = faraday_conn(options)
@@ -144,6 +153,11 @@ module Maremma
       c.response :encoding
       c.adapter  :excon
     end
+  end
+
+  def self.is_valid_url?(url)
+    parsed = Addressable::URI.parse(url)
+    raise TypeError, "Invalid URL: #{url}" unless %w(http https).include?(parsed.scheme)
   end
 
   def self.set_request_headers(url, options={})

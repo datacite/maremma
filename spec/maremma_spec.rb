@@ -32,26 +32,6 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
-    it "head html" do
-      stub = stub_request(:head, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
-      response = subject.head(url, accept: 'html')
-      expect(response.body).to be_nil
-      expect(response.headers).to eq("Content-Type"=>"text/html")
-      expect(stub).to have_been_requested
-    end
-
-    it "post xml" do
-      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
-      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
-      expect(stub).to have_been_requested
-    end
-
-    it "put xml" do
-      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
-      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
-      expect(stub).to have_been_requested
-    end
-
     it "get json with params", vcr: true do
       params = { q: "*:*",
                  fl: "doi,title,description,publisher,publicationYear,resourceType,resourceTypeGeneral,rightsURI,datacentre_symbol,xml,minted,updated",
@@ -84,6 +64,44 @@ describe Maremma do
       response = subject.get(url, accept: 'xml', raw: true)
       expect(response.body).to eq("data"=>data.to_xml)
       expect(response.headers).to eq("Content-Type"=>"application/xml")
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context "head" do
+    it "head html" do
+      stub = stub_request(:head, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
+      response = subject.head(url, accept: 'html')
+      expect(response.body).to be_nil
+      expect(response.headers).to eq("Content-Type"=>"text/html")
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context "post" do
+    it "post json" do
+      stub = stub_request(:post, url).with(:body => post_data.to_json).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
+      subject.post(url, content_type: 'json', data: post_data.to_json) { |response| expect(response.body).to eq(2) }
+      expect(stub).to have_been_requested
+    end
+
+    it "post xml" do
+      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
+      subject.post(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context "put" do
+    it "put json" do
+      stub = stub_request(:put, url).with(:body => post_data.to_json).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
+      subject.put(url, content_type: 'json', data: post_data.to_json) { |response| expect(JSON.parse(response.body.to_s)).to eq(data) }
+      expect(stub).to have_been_requested
+    end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
+      subject.put(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
       expect(stub).to have_been_requested
     end
   end

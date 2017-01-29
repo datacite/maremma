@@ -1,3 +1,9 @@
+## v.3.1.2 (January 29, 2017)
+
+[maremma 3.1.2](https://github.com/datacite/maremma/releases/tag/v.3.1.2) was released on January 29, 2017:
+
+* raise error if invalid URL is provided
+
 ## v.3.1.1 (January 2, 2017)
 
 [maremma 3.1.1](https://github.com/datacite/maremma/releases/tag/v.3.1.1) was released on January 2, 2017:
