@@ -35,7 +35,8 @@ module Maremma
     end
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
-                   status: response.status)
+                   status: response.status,
+                   url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
     error_response = rescue_faraday_error(error)
     OpenStruct.new(body: error_response,
@@ -57,7 +58,8 @@ module Maremma
     end
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
-                   status: response.status)
+                   status: response.status,
+                   url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
     error_response = rescue_faraday_error(error)
     OpenStruct.new(body: error_response,
@@ -78,7 +80,8 @@ module Maremma
 
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
-                   status: response.status)
+                   status: response.status,
+                   url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
     error_response = rescue_faraday_error(error)
     OpenStruct.new(body: error_response,
@@ -104,7 +107,8 @@ module Maremma
     end
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
-                   status: response.status)
+                   status: response.status,
+                   url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
     error_response = rescue_faraday_error(error)
     OpenStruct.new(body: error_response,
@@ -127,7 +131,8 @@ module Maremma
                             status: response.status)
     end
     OpenStruct.new(headers: response.headers,
-                   status: response.status)
+                   status: response.status,
+                   url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
     error_response = rescue_faraday_error(error)
     OpenStruct.new(body: error_response,

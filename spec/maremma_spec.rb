@@ -356,6 +356,7 @@ describe Maremma do
       stub_request(:get, redirect_url).to_return(status: 200, body: "Test")
       response = subject.get(url)
       expect(response.body).to eq("data"=>"Test")
+      expect(response.url).to eq("http://www.example.org/redirect")
     end
 
     it "redirect four times" do
