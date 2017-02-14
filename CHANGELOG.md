@@ -1,3 +1,9 @@
+## v.3.5 (February 14, 2017)
+
+[maremma 3.5](https://github.com/datacite/maremma/releases/tag/v.3.5) was released on February 14, 2017:
+
+* breaking change: include attributes when parsing XML (use "text" key for node content)
+
 ## v.3.1.2 (January 29, 2017)
 
 [maremma 3.1.2](https://github.com/datacite/maremma/releases/tag/v.3.1.2) was released on January 29, 2017:

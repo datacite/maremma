@@ -459,6 +459,11 @@ describe Maremma do
       expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>"abc"})
     end
 
+    it 'from_xml with attribute' do
+      string = '<word type="small">abc</word>'
+      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "text"=>"abc"}})
+    end
+
     it 'from_string' do
       string = "abc"
       expect(subject.parse_success_response(string)).to eq("data"=>"abc")

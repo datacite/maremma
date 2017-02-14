@@ -7,6 +7,7 @@ require 'faraday/encoding'
 require 'excon'
 require 'uri'
 require 'addressable/uri'
+require 'maremma/hash'
 
 DEFAULT_TIMEOUT = 60
 NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
@@ -254,6 +255,7 @@ module Maremma
     (headers["X-Rate-Limit-Remaining"] || headers["X-RateLimit-Remaining"] || 100).to_i
   end
 
+  # keep XML attributes, http://stackoverflow.com/a/10794044
   def self.from_xml(string)
     if Nokogiri::XML(string).errors.empty?
       Hash.from_xml(string)
