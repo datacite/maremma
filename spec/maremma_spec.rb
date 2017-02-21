@@ -461,7 +461,12 @@ describe Maremma do
 
     it 'from_xml with attribute' do
       string = '<word type="small">abc</word>'
-      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "text"=>"abc"}})
+      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "__content__"=>"abc"}})
+    end
+
+    it 'from_xml with mixed attribute' do
+      string = '<word type="small">abc<footnote>1</footnote></word>'
+      expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "footnote"=>"1", "__content__"=>"abc"}})
     end
 
     it 'from_string' do

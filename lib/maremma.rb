@@ -7,20 +7,20 @@ require 'faraday/encoding'
 require 'excon'
 require 'uri'
 require 'addressable/uri'
-require 'maremma/hash'
-
-DEFAULT_TIMEOUT = 60
-NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
-                          Faraday::TimeoutError,
-                          Faraday::SSLError,
-                          Faraday::ConnectionFailed,
-                          URI::InvalidURIError,
-                          Encoding::UndefinedConversionError,
-                          ArgumentError,
-                          NoMethodError,
-                          TypeError]
+require 'maremma/xml_converter'
 
 module Maremma
+  DEFAULT_TIMEOUT = 60
+  NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
+                            Faraday::TimeoutError,
+                            Faraday::SSLError,
+                            Faraday::ConnectionFailed,
+                            URI::InvalidURIError,
+                            Encoding::UndefinedConversionError,
+                            ArgumentError,
+                            NoMethodError,
+                            TypeError]
+                            
   def self.post(url, options={})
     is_valid_url?(url)
 
