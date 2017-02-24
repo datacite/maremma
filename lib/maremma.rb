@@ -113,18 +113,16 @@ module Maremma
       options[:headers]['Host'] = URI.parse(url).host
     end
 
+    header_options = { "html" => 'text/html; charset=UTF-8',
+                       "xml" => 'application/xml',
+                       "json" => 'application/json' }
+
     if options[:content_type].present?
-      content_type_headers = { "html" => 'text/html; charset=UTF-8',
-                               "xml" => 'application/xml',
-                               "json" => 'application/json' }
-      options[:headers]['Content-type'] = content_type_headers.fetch(options[:content_type], options[:content_type])
+      options[:headers]['Content-type'] = header_options.fetch(options[:content_type], options[:content_type])
     end
 
     if options[:accept].present?
-      accept_headers = { "html" => 'text/html; charset=UTF-8',
-                         "xml" => 'application/xml',
-                         "json" => 'application/json' }
-      options[:headers]['Accept'] = accept_headers.fetch(options[:accept], options[:accept])
+      options[:headers]['Accept'] = header_options.fetch(options[:accept], options[:accept])
     else
       # accept all content
       options[:headers]['Accept'] ||= "text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5"
