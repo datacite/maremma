@@ -1,6 +1,6 @@
 # Maremma
 
-[![Identifier](https://img.shields.io/badge/id-https%3A%2F%2Fdoi.org%2F10.5438%2Fqeg0--3gm3-blue.svg)](https://doi.org/10.5438/qeg0-3gm3)
+[![Identifier](https://img.shields.io/badge/doi-https%3A%2F%2Fdoi.org%2F10.5438%2Fqeg0--3gm3-fca709.svg)](https://doi.org/10.5438/qeg0-3gm3)
 [![Gem Version](https://badge.fury.io/rb/maremma.svg)](https://badge.fury.io/rb/maremma)
 [![Build Status](https://travis-ci.org/datacite/maremma.svg?branch=master)](https://travis-ci.org/datacite/maremma)
 [![Code Climate](https://codeclimate.com/github/datacite/maremma/badges/gpa.svg)](https://codeclimate.com/github/datacite/maremma)
