@@ -1,9 +1,18 @@
 language: ruby
 rvm:
-- 2.3.1
+- 2.3.3
+
+addons:
+  code_climate:
+    repo_token: $CODECLIMATE_REPO_TOKEN
+    
 install:
 - travis_retry bundle install
-script: bundle exec rspec
+
+script:
+- bundle exec rspec
+- bundle exec codeclimate-test-reporter
+
 deploy:
   provider: rubygems
   api_key:
@@ -14,4 +23,5 @@ deploy:
     repo: datacite/maremma
 
 notifications:
+  email: false
   slack: datacite:Wt8En0ALoTA6Kjc5EOKNDWxN

@@ -52,12 +52,12 @@ module Maremma
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
     response = case options[:method]
-      when "get" then conn.get url, {}, options[:headers]
-      when "post" then conn.post url, {}, options[:headers] { |request| request.body = options[:data] }
-      when "put" then conn.put url, {}, options[:headers] { |request| request.body = options[:data] }
-      when "delete" then conn.delete url, {}, options[:headers]
-      when "head" then conn.head url, {}, options[:headers]
-      end
+               when "get" then conn.get url, {}, options[:headers]
+               when "post" then conn.post url, {}, options[:headers] { |request| request.body = options[:data] }
+               when "put" then conn.put url, {}, options[:headers] { |request| request.body = options[:data] }
+               when "delete" then conn.delete url, {}, options[:headers]
+               when "head" then conn.head url, {}, options[:headers]
+               end
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
