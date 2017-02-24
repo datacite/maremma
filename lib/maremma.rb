@@ -103,41 +103,38 @@ module Maremma
   end
 
   def self.set_request_headers(url, options={})
-    options[:headers] ||= {}
-
-    # set useragent
-    options[:headers]['User-Agent'] = ENV['HOSTNAME'].present? ? "Maremma - http://#{ENV['HOSTNAME']}" : "Maremma - https://github.com/datacite/maremma"
-
-    # set host, needed for some services behind proxy
-    if options[:host]
-      options[:headers]['Host'] = URI.parse(url).host
-    end
-
     header_options = { "html" => 'text/html; charset=UTF-8',
                        "xml" => 'application/xml',
                        "json" => 'application/json' }
 
-    if options[:content_type].present?
-      options[:headers]['Content-type'] = header_options.fetch(options[:content_type], options[:content_type])
-    end
+    headers = options[:headers] ||= {}
+
+    # set useragent
+    headers['User-Agent'] = ENV['HOSTNAME'].present? ? "Maremma - http://#{ENV['HOSTNAME']}" : "Maremma - https://github.com/datacite/maremma"
+
+    # set host, needed for some services behind proxy
+    headers['Host'] = URI.parse(url).host if options[:host]
+
+    # set Content-Type
+    headers['Content-type'] = header_options.fetch(options[:content_type], options[:content_type]) if options[:content_type].present?
 
     if options[:accept].present?
-      options[:headers]['Accept'] = header_options.fetch(options[:accept], options[:accept])
+      headers['Accept'] = header_options.fetch(options[:accept], options[:accept])
     else
       # accept all content
-      options[:headers]['Accept'] ||= "text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5"
+      headers['Accept'] ||= "text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5"
     end
 
     if options[:bearer].present?
-      options[:headers]['Authorization'] = "Bearer #{options[:bearer]}"
+      headers['Authorization'] = "Bearer #{options[:bearer]}"
     elsif options[:token].present?
-      options[:headers]["Authorization"] = "Token token=#{options[:token]}"
+      headers["Authorization"] = "Token token=#{options[:token]}"
     elsif options[:username].present?
       basic = Base64.encode64("#{options[:username]}:#{options[:password]}").rstrip
-      options[:headers]["Authorization"] = "Basic #{basic}"
+      headers["Authorization"] = "Basic #{basic}"
     end
 
-    options[:headers]
+    headers
   end
 
   def self.rescue_faraday_error(error)
