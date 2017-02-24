@@ -20,54 +20,28 @@ module Maremma
                             ArgumentError,
                             NoMethodError,
                             TypeError]
-                            
+
   def self.post(url, options={})
-    is_valid_url?(url)
-
-    options[:data] ||= {}
-    options[:headers] = set_request_headers(url, options)
-
-    conn = faraday_conn(options)
-
-    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
-
-    response = conn.post url, {}, options[:headers] do |request|
-      request.body = options[:data]
-    end
-    OpenStruct.new(body: parse_success_response(response.body, options),
-                   headers: response.headers,
-                   status: response.status,
-                   url: response.env[:url].to_s)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    error_response = rescue_faraday_error(error)
-    OpenStruct.new(body: error_response,
-                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
+    self.method(url, options.merge(method: "post"))
   end
 
   def self.put(url, options={})
-    is_valid_url?(url)
-
-    options[:data] ||= {}
-    options[:headers] = set_request_headers(url, options)
-
-    conn = faraday_conn(options)
-
-    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
-
-    response = conn.put url, {}, options[:headers] do |request|
-      request.body = options[:data]
-    end
-    OpenStruct.new(body: parse_success_response(response.body, options),
-                   headers: response.headers,
-                   status: response.status,
-                   url: response.env[:url].to_s)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    error_response = rescue_faraday_error(error)
-    OpenStruct.new(body: error_response,
-                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
+    self.method(url, options.merge(method: "put"))
   end
 
   def self.delete(url, options={})
+    self.method(url, options.merge(method: "delete"))
+  end
+
+  def self.get(url, options={})
+    self.method(url, options.merge(method: "get"))
+  end
+
+  def self.head(url, options={})
+    self.method(url, options.merge(method: "head"))
+  end
+
+  def self.method(url, options={})
     is_valid_url?(url)
 
     options[:data] ||= {}
@@ -77,28 +51,13 @@ module Maremma
 
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
-    response = conn.delete url, {}, options[:headers]
-
-    OpenStruct.new(body: parse_success_response(response.body, options),
-                   headers: response.headers,
-                   status: response.status,
-                   url: response.env[:url].to_s)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    error_response = rescue_faraday_error(error)
-    OpenStruct.new(body: error_response,
-                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
-  end
-
-  def self.get(url, options={})
-    is_valid_url?(url)
-
-    options[:headers] = set_request_headers(url, options)
-
-    conn = faraday_conn(options)
-
-    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
-
-    response = conn.get url, {}, options[:headers]
+    response = case options[:method]
+      when "get" then conn.get url, {}, options[:headers]
+      when "post" then conn.post url, {}, options[:headers] { |request| request.body = options[:data] }
+      when "put" then conn.put url, {}, options[:headers] { |request| request.body = options[:data] }
+      when "delete" then conn.delete url, {}, options[:headers]
+      when "head" then conn.head url, {}, options[:headers]
+      end
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 10
@@ -106,32 +65,9 @@ module Maremma
                             headers: response.headers,
                             status: response.status)
     end
+
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
-                   status: response.status,
-                   url: response.env[:url].to_s)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    error_response = rescue_faraday_error(error)
-    OpenStruct.new(body: error_response,
-                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
-  end
-
-  def self.head(url, options={})
-    options[:headers] = set_request_headers(url, options)
-
-    conn = faraday_conn(options)
-
-    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
-
-    response = conn.head url, {}, options[:headers]
-
-    # return error if we are close to the rate limit, if supported in headers
-    if get_rate_limit_remaining(response.headers) < 10
-      return OpenStruct.new(body: { "errors" => [{ 'status' => 429, 'title' => "Too many requests" }] },
-                            headers: response.headers,
-                            status: response.status)
-    end
-    OpenStruct.new(headers: response.headers,
                    status: response.status,
                    url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
@@ -199,7 +135,7 @@ module Maremma
     elsif options[:token].present?
       options[:headers]["Authorization"] = "Token token=#{options[:token]}"
     elsif options[:username].present?
-      basic = Base64.encode64("#{options[:username]}:#{options[:password].to_s}").rstrip
+      basic = Base64.encode64("#{options[:username]}:#{options[:password]}").rstrip
       options[:headers]["Authorization"] = "Basic #{basic}"
     end
 
@@ -219,6 +155,8 @@ module Maremma
   end
 
   def self.parse_success_response(string, options={})
+    return nil if options[:method] == "head"
+
     string = parse_response(string, options)
 
     if string.blank?

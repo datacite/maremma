@@ -70,7 +70,7 @@ describe Maremma do
 
   context "head" do
     it "head html" do
-      stub = stub_request(:head, url).to_return(:body => data.to_s, :status => 200, :headers => { "Content-Type" => "text/html" })
+      stub = stub_request(:head, url).to_return(:status => 200, :headers => { "Content-Type" => "text/html" })
       response = subject.head(url, accept: 'html')
       expect(response.body).to be_nil
       expect(response.headers).to eq("Content-Type"=>"text/html")
