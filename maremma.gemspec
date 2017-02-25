@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.homepage      = "https://github.com/datacite/maremma"
   s.summary       = "Simplified network calls"
   s.date          = Date.today
-  s.description   = "Simplifies network calls, including json/xml parsing and error handling. Based on Faraday."
+  s.description   = "Ruby utility library for network requests. Based on Faraday and Excon, provides a wrapper for XML/JSON parsing and error handling. All successful responses are returned as hash with key data, all errors in a JSONAPI-friendly hash with key errors."
   s.require_paths = ["lib"]
   s.version       = Maremma::VERSION
   s.extra_rdoc_files = ["README.md"]

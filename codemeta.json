@@ -17,7 +17,7 @@
 	"dateCreated": "2015-11-28",
 	"datePublished": "2017-02-24",
 	"dateModified": "2017-02-24",
-	"description": "Simplifies network calls, including json/xml parsing and error handling. Based on Faraday.",
+	"description": "Ruby utility library for network requests. Based on Faraday and Excon, provides a wrapper for XML/JSON parsing and error handling. All successful responses are returned as hash with key data, all errors in a JSONAPI-friendly hash with key errors.",
 	"isAutomatedBuild": true,
 	"licenseId": "MIT",
 	"publisher": "DataCite",
