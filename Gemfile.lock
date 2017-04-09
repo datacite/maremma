@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maremma (3.5.3)
+    maremma (3.5.4)
       activesupport (~> 4.2, >= 4.2.5)
       addressable (>= 2.3.6)
       builder (~> 3.2, >= 3.2.2)
