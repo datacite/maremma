@@ -176,6 +176,7 @@ module Maremma
   end
 
   def self.parse_response(string, options={})
+    string = string.force_encoding('UTF-8')
     return string if options[:raw]
 
     from_json(string) || from_xml(string) || from_string(string)
@@ -204,6 +205,6 @@ module Maremma
   end
 
   def self.from_string(string)
-    string.gsub(/\s+\n/, "\n").strip.force_encoding('UTF-8')
+    string.gsub(/\s+\n/, "\n").strip
   end
 end
