@@ -191,7 +191,7 @@ module Maremma
 
   # keep XML attributes, http://stackoverflow.com/a/10794044
   def self.from_xml(string)
-    if Nokogiri::XML(string).errors.empty?
+    if Nokogiri::XML(string, nil, 'UTF-8').errors.empty?
       Hash.from_xml(string)
     else
       nil
