@@ -129,6 +129,9 @@ module Maremma
       headers['Authorization'] = "Bearer #{options[:bearer]}"
     elsif options[:token].present?
       headers["Authorization"] = "Token token=#{options[:token]}"
+    elsif options[:github_token].present?
+      # GitHub uses different format for token authentication
+      headers["Authorization"] = "Token #{options[:github_token]}"
     elsif options[:username].present?
       basic = Base64.encode64("#{options[:username]}:#{options[:password]}").rstrip
       headers["Authorization"] = "Basic #{basic}"

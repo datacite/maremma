@@ -523,6 +523,11 @@ describe Maremma do
       expect(subject.set_request_headers(url, options)["Authorization"]).to eq("Token token=12345")
     end
 
+    it 'github_token' do
+      options = { github_token: '12345' }
+      expect(subject.set_request_headers(url, options)["Authorization"]).to eq("Token 12345")
+    end
+
     it 'basic' do
       options = { username: 'foo', password: '12345' }
       basic = Base64.encode64("foo:12345").rstrip
