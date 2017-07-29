@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'nokogiri', '~> 1.6', '>= 1.6.8'
   s.add_dependency 'builder', '~> 3.2', '>= 3.2.2'
   s.add_dependency 'multi_json', '~> 1.12'
-  s.add_dependency 'oj', '~> 3.3', '>= 3.3.0'
+  s.add_dependency 'oj', '>= 2.8.3'
   s.add_dependency 'activesupport', '>= 4.2.5', '< 6'
   s.add_dependency 'addressable', '>= 2.3.6'
   s.add_development_dependency 'bundler', '~> 1.0'
