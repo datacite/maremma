@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    maremma (3.5.8)
-      activesupport (>= 4.2.5)
+    maremma (3.5.9)
+      activesupport (>= 4.2.5, < 6)
       addressable (>= 2.3.6)
       builder (~> 3.2, >= 3.2.2)
       excon (~> 0.45.0)
@@ -11,12 +11,12 @@ PATH
       faraday_middleware (~> 0.10.0)
       multi_json (~> 1.12)
       nokogiri (~> 1.6, >= 1.6.8)
-      oj (~> 2.18, >= 2.18.1)
+      oj (~> 3.3, >= 3.3.0)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (5.1.1)
+    activesupport (5.1.2)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (~> 0.7)
       minitest (~> 5.1)
@@ -39,19 +39,19 @@ GEM
     faraday_middleware (0.10.1)
       faraday (>= 0.7.4, < 1.0)
     hashdiff (0.3.4)
-    i18n (0.8.4)
+    i18n (0.8.6)
     json (2.1.0)
     mini_portile2 (2.2.0)
-    minitest (5.10.2)
+    minitest (5.10.3)
     multi_json (1.12.1)
     multipart-post (2.0.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
-    oj (2.18.5)
+    oj (3.3.2)
     public_suffix (2.0.5)
     rack (2.0.3)
-    rack-test (0.6.3)
-      rack (>= 1.0)
+    rack-test (0.7.0)
+      rack (>= 1.0, < 3)
     rake (12.0.0)
     rspec (3.6.0)
       rspec-core (~> 3.6.0)
@@ -76,7 +76,7 @@ GEM
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
     vcr (3.0.3)
-    webmock (1.24.6)
+    webmock (3.0.1)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
@@ -92,8 +92,8 @@ DEPENDENCIES
   rake
   rspec (~> 3.4)
   simplecov
-  vcr
-  webmock (~> 1.22, >= 1.22.3)
+  vcr (~> 3.0, >= 3.0.3)
+  webmock (~> 3.0, >= 3.0.1)
 
 BUNDLED WITH
-   1.12.5
+   1.15.3
