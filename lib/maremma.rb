@@ -33,22 +33,6 @@ module Maremma
     self.method(url, options.merge(method: "delete"))
   end
 
-  def self.put(url, options={})
-    options[:data] ||= {}
-    options[:headers] = set_request_headers(url, options)
-
-    conn = faraday_conn(options)
-
-    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
-
-    response = conn.put url, {}, options[:headers] do |request|
-      request.body = options[:data]
-    end
-    parse_success_response(response.body)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    rescue_faraday_error(error)
-  end
-
   def self.get(url, options={})
     self.method(url, options.merge(method: "get"))
   end

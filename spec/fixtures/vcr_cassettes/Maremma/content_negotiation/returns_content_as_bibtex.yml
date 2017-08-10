@@ -14,7 +14,7 @@ http_interactions:
   response:
     status:
       code: 303
-      message: ''
+      message: See Other
     headers:
       Server:
       - Apache-Coyote/1.1
@@ -23,20 +23,20 @@ http_interactions:
       Location:
       - http://data.datacite.org/10.5281%2FZENODO.21430
       Expires:
-      - Fri, 25 Nov 2016 13:12:37 GMT
+      - Thu, 10 Aug 2017 15:09:18 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
       - '179'
       Date:
-      - Fri, 25 Nov 2016 12:50:05 GMT
+      - Thu, 10 Aug 2017 14:53:28 GMT
     body:
       encoding: UTF-8
       string: |-
         <html><head><title>Handle Redirect</title></head>
         <body><a href="http://data.datacite.org/10.5281%2FZENODO.21430">http://data.datacite.org/10.5281%2FZENODO.21430</a></body></html>
     http_version: 
-  recorded_at: Fri, 25 Nov 2016 12:50:07 GMT
+  recorded_at: Thu, 10 Aug 2017 14:53:28 GMT
 - request:
     method: get
     uri: http://data.datacite.org/10.5281%2FZENODO.21430
@@ -50,44 +50,97 @@ http_interactions:
       - application/x-bibtex
   response:
     status:
-      code: 200
-      message: ''
+      code: 301
+      message: Moved Permanently
     headers:
-      Server:
-      - openresty/1.11.2.1
-      Date:
-      - Fri, 25 Nov 2016 12:50:07 GMT
       Content-Type:
+      - text/html
+      Date:
+      - Thu, 10 Aug 2017 14:53:28 GMT
+      Location:
+      - https://data.datacite.org/10.5281%2FZENODO.21430
+      Server:
+      - openresty/1.11.2.2
+      Content-Length:
+      - '191'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: "<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body
+        bgcolor=\"white\">\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>openresty/1.11.2.2</center>\r\n</body>\r\n</html>\r\n"
+    http_version: 
+  recorded_at: Thu, 10 Aug 2017 14:53:28 GMT
+- request:
+    method: get
+    uri: https://data.datacite.org/10.5281%2FZENODO.21430
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Maremma - https://github.com/datacite/maremma
+      Accept:
       - application/x-bibtex
-      Cache-Control:
-      - no-transform, max-age=3600
-      Last-Modified:
-      - Sat, 25 Jul 2015 16:44:23 GMT
-      Vary:
-      - Accept
-      Access-Control-Allow-Origin:
-      - "*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Accept:
+      - application/x-bibtex
+      Access-Control-Allow-Headers:
+      - Content-Type,Accept,Accept-Encoding,Origin,User-Agent,Cache-Control,Keep-Alive
       Access-Control-Allow-Methods:
       - GET, POST, OPTIONS
-      X-Cache:
-      - MISS from IMP-cache
-      X-Cache-Lookup:
-      - MISS from IMP-cache:3128
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - private
+      Content-Disposition:
+      - attachment; filename=_10.5281_zenodo.21430.bib
+      Content-Transfer-Encoding:
+      - binary
+      Content-Type:
+      - application/x-bibtex
+      Date:
+      - Thu, 10 Aug 2017 14:53:30 GMT
+      Etag:
+      - W/"4e2926d1bfb2f6ee07c12f141ff29ef2"
+      Server:
+      - openresty/1.11.2.2
+      Status:
+      - 200 OK
+      Vary:
+      - Accept-Encoding
       Via:
-      - 1.0 IMP-cache (squid/3.1.20)
+      - kong/0.10.3
+      X-Kong-Proxy-Latency:
+      - '0'
+      X-Kong-Upstream-Latency:
+      - '1572'
+      X-Powered-By:
+      - Phusion Passenger 5.1.7
+      X-Request-Id:
+      - fae4c4eb-0bc0-4072-b057-79e11ae22f9a
+      X-Runtime:
+      - '1.569449'
+      Content-Length:
+      - '332'
       Connection:
-      - close
+      - keep-alive
     body:
       encoding: UTF-8
       string: |
-        @misc{https://doi.org/10.5281/ZENODO.21430,
-          doi = {10.5281/ZENODO.21430},
-          url = {https://doi.org/10.5281/ZENODO.21430},
-          author = {Martin Fenner and Karl Jonathan Ward and Gudmundur A. Thorisson and Robert Peters},
-          publisher = {Zenodo},
+        @misc{https://doi.org/10.5281/zenodo.21430,
+          doi = {10.5281/zenodo.21430},
+          url = {http://zenodo.org/record/21430},
+          author = {Fenner, Martin and Ward, Karl Jonathan and {Gudmundur A. Thorisson} and Peters, Robert},
+          keywords = {orcid, datacite, ruby},
           title = {DataCite-ORCID: 1.0},
+          publisher = {Zenodo},
           year = {2015}
         }
     http_version: 
-  recorded_at: Fri, 25 Nov 2016 12:50:07 GMT
+  recorded_at: Thu, 10 Aug 2017 14:53:30 GMT
 recorded_with: VCR 3.0.3
