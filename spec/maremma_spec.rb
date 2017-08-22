@@ -54,6 +54,15 @@ describe Maremma do
     end
   end
 
+  context "head" do
+    it "head html" do
+      stub = stub_request(:head, url).to_return(:status => 200, :headers => { "Content-Type" => "text/html" })
+      response = subject.head(url, accept: 'html')
+      expect(response).to eq("Content-Type"=>"text/html")
+      expect(stub).to have_been_requested
+    end
+  end
+
   context "empty response" do
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/json" })
@@ -254,6 +263,12 @@ describe Maremma do
       stub_request(:get, redirect_url+ "/x").to_return(status: 301, headers: { location: redirect_url + "/y" })
       response = subject.get(url, limit: 1)
       expect(response).to eq("errors"=>[{"status"=>400, "title"=>"too many redirects; last one to: http://www.example.org/redirect/x"}])
+    end
+
+    it "redirect limit 0 head" do
+      stub_request(:head, url).to_return(status: 301, headers: { location: redirect_url })
+      response = subject.head(url, limit: 0)
+      expect(response["Location"]).to eq("http://www.example.org/redirect")
     end
   end
 

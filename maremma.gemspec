@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday_middleware', '~> 0.10.0'
   s.add_dependency 'faraday-encoding', '~> 0.0.1'
   s.add_dependency 'excon', '~> 0.45.0'
-  s.add_dependency 'nokogiri', '~> 1.6.7'
+  s.add_dependency 'nokogiri', '~> 1.6', '>= 1.6.8'
   s.add_dependency 'builder', '~> 3.2', '>= 3.2.2'
   s.add_dependency 'multi_json', '~> 1.11.2'
   s.add_dependency 'oj', '>= 2.18.3'

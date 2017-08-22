@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maremma (2.4.3)
+    maremma (2.4.4)
       activesupport (~> 4.2, >= 4.2.5)
       builder (~> 3.2, >= 3.2.2)
       excon (~> 0.45.0)
@@ -9,7 +9,7 @@ PATH
       faraday-encoding (~> 0.0.1)
       faraday_middleware (~> 0.10.0)
       multi_json (~> 1.11.2)
-      nokogiri (~> 1.6.7)
+      nokogiri (~> 1.6, >= 1.6.8)
       oj (>= 2.18.3)
 
 GEM
@@ -39,13 +39,13 @@ GEM
     hashdiff (0.3.5)
     i18n (0.8.6)
     json (2.1.0)
-    mini_portile2 (2.1.0)
+    mini_portile2 (2.2.0)
     minitest (5.10.3)
     multi_json (1.11.3)
     multipart-post (2.0.0)
-    nokogiri (1.6.8.1)
-      mini_portile2 (~> 2.1.0)
-    oj (3.3.4)
+    nokogiri (1.8.0)
+      mini_portile2 (~> 2.2.0)
+    oj (3.3.5)
     public_suffix (2.0.5)
     rack (2.0.3)
     rack-test (0.7.0)
@@ -69,7 +69,7 @@ GEM
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.1)
+    simplecov-html (0.10.2)
     thread_safe (0.3.6)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)

@@ -54,6 +54,25 @@ module Maremma
     rescue_faraday_error(error)
   end
 
+  def self.head(url, options={})
+    options[:headers] = set_request_headers(url, options)
+
+    conn = faraday_conn(options)
+
+    conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
+
+    response = conn.head url, {}, options[:headers]
+
+    # return error if we are close to the rate limit, if supported in headers
+    if get_rate_limit_remaining(response.headers) < 10
+      return { 'errors' => [{ 'status' => 429, 'title' => "Too many requests" }] }
+    end
+
+    response.headers
+  rescue *NETWORKABLE_EXCEPTIONS => error
+    rescue_faraday_error(error)
+  end
+
   def self.faraday_conn(options = {})
     # make sure we have headers
     options[:headers] ||= {}
@@ -66,7 +85,7 @@ module Maremma
       c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
       c.headers['Accept'] = options[:headers]['Accept']
       c.headers['User-Agent'] = options[:headers]['User-Agent']
-      c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all
+      c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
       c.request  :multipart
       c.request  :json if options[:headers]['Accept'] == 'application/json'
       c.use      Faraday::Response::RaiseError
