@@ -106,6 +106,20 @@ describe Maremma do
     end
   end
 
+  context "patch" do
+    it "patch json" do
+      stub = stub_request(:patch, url).with(:body => post_data.to_json).to_return(:body => data.to_json, :status => 200, :headers => { "Content-Type" => "application/json" })
+      subject.patch(url, content_type: 'json', data: post_data.to_json) { |response| expect(JSON.parse(response.body.to_s)).to eq(data) }
+      expect(stub).to have_been_requested
+    end
+
+    it "patch xml" do
+      stub = stub_request(:patch, url).with(:body => post_data.to_xml).to_return(:body => data.to_xml, :status => 200, :headers => { "Content-Type" => "text/html" })
+      subject.patch(url, content_type: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.body.to_s)["hash"]).to eq(data) }
+      expect(stub).to have_been_requested
+    end
+  end
+
   context "empty response" do
     it "get json" do
       stub = stub_request(:get, url).to_return(:body => nil, :status => 200, :headers => { "Content-Type" => "application/json" })

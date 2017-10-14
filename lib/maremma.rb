@@ -29,6 +29,10 @@ module Maremma
     self.method(url, options.merge(method: "put"))
   end
 
+  def self.patch(url, options={})
+    self.method(url, options.merge(method: "patch"))
+  end
+
   def self.delete(url, options={})
     self.method(url, options.merge(method: "delete"))
   end
@@ -55,6 +59,7 @@ module Maremma
                when "get" then conn.get url, {}, options[:headers]
                when "post" then conn.post url, {}, options[:headers] { |request| request.body = options[:data] }
                when "put" then conn.put url, {}, options[:headers] { |request| request.body = options[:data] }
+               when "patch" then conn.patch url, {}, options[:headers] { |request| request.body = options[:data] }
                when "delete" then conn.delete url, {}, options[:headers]
                when "head" then conn.head url, {}, options[:headers]
                end

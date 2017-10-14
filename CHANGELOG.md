@@ -1,3 +1,9 @@
+## v.3.6 (October 14, 2017)
+
+[maremma 3.6](https://github.com/datacite/maremma/releases/tag/v.3.6) was released on October 14, 2017:
+
+* added support for `patch` verb
+
 ## v.3.5 (February 14, 2017)
 
 [maremma 3.5](https://github.com/datacite/maremma/releases/tag/v.3.5) was released on February 14, 2017:
