@@ -1,3 +1,9 @@
+## v.3.6.1 (January 9, 2018)
+
+[maremma 3.6.1](https://github.com/datacite/maremma/releases/tag/v.3.6.1) was released on January 9, 2018:
+
+* correctly show 401 status and error message
+
 ## v.3.6 (October 14, 2017)
 
 [maremma 3.6](https://github.com/datacite/maremma/releases/tag/v.3.6) was released on October 14, 2017:

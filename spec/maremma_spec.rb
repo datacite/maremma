@@ -259,21 +259,21 @@ describe Maremma do
     it "get json" do
       stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
       response = subject.get(url)
-      expect(response.body).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
+      expect(response.body).to eq("errors"=>[{"status"=>403, "title"=>"Connection refused - connect(2)"}])
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
       stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
       response = subject.get(url, accept: 'xml')
-      expect(response.body).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
+      expect(response.body).to eq("errors"=>[{"status"=>403, "title"=>"Connection refused - connect(2)"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
       stub = stub_request(:get, url).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
       response = subject.get(url, accept: 'html')
-      expect(response.body).to eq("errors"=>[{"status"=>"403", "title"=>"Connection refused - connect(2)"}])
+      expect(response.body).to eq("errors"=>[{"status"=>403, "title"=>"Connection refused - connect(2)"}])
       expect(stub).to have_been_requested
     end
 
@@ -286,6 +286,47 @@ describe Maremma do
     it "put xml" do
       stub = stub_request(:put, url).with(:body => post_data.to_xml).to_raise(Faraday::ConnectionFailed.new("Connection refused - connect(2)"))
       subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(response.body).to be_nil }
+      expect(stub).to have_been_requested
+    end
+  end
+
+  context "unauthorized" do
+    it "get json" do
+      stub = stub_request(:get, url).to_raise(Faraday::Error::ClientError.new("Unauthorized"))
+      response = subject.get(url)
+      expect(response.body).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
+      expect(stub).to have_been_requested
+    end
+
+    it "get xml" do
+      stub = stub_request(:get, url).to_raise(Faraday::Error::ClientError.new("Unauthorized"))
+      response = subject.get(url, accept: 'xml')
+      expect(response.body).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
+      expect(stub).to have_been_requested
+    end
+
+    it "get html" do
+      stub = stub_request(:get, url).to_raise(Faraday::Error::ClientError.new("Unauthorized"))
+      response = subject.get(url, accept: 'html')
+      expect(response.body).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
+      expect(stub).to have_been_requested
+    end
+
+    it "post xml" do
+      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_raise(Faraday::Error::ClientError.new("Unauthorized"))
+      subject.post(url, accept: 'xml', data: post_data.to_xml) do |response|
+        expect(response.body).to be_nil
+        expect(response.status).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
+      end
+      expect(stub).to have_been_requested
+    end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_raise(Faraday::Error::ClientError.new("Unauthorized"))
+      subject.put(url, accept: 'xml', data: post_data.to_xml) do |response|
+        expect(response.body).to be_nil
+        expect(response.status).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
+      end
       expect(stub).to have_been_requested
     end
   end

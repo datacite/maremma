@@ -138,7 +138,7 @@ module Maremma
       # GitHub uses different format for token authentication
       headers["Authorization"] = "Token #{options[:github_token]}"
     elsif options[:username].present?
-      basic = Base64.strict_encode64("#{options[:username]}:#{options[:password]}")
+      basic = Base64.strict_encode64("#{options[:username]}:#{options[:password]}").chomp
       headers["Authorization"] = "Basic #{basic}"
     end
 
@@ -148,8 +148,11 @@ module Maremma
   def self.rescue_faraday_error(error)
     if error.is_a?(Faraday::ResourceNotFound)
       { 'errors' => [{ 'status' => 404, 'title' => "Not found" }] }
+    elsif error.message == "Unauthorized" || error.try(:response) && error.response[:status] == 401
+      { 'errors' => [{ 'status' => 401, 'title' =>"Unauthorized" }] }
     elsif error.is_a?(Faraday::ConnectionFailed)
-      { 'errors' => [{ 'status' => "403", 'title' => parse_error_response(error.message) }] }
+      { 'errors' => [{ 'status' => 403, 'title' => parse_error_response(error.message) }] }
+
     elsif error.is_a?(Faraday::TimeoutError) || (error.try(:response) && error.response[:status] == 408)
       { 'errors' => [{ 'status' => 408, 'title' =>"Request timeout" }] }
     else
