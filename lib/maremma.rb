@@ -148,7 +148,7 @@ module Maremma
   def self.rescue_faraday_error(error)
     if error.is_a?(Faraday::ResourceNotFound)
       { 'errors' => [{ 'status' => 404, 'title' => "Not found" }] }
-    elsif error.message == "Unauthorized" || error.try(:response) && error.response[:status] == 401
+    elsif error.message == "the server responded with status 401" || error.try(:response) && error.response[:status] == 401
       { 'errors' => [{ 'status' => 401, 'title' =>"Unauthorized" }] }
     elsif error.is_a?(Faraday::ConnectionFailed)
       { 'errors' => [{ 'status' => 403, 'title' => parse_error_response(error.message) }] }
