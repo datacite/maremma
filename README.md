@@ -26,7 +26,7 @@ gem install maremma
 
 ## Usage
 ```ruby
-Maremma.get 'http://dlm.datacite.org/heartbeat' => { "data" => { "services"=>{ "mysql"=>"OK",
+Maremma.get 'https://dlm.datacite.org/heartbeat' => { "data" => { "services"=>{ "mysql"=>"OK",
                                                                                "memcached"=>"OK",
                                                                                "redis"=>"OK",
                                                                                "sidekiq"=>"OK",
