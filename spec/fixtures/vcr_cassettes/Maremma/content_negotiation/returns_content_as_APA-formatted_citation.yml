@@ -21,56 +21,22 @@ http_interactions:
       Vary:
       - Accept
       Location:
-      - http://data.datacite.org/10.5281%2FZENODO.21430
+      - https://data.datacite.org/10.5281%2FZENODO.21430
       Expires:
-      - Thu, 10 Aug 2017 15:09:18 GMT
+      - Sun, 25 Feb 2018 13:49:45 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
-      - '179'
+      - '181'
       Date:
-      - Thu, 10 Aug 2017 14:53:31 GMT
+      - Sun, 25 Feb 2018 13:41:17 GMT
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: |-
         <html><head><title>Handle Redirect</title></head>
-        <body><a href="http://data.datacite.org/10.5281%2FZENODO.21430">http://data.datacite.org/10.5281%2FZENODO.21430</a></body></html>
+        <body><a href="https://data.datacite.org/10.5281%2FZENODO.21430">https://data.datacite.org/10.5281%2FZENODO.21430</a></body></html>
     http_version: 
-  recorded_at: Thu, 10 Aug 2017 14:53:31 GMT
-- request:
-    method: get
-    uri: http://data.datacite.org/10.5281%2FZENODO.21430
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Maremma - https://github.com/datacite/maremma
-      Accept:
-      - text/x-bibliography; style=apa
-  response:
-    status:
-      code: 301
-      message: Moved Permanently
-    headers:
-      Content-Type:
-      - text/html
-      Date:
-      - Thu, 10 Aug 2017 14:53:31 GMT
-      Location:
-      - https://data.datacite.org/10.5281%2FZENODO.21430
-      Server:
-      - openresty/1.11.2.2
-      Content-Length:
-      - '191'
-      Connection:
-      - keep-alive
-    body:
-      encoding: UTF-8
-      string: "<html>\r\n<head><title>301 Moved Permanently</title></head>\r\n<body
-        bgcolor=\"white\">\r\n<center><h1>301 Moved Permanently</h1></center>\r\n<hr><center>openresty/1.11.2.2</center>\r\n</body>\r\n</html>\r\n"
-    http_version: 
-  recorded_at: Thu, 10 Aug 2017 14:53:31 GMT
+  recorded_at: Sun, 25 Feb 2018 13:41:17 GMT
 - request:
     method: get
     uri: https://data.datacite.org/10.5281%2FZENODO.21430
@@ -87,48 +53,41 @@ http_interactions:
       code: 200
       message: OK
     headers:
-      Accept:
-      - text/x-bibliography
-      Access-Control-Allow-Headers:
-      - Content-Type,Accept,Accept-Encoding,Origin,User-Agent,Cache-Control,Keep-Alive
-      Access-Control-Allow-Methods:
-      - GET, POST, OPTIONS
-      Access-Control-Allow-Origin:
-      - "*"
-      Cache-Control:
-      - max-age=0, private, must-revalidate
+      Date:
+      - Sun, 25 Feb 2018 13:41:18 GMT
       Content-Type:
       - text/plain; charset=utf-8
-      Date:
-      - Thu, 10 Aug 2017 14:53:33 GMT
-      Etag:
-      - W/"aa252981139924ea1570779a6dd966e9"
-      Server:
-      - openresty/1.11.2.2
-      Status:
-      - 200 OK
-      Vary:
-      - Accept-Encoding
-      Via:
-      - kong/0.10.3
-      X-Kong-Proxy-Latency:
-      - '0'
-      X-Kong-Upstream-Latency:
-      - '990'
-      X-Powered-By:
-      - Phusion Passenger 5.1.7
-      X-Request-Id:
-      - e68f78d4-ac02-41a4-a06b-9cad7e83a27b
-      X-Runtime:
-      - '0.987880'
-      Content-Length:
-      - '144'
       Connection:
       - keep-alive
+      Set-Cookie:
+      - AWSALB=pQhuxH6pw0gXPbqypsm2JYyrHv1cLSCGwWi1Ww0Pnh3VpN9BdD0scMZopZoXZxkXjDrHD3VUuqarQGi5ANLgZ6qJOofc35J9EgOLlN1R94stpogWCkj4qh9dyb29;
+        Expires=Sun, 04 Mar 2018 13:41:17 GMT; Path=/
+      Status:
+      - 200 OK
+      Accept:
+      - text/x-bibliography
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Vary:
+      - Accept-Encoding
+      Etag:
+      - W/"aa252981139924ea1570779a6dd966e9"
+      X-Runtime:
+      - '0.403411'
+      X-Request-Id:
+      - '092be7cd-d7e7-45b1-8b24-e7f03e1492a7'
+      X-Powered-By:
+      - Phusion Passenger 5.2.0
+      Server:
+      - nginx/1.12.2 + Phusion Passenger 5.2.0
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Headers:
+      - Content-Type,Accept,Accept-Encoding,Origin,User-Agent,Cache-Control,Keep-Alive
     body:
-      encoding: UTF-8
+      encoding: ASCII-8BIT
       string: 'Fenner, M., Ward, K. J., Gudmundur A. Thorisson, & Peters, R. (2015,
         July 25). DataCite-ORCID: 1.0. Zenodo. https://doi.org/10.5281/zenodo.21430'
     http_version: 
-  recorded_at: Thu, 10 Aug 2017 14:53:32 GMT
+  recorded_at: Sun, 25 Feb 2018 13:41:18 GMT
 recorded_with: VCR 3.0.3

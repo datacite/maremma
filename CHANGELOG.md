@@ -1,3 +1,9 @@
+## v.4.0 (February 25, 2018)
+
+[maremma 4.0](https://github.com/datacite/maremma/releases/tag/v.4.0) was released on February 25, 2018:
+
+* upgrade to faraday 0.14, faraday-middleware 0.12 and excon 0.60
+
 ## v.3.6.2 (January 9, 2018)
 
 [maremma 3.6.2](https://github.com/datacite/maremma/releases/tag/v.3.6.2) was released on January 9, 2018:

@@ -45,9 +45,9 @@ describe Maremma do
       expect(url).to eq("https://search.datacite.org/api?q=*%3A*&fl=doi%2Ctitle%2Cdescription%2Cpublisher%2CpublicationYear%2CresourceType%2CresourceTypeGeneral%2CrightsURI%2Cdatacentre_symbol%2Cxml%2Cminted%2Cupdated&fq=has_metadata%3Atrue&fq=is_active%3Atrue&facet=true&facet.field=resourceType_facet&facet.field=publicationYear&facet.field=datacentre_facet&facet.limit=10&f.resourceType_facet.facet.limit=15&wt=json")
       response = subject.get(url)
       facet_fields = response.body.fetch("data", {}).fetch("facet_counts", {}).fetch("facet_fields", {})
-      expect(facet_fields["datacentre_facet"].each_slice(2).first).to eq(["BL.CCDC - The Cambridge Crystallographic Data Centre", 673412])
-      expect(facet_fields["resourceType_facet"].each_slice(2).first).to eq(["Dataset", 3400468])
-      expect(facet_fields["publicationYear"].each_slice(2).first).to eq(["2015", 1493468])
+      expect(facet_fields["datacentre_facet"].each_slice(2).first).to eq(["FIGSHARE.ARS - figshare Academic Research System", 822663])
+      expect(facet_fields["resourceType_facet"].each_slice(2).first).to eq(["Dataset", 4012248])
+      expect(facet_fields["publicationYear"].each_slice(2).first).to eq(["2017", 2196548])
     end
 
     it "get json with meta hash" do
@@ -459,10 +459,10 @@ describe Maremma do
       response = subject.get(url, accept: "application/x-bibtex")
       expect(response.body.fetch("data", nil)).to eq("@misc{https://doi.org/10.5281/zenodo.21430,
   doi = {10.5281/zenodo.21430},
-  url = {http://zenodo.org/record/21430},
   author = {Fenner, Martin and Ward, Karl Jonathan and {Gudmundur A. Thorisson} and Peters, Robert},
   keywords = {orcid, datacite, ruby},
   title = {DataCite-ORCID: 1.0},
+  pages = {-},
   publisher = {Zenodo},
   year = {2015}
 }")
@@ -477,10 +477,10 @@ describe Maremma do
 
   context "link headers" do
     it "parses link headers", vcr: true do
-      url = "https://search.datacite.org/works/10.5281/ZENODO.21430"
+      url = "https://doi.pangaea.de/10.1594/PANGAEA.884833"
       response = subject.get(url)
       headers = response.headers.fetch("Link", "").split(", ")
-      expect(headers.first).to eq("<https://doi.org/10.5281/ZENODO.21430> ; rel=\"identifier\"")
+      expect(headers.first).to eq("<https://doi.pangaea.de/10.1594/PANGAEA.884833>;rel=\"cite-as\"")
     end
   end
 
