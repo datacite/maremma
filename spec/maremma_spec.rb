@@ -368,21 +368,21 @@ describe Maremma do
 
   context "rate limit exceeded" do
     it "get json" do
-      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 2 })
       response = subject.get(url)
       expect(response.body).to eq("errors"=>[{"status"=>429, "title"=>"Too many requests"}])
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
-      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 2 })
       response = subject.get(url, accept: 'xml')
       expect(response.body).to eq("errors"=>[{"status"=>429, "title"=>"Too many requests"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
-      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 3 })
+      stub = stub_request(:get, url).to_return(status: 200, headers: { 'X-Rate-Limit-Remaining' => 2 })
       response = subject.get(url, accept: 'html')
       expect(response.body).to eq("errors"=>[{"status"=>429, "title"=>"Too many requests"}])
       expect(stub).to have_been_requested

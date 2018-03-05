@@ -65,7 +65,7 @@ module Maremma
                end
 
     # return error if we are close to the rate limit, if supported in headers
-    if get_rate_limit_remaining(response.headers) < 10
+    if get_rate_limit_remaining(response.headers) < 3
       return OpenStruct.new(body: { "errors" => [{ 'status' => 429, 'title' => "Too many requests" }] },
                             headers: response.headers,
                             status: response.status)
