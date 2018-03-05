@@ -1,3 +1,9 @@
+## v.4.0.2 (March 5, 2018)
+
+[maremma 4.0.2](https://github.com/datacite/maremma/releases/tag/v.4.0.2) was released on March 5, 2018:
+
+* return 429 status with `X-Ratelimit-Remaining` < 3 instead of < 10
+
 ## v.4.0 (February 25, 2018)
 
 [maremma 4.0](https://github.com/datacite/maremma/releases/tag/v.4.0) was released on February 25, 2018:
