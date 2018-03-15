@@ -8,7 +8,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Maremma - https://github.com/datacite/maremma
+      - Maremma 4.0.3 - https://github.com/datacite/maremma
       Accept:
       - text/x-bibliography; style=apa
   response:
@@ -23,20 +23,20 @@ http_interactions:
       Location:
       - https://data.datacite.org/10.5281%2FZENODO.21430
       Expires:
-      - Sun, 25 Feb 2018 13:49:45 GMT
+      - Thu, 15 Mar 2018 07:15:00 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
       - '181'
       Date:
-      - Sun, 25 Feb 2018 13:41:17 GMT
+      - Thu, 15 Mar 2018 06:59:24 GMT
     body:
       encoding: ASCII-8BIT
       string: |-
         <html><head><title>Handle Redirect</title></head>
         <body><a href="https://data.datacite.org/10.5281%2FZENODO.21430">https://data.datacite.org/10.5281%2FZENODO.21430</a></body></html>
     http_version: 
-  recorded_at: Sun, 25 Feb 2018 13:41:17 GMT
+  recorded_at: Thu, 15 Mar 2018 06:59:25 GMT
 - request:
     method: get
     uri: https://data.datacite.org/10.5281%2FZENODO.21430
@@ -45,7 +45,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Maremma - https://github.com/datacite/maremma
+      - Maremma 4.0.3 - https://github.com/datacite/maremma
       Accept:
       - text/x-bibliography; style=apa
   response:
@@ -54,14 +54,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 25 Feb 2018 13:41:18 GMT
+      - Thu, 15 Mar 2018 06:59:25 GMT
       Content-Type:
       - text/plain; charset=utf-8
       Connection:
       - keep-alive
       Set-Cookie:
-      - AWSALB=pQhuxH6pw0gXPbqypsm2JYyrHv1cLSCGwWi1Ww0Pnh3VpN9BdD0scMZopZoXZxkXjDrHD3VUuqarQGi5ANLgZ6qJOofc35J9EgOLlN1R94stpogWCkj4qh9dyb29;
-        Expires=Sun, 04 Mar 2018 13:41:17 GMT; Path=/
+      - AWSALB=dSgje9E2mTUCvcJOPSMAwTS+7WIoan2xOGfgYfz77+2i5pJPBv1CcXlkAYyT3jeWKutAPTOdMVRO2foRqiDQtAw16uWq6Yegh0+WR7ZBDHLgmiLolx4qw6j/R5fP;
+        Expires=Thu, 22 Mar 2018 06:59:25 GMT; Path=/
       Status:
       - 200 OK
       Accept:
@@ -73,13 +73,13 @@ http_interactions:
       Etag:
       - W/"aa252981139924ea1570779a6dd966e9"
       X-Runtime:
-      - '0.403411'
+      - '0.206614'
       X-Request-Id:
-      - '092be7cd-d7e7-45b1-8b24-e7f03e1492a7'
+      - 11862815-802f-47ab-8d4e-89f56a50f585
       X-Powered-By:
-      - Phusion Passenger 5.2.0
+      - Phusion Passenger 5.2.1
       Server:
-      - nginx/1.12.2 + Phusion Passenger 5.2.0
+      - nginx/1.12.2 + Phusion Passenger 5.2.1
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Headers:
@@ -89,5 +89,5 @@ http_interactions:
       string: 'Fenner, M., Ward, K. J., Gudmundur A. Thorisson, & Peters, R. (2015,
         July 25). DataCite-ORCID: 1.0. Zenodo. https://doi.org/10.5281/zenodo.21430'
     http_version: 
-  recorded_at: Sun, 25 Feb 2018 13:41:18 GMT
+  recorded_at: Thu, 15 Mar 2018 06:59:25 GMT
 recorded_with: VCR 3.0.3
