@@ -8,6 +8,7 @@ require 'excon'
 require 'uri'
 require 'addressable/uri'
 require 'maremma/xml_converter'
+require 'maremma/version'
 
 module Maremma
   DEFAULT_TIMEOUT = 60
