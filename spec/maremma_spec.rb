@@ -593,7 +593,7 @@ describe Maremma do
 
     it 'github_token' do
       options = { github_token: '12345' }
-      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Maremma #{Maremma::VERSION} - https://github.com/datacite/maremma", "Accept"=>accept_header, "Authorization"=>"Token 12345")
+      expect(subject.set_request_headers(url, options)).to eq("User-Agent"=>"Mozilla/5.0 (compatible; Maremma/#{Maremma::VERSION}; +https://github.com/datacite/maremma)", "Accept"=>accept_header, "Authorization"=>"Token 12345")
     end
 
     it 'basic' do

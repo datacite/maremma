@@ -116,7 +116,7 @@ module Maremma
     headers = options[:headers] ||= {}
 
     # set useragent
-    headers['User-Agent'] = ENV['USER_AGENT'].present? ? "Maremma #{Maremma::VERSION} - #{ENV['USER_AGENT']}" : "Maremma #{Maremma::VERSION} - https://github.com/datacite/maremma"
+    headers['User-Agent'] = ENV['USER_AGENT'] || "Mozilla/5.0 (compatible; Maremma/#{Maremma::VERSION}; +https://github.com/datacite/maremma)"
 
     # set host, needed for some services behind proxy
     headers['Host'] = URI.parse(url).host if options[:host]
