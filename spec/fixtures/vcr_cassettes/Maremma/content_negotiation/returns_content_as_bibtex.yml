@@ -8,13 +8,13 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Maremma - https://github.com/datacite/maremma
+      - Mozilla/5.0 (compatible; Maremma/4.0.7; +https://github.com/datacite/maremma)
       Accept:
       - application/x-bibtex
   response:
     status:
-      code: 303
-      message: See Other
+      code: 302
+      message: Found
     headers:
       Server:
       - Apache-Coyote/1.1
@@ -23,20 +23,20 @@ http_interactions:
       Location:
       - https://data.datacite.org/10.5281%2FZENODO.21430
       Expires:
-      - Sun, 25 Feb 2018 14:02:08 GMT
+      - Thu, 14 Jun 2018 16:18:03 GMT
       Content-Type:
       - text/html;charset=utf-8
       Content-Length:
       - '181'
       Date:
-      - Sun, 25 Feb 2018 13:41:15 GMT
+      - Thu, 14 Jun 2018 15:51:31 GMT
     body:
       encoding: ASCII-8BIT
       string: |-
         <html><head><title>Handle Redirect</title></head>
         <body><a href="https://data.datacite.org/10.5281%2FZENODO.21430">https://data.datacite.org/10.5281%2FZENODO.21430</a></body></html>
     http_version: 
-  recorded_at: Sun, 25 Feb 2018 13:41:16 GMT
+  recorded_at: Thu, 14 Jun 2018 15:51:31 GMT
 - request:
     method: get
     uri: https://data.datacite.org/10.5281%2FZENODO.21430
@@ -45,7 +45,7 @@ http_interactions:
       string: ''
     headers:
       User-Agent:
-      - Maremma - https://github.com/datacite/maremma
+      - Mozilla/5.0 (compatible; Maremma/4.0.7; +https://github.com/datacite/maremma)
       Accept:
       - application/x-bibtex
   response:
@@ -54,40 +54,36 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 25 Feb 2018 13:41:17 GMT
+      - Thu, 14 Jun 2018 15:51:33 GMT
       Content-Type:
       - application/x-bibtex
       Connection:
       - keep-alive
       Set-Cookie:
-      - AWSALB=btOtM0da9XWQliOGxhXaSOI82dzbOAbJjbiRsjvPp4RFF9uRG+3czBCoVqRBzkj6JxvniN31Ln3/6orgyKBzQlANvjFqdVSB42UjQenB/cXHF5QxCEhUBaB6tkBk;
-        Expires=Sun, 04 Mar 2018 13:41:16 GMT; Path=/
+      - AWSALB=3fsHRNjPRjxcHczCupmZ3x67Pq2EFsp3YSsNMoEzOVaBeHUDgXRLV7JR+VviSsmYisYOt3pPJL3wFlTHbZ4+ljss2i03YcH+Hwh5UHZqa8i+WSCdaq732awk6bhh;
+        Expires=Thu, 21 Jun 2018 15:51:32 GMT; Path=/
       Status:
       - 200 OK
+      Cache-Control:
+      - private
+      Vary:
+      - Accept-Encoding, Origin
+      X-Request-Id:
+      - 9806d6eb-8683-4dcc-8e20-ec640f4bd548
       Content-Disposition:
       - attachment; filename=_10.5281_zenodo.21430.bib
       Accept:
       - application/x-bibtex
-      Cache-Control:
-      - private
-      Vary:
-      - Accept-Encoding
       Content-Transfer-Encoding:
       - binary
       Etag:
-      - W/"13cf283128c703996cd928f71c8cf3fa"
+      - W/"4d95ecce731c78f0d8592887452a97fc"
       X-Runtime:
-      - '0.480560'
-      X-Request-Id:
-      - 452c14e4-1934-4485-a205-600a2e58f24d
+      - '1.334742'
       X-Powered-By:
-      - Phusion Passenger 5.2.0
+      - Phusion Passenger 5.3.1
       Server:
-      - nginx/1.12.2 + Phusion Passenger 5.2.0
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Headers:
-      - Content-Type,Accept,Accept-Encoding,Origin,User-Agent,Cache-Control,Keep-Alive
+      - nginx/1.14.0 + Phusion Passenger 5.3.1
     body:
       encoding: ASCII-8BIT
       string: |
@@ -95,11 +91,10 @@ http_interactions:
           doi = {10.5281/zenodo.21430},
           author = {Fenner, Martin and Ward, Karl Jonathan and {Gudmundur A. Thorisson} and Peters, Robert},
           keywords = {orcid, datacite, ruby},
-          title = {DataCite-ORCID: 1.0},
-          pages = {-},
+          title = {Datacite-Orcid: 1.0},
           publisher = {Zenodo},
           year = {2015}
         }
     http_version: 
-  recorded_at: Sun, 25 Feb 2018 13:41:17 GMT
+  recorded_at: Thu, 14 Jun 2018 15:51:33 GMT
 recorded_with: VCR 3.0.3

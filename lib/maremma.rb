@@ -14,11 +14,12 @@ module Maremma
   DEFAULT_TIMEOUT = 60
   NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
                             Faraday::TimeoutError,
+                            Faraday::ResourceNotFound,
                             Faraday::SSLError,
                             Faraday::ConnectionFailed,
                             URI::InvalidURIError,
                             Encoding::UndefinedConversionError,
-                            ArgumentError,
+                            # ArgumentError,
                             NoMethodError,
                             TypeError]
 
@@ -72,14 +73,21 @@ module Maremma
                             status: response.status)
     end
 
+    # raise errors now and not in faraday_conn so that we can collect more information
+    raise Faraday::ConnectionFailed if response.status == 403
+    raise Faraday::ResourceNotFound, "Not found" if response.status == 404
+    raise Faraday::TimeoutError if response.status == 408
+
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
                    status: response.status,
                    url: response.env[:url].to_s)
   rescue *NETWORKABLE_EXCEPTIONS => error
-    error_response = rescue_faraday_error(error)
+    error_response = rescue_faraday_error(error, response)
     OpenStruct.new(body: error_response,
-                   status: error_response.fetch("errors", {}).first.fetch("status", 400))
+                   status: error_response.fetch("errors", {}).first.fetch("status", 400),
+                   headers: response ? response.headers : nil,
+                   url: response ? response.env[:url].to_s : nil)
   end
 
   def self.faraday_conn(options = {})
@@ -97,7 +105,6 @@ module Maremma
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
       c.request  :multipart
       c.request  :json if options[:headers]['Accept'] == 'application/json'
-      c.use      Faraday::Response::RaiseError
       c.response :encoding
       c.adapter  :excon
     end
@@ -146,7 +153,7 @@ module Maremma
     headers
   end
 
-  def self.rescue_faraday_error(error)
+  def self.rescue_faraday_error(error, response)
     if error.is_a?(Faraday::ResourceNotFound)
       { 'errors' => [{ 'status' => 404, 'title' => "Not found" }] }
     elsif error.message == "the server responded with status 401" || error.try(:response) && error.response[:status] == 401
@@ -157,7 +164,9 @@ module Maremma
     elsif error.is_a?(Faraday::TimeoutError) || (error.try(:response) && error.response[:status] == 408)
       { 'errors' => [{ 'status' => 408, 'title' =>"Request timeout" }] }
     else
-      { 'errors' => [{ 'status' => 400, 'title' => parse_error_response(error.message) }] }
+      status = response ? response.status : 400
+      title = response ? parse_error_response(response.body) : parse_error_response(error.message)
+      { 'errors' => [{ 'status' => status, 'title' => title }] }
     end
   end
 

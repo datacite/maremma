@@ -45,9 +45,9 @@ describe Maremma do
       expect(url).to eq("https://search.datacite.org/api?q=*%3A*&fl=doi%2Ctitle%2Cdescription%2Cpublisher%2CpublicationYear%2CresourceType%2CresourceTypeGeneral%2CrightsURI%2Cdatacentre_symbol%2Cxml%2Cminted%2Cupdated&fq=has_metadata%3Atrue&fq=is_active%3Atrue&facet=true&facet.field=resourceType_facet&facet.field=publicationYear&facet.field=datacentre_facet&facet.limit=10&f.resourceType_facet.facet.limit=15&wt=json")
       response = subject.get(url)
       facet_fields = response.body.fetch("data", {}).fetch("facet_counts", {}).fetch("facet_fields", {})
-      expect(facet_fields["datacentre_facet"].each_slice(2).first).to eq(["FIGSHARE.ARS - figshare Academic Research System", 833115])
-      expect(facet_fields["resourceType_facet"].each_slice(2).first).to eq(["Dataset", 4029404])
-      expect(facet_fields["publicationYear"].each_slice(2).first).to eq(["2017", 2204994])
+      expect(facet_fields["datacentre_facet"].each_slice(2).first).to eq(["FIGSHARE.ARS - figshare Academic Research System", 902757])
+      expect(facet_fields["resourceType_facet"].each_slice(2).first).to eq(["Dataset", 4311762])
+      expect(facet_fields["publicationYear"].each_slice(2).first).to eq(["2017", 2265307])
     end
 
     it "get json with meta hash" do
@@ -461,8 +461,7 @@ describe Maremma do
   doi = {10.5281/zenodo.21430},
   author = {Fenner, Martin and Ward, Karl Jonathan and {Gudmundur A. Thorisson} and Peters, Robert},
   keywords = {orcid, datacite, ruby},
-  title = {DataCite-ORCID: 1.0},
-  pages = {-},
+  title = {Datacite-Orcid: 1.0},
   publisher = {Zenodo},
   year = {2015}
 }")
@@ -471,7 +470,7 @@ describe Maremma do
     it "returns content as APA-formatted citation", vcr: true do
       url = "https://doi.org/10.5281/ZENODO.21430"
       response = subject.get(url, accept: "text/x-bibliography; style=apa")
-      expect(response.body.fetch("data", nil)).to eq("Fenner, M., Ward, K. J., Gudmundur A. Thorisson, & Peters, R. (2015, July 25). DataCite-ORCID: 1.0. Zenodo. https://doi.org/10.5281/zenodo.21430")
+      expect(response.body.fetch("data", nil)).to eq("Fenner, M., Ward, K. J., Gudmundur A. Thorisson, & Peters, R. (2015, July 25). Datacite-Orcid: 1.0. Zenodo. https://doi.org/10.5281/zenodo.21430")
     end
   end
 
