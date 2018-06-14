@@ -19,7 +19,7 @@ module Maremma
                             Faraday::ConnectionFailed,
                             URI::InvalidURIError,
                             Encoding::UndefinedConversionError,
-                            # ArgumentError,
+                            ArgumentError,
                             NoMethodError,
                             TypeError]
 
@@ -77,6 +77,7 @@ module Maremma
     raise Faraday::ConnectionFailed if response.status == 403
     raise Faraday::ResourceNotFound, "Not found" if response.status == 404
     raise Faraday::TimeoutError if response.status == 408
+    raise Faraday::ClientError if response.status >= 400
 
     OpenStruct.new(body: parse_success_response(response.body, options),
                    headers: response.headers,
