@@ -190,8 +190,12 @@ module Maremma
   def self.parse_error_response(string)
     string = parse_response(string)
 
+    string = string['hash'] if string.is_a?(Hash) && string['hash']
+
     if string.is_a?(Hash) && string['error']
       string['error']
+    elsif string.is_a?(Hash) && string['errors']
+      string.dig('errors', 0, "title")
     else
       string
     end

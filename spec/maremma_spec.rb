@@ -202,6 +202,50 @@ describe Maremma do
     end
   end
 
+  context "method not allowed" do
+    let(:error) { { "errors" => [{ "status" => 405, "title" => "Method not allowed" }]} }
+
+    it "get json" do
+      stub = stub_request(:get, url).to_return(:body => error.to_json, :status => [405], :headers => { "Content-Type" => "application/json" })
+      response = subject.get(url, accept: 'json')
+      expect(response.body).to eq(error)
+      expect(stub).to have_been_requested
+    end
+
+    it "get xml" do
+      stub = stub_request(:get, url).to_return(:body => error.to_xml, :status => [405], :headers => { "Content-Type" => "application/xml" })
+      response = subject.get(url, accept: 'xml')
+      expect(response.body).to eq(error)
+      expect(stub).to have_been_requested
+    end
+
+    it "get html" do
+      stub = stub_request(:get, url).to_return(:body => error.dig("errors", 0, "title"), :status => [405], :headers => { "Content-Type" => "text/html" })
+      response = subject.get(url, accept: 'html')
+      expect(response.body).to eq(error)
+      expect(stub).to have_been_requested
+    end
+
+    it "head html" do
+      stub = stub_request(:head, url).to_return(:body => error.to_s, :status => [405], :headers => { "Content-Type" => "text/html" })
+      response = subject.head(url, accept: 'html')
+      expect(response.status).to eq(405)
+      expect(stub).to have_been_requested
+    end
+
+    it "post xml" do
+      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [405], :headers => { "Content-Type" => "application/xml" })
+      subject.post(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
+      expect(stub).to have_been_requested
+    end
+
+    it "put xml" do
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_return(:body => error.to_xml, :status => [405], :headers => { "Content-Type" => "application/xml" })
+      subject.put(url, accept: 'xml', data: post_data.to_xml) { |response| expect(Hash.from_xml(response.to_s)["hash"]).to eq(error) }
+      expect(stub).to have_been_requested
+    end
+  end
+
   context "request timeout" do
     it "get json" do
       stub = stub_request(:get, url).to_return(:status => [408])
