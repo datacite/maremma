@@ -117,9 +117,9 @@ module Maremma
   end
 
   def self.set_request_headers(url, options={})
-    header_options = { "html" => 'text/html; charset=UTF-8',
-                       "xml" => 'application/xml',
-                       "json" => 'application/json' }
+    header_options = { "html" => 'text/html;charset=UTF-8',
+                       "xml" => 'application/xml;charset=UTF-8',
+                       "json" => 'application/json;charset=UTF-8' }
 
     headers = options[:headers] ||= {}
 
