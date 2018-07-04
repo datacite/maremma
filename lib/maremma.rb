@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'active_support/all'
 require 'json'
 require 'nokogiri'
@@ -201,8 +203,8 @@ module Maremma
     end
   end
 
-  def self.parse_response(str, options={})
-    string = str.force_encoding('UTF-8')
+  def self.parse_response(string, options={})
+    string = string.dup.force_encoding('UTF-8')
     return string if options[:raw]
 
     from_json(string) || from_xml(string) || from_string(string)

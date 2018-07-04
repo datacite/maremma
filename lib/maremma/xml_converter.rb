@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # modified from http://stackoverflow.com/a/29431089
 # preserve attributes in xml
 
