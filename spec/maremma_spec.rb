@@ -660,4 +660,20 @@ describe Maremma do
       expect(subject.set_request_headers(url, options)["Host"]).to eq("example.org")
     end
   end
+
+  context 'ssl verify', vcr: true do
+    it 'default' do
+      url = "https://doi.org/10.5281/ZENODO.21430"
+      response = subject.get(url)
+      expect(response.status).to eq(200)
+    end
+
+    it 'self-signed' do
+      url = "https://38.100.138.135:8000/api/handles/10.5281/ZENODO.21430?index=1"
+      options = { ssl_self_signed: true}
+      response = subject.get(url, options)
+      expect(response.status).to eq(200)
+      expect(response.body.dig("data", "values", 0, "data", "value")).to eq("https://zenodo.org/record/21430")
+    end
+  end
 end

@@ -101,6 +101,7 @@ module Maremma
     limit = options[:limit] || 10
 
     Faraday.new do |c|
+      c.ssl.verify = false if options[:ssl_self_signed]
       c.options.params_encoder = Faraday::FlatParamsEncoder
       c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
       c.headers['Accept'] = options[:headers]['Accept']
