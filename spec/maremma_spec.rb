@@ -659,6 +659,14 @@ describe Maremma do
       options = { host: true}
       expect(subject.set_request_headers(url, options)["Host"]).to eq("example.org")
     end
+
+    it 'crossref', vcr: true do
+      url = "https://api.eventdata.crossref.org/v1/events?mailto=info@datacite.org&rows=0&source=crossref"
+      options = { host: true }
+      response = subject.get(url, options)
+      expect(response.status).to eq(200)
+      expect(response.body.dig("data", "message", "total-results")).to eq(24308)
+    end
   end
 
   context 'ssl verify', vcr: true do

@@ -1,0 +1,36 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.eventdata.crossref.org/v1/events?mailto=info@datacite.org&rows=0&source=crossref
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (compatible; Maremma/4.1; +https://github.com/datacite/maremma)
+      Accept:
+      - text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Length:
+      - '127'
+      Server:
+      - http-kit
+      Date:
+      - Fri, 17 Aug 2018 11:41:43 GMT
+    body:
+      encoding: ASCII-8BIT
+      string: '{"status":"ok","message-type":"event-list","message":{"next-cursor":null,"total-results":24308,"items-per-page":0,"events":[]}}'
+    http_version: 
+  recorded_at: Fri, 17 Aug 2018 11:41:43 GMT
+recorded_with: VCR 3.0.3
