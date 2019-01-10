@@ -667,6 +667,17 @@ describe Maremma do
       json = JSON.parse(string)
       expect(json["@id"]).to eq("https://doi.org/10.3334/ORNLDAAC/1339")
     end
+
+    it 'redirection', vcr: true do
+      url = "https://doi.org/10.3334/ornldaac/1339"
+      response = subject.get(url)
+      expect(response.status).to eq(200)
+      doc = Nokogiri::XML(response.body.fetch("data", nil), nil, 'UTF-8')
+      nodeset = doc.css("script")
+      string = nodeset.find { |element| element["type"] == "application/ld+json" }
+      json = JSON.parse(string)
+      expect(json["@id"]).to eq("https://doi.org/10.3334/ORNLDAAC/1339")
+    end  
   end
 
   context 'ssl verify', vcr: true do

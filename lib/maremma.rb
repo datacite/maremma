@@ -107,8 +107,8 @@ module Maremma
       c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
       c.headers['Accept'] = options[:headers]['Accept']
       c.headers['User-Agent'] = options[:headers]['User-Agent']
-      c.use      FaradayMiddleware::SetHost 
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
+      c.use      FaradayMiddleware::SetHost
       c.request  :multipart
       c.request  :json if options[:headers]['Accept'] == 'application/json'
       c.response :encoding
