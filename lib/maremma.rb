@@ -11,6 +11,7 @@ require 'uri'
 require 'addressable/uri'
 require 'maremma/xml_converter'
 require 'maremma/version'
+require 'maremma/set_host'
 
 module Maremma
   DEFAULT_TIMEOUT = 60
@@ -106,6 +107,7 @@ module Maremma
       c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
       c.headers['Accept'] = options[:headers]['Accept']
       c.headers['User-Agent'] = options[:headers]['User-Agent']
+      c.use      FaradayMiddleware::SetHost 
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
       c.request  :multipart
       c.request  :json if options[:headers]['Accept'] == 'application/json'
@@ -130,7 +132,7 @@ module Maremma
     headers['User-Agent'] = ENV['USER_AGENT'] || "Mozilla/5.0 (compatible; Maremma/#{Maremma::VERSION}; +https://github.com/datacite/maremma)"
 
     # set host, needed for some services behind proxy
-    headers['Host'] = URI.parse(url).host if options[:host]
+    #headers['Host'] = URI.parse(url).host #if options[:host]
 
     # set Content-Type
     headers['Content-type'] = header_options.fetch(options[:content_type], options[:content_type]) if options[:content_type].present?

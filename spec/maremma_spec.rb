@@ -649,23 +649,23 @@ describe Maremma do
     end
   end
 
-  context 'host' do
-    it 'empty' do
-      options = {}
-      expect(subject.set_request_headers(url, options)["Host"]).to be nil
-    end
-
-    it 'true' do
-      options = { host: true}
-      expect(subject.set_request_headers(url, options)["Host"]).to eq("example.org")
-    end
-
+  context 'set host' do
     it 'crossref', vcr: true do
       url = "https://api.eventdata.crossref.org/v1/events?mailto=info@datacite.org&rows=0&source=crossref"
-      options = { host: true }
-      response = subject.get(url, options)
+      response = subject.get(url)
       expect(response.status).to eq(200)
-      expect(response.body.dig("data", "message", "total-results")).to eq(24308)
+      expect(response.body.dig("data", "message", "total-results")).to eq(57969)
+    end
+
+    it 'ornl.gov', vcr: true do
+      url = "https://daac.ornl.gov/cgi-bin/dsviewer.pl?ds_id=1339"
+      response = subject.get(url)
+      expect(response.status).to eq(200)
+      doc = Nokogiri::XML(response.body.fetch("data", nil), nil, 'UTF-8')
+      nodeset = doc.css("script")
+      string = nodeset.find { |element| element["type"] == "application/ld+json" }
+      json = JSON.parse(string)
+      expect(json["@id"]).to eq("https://doi.org/10.3334/ORNLDAAC/1339")
     end
   end
 

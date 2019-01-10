@@ -1,3 +1,9 @@
+## v.4.2 (January 10, 2019)
+
+[maremma 4.2](https://github.com/datacite/maremma/releases/tag/v.4.2) was released on January 10, 2019:
+
+* always send HOST header, use URL host on redirects. Implemented via SetHost middleware
+
 ## v.4.0.2 (March 5, 2018)
 
 [maremma 4.0.2](https://github.com/datacite/maremma/releases/tag/v.4.0.2) was released on March 5, 2018:
