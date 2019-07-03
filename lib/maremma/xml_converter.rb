@@ -8,7 +8,7 @@ module ActiveSupport
     private
 
     def become_content?(value)
-      value['type'] == 'file' || (value['__content__'] && (value.keys.size == 1 && value['__content__'].present?))
+      value['type'] == 'file' || value['type'] == 'string' || (value['__content__'] && (value.keys.size == 1 && value['__content__'].present?))
     end
   end
 end
