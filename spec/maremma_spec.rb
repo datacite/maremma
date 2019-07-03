@@ -573,6 +573,11 @@ describe Maremma do
       expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "__content__"=>"abc"}})
     end
 
+    it 'from_xml with attribute type string' do
+      string = '<crm-item name="publisher-name" type="string">eLife Sciences Publications, Ltd</crm-item>'
+      expect(subject.parse_success_response(string)).to eq("data"=>{"crm_item"=>"eLife Sciences Publications, Ltd"})
+    end
+
     it 'from_xml with mixed attribute' do
       string = '<word type="small">abc<footnote>1</footnote></word>'
       expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "footnote"=>"1", "__content__"=>"abc"}})
