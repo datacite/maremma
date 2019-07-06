@@ -573,6 +573,11 @@ describe Maremma do
       expect(subject.parse_success_response(string)).to eq("data"=>{"word"=>{"type"=>"small", "__content__"=>"abc"}})
     end
 
+    it 'from_xml with allowed content attributes' do
+      string = '<title>Sexual conflict and correlated evolution between male persistence and female resistance traits in the seed beetle <i>Callosobruchus maculatus</i></title>'
+      expect(subject.parse_success_response(string)).to eq("data"=>{"title"=>"Sexual conflict and correlated evolution between male persistence and female resistance traits in the seed beetle <i>Callosobruchus maculatus</i>"})
+    end
+
     it 'from_xml with attribute type string' do
       string = '<crm-item name="publisher-name" type="string">eLife Sciences Publications, Ltd</crm-item>'
       expect(subject.parse_success_response(string)).to eq("data"=>{"crm_item"=>"eLife Sciences Publications, Ltd"})
