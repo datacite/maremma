@@ -27,7 +27,7 @@ module Maremma
                             NoMethodError,
                             TypeError]
 
-  ActiveSupport::XmlMini.backend = 'Nokogiri'
+  # ActiveSupport::XmlMini.backend = 'Nokogiri'
 
   def self.post(url, options={})
     self.method(url, options.merge(method: "post"))
@@ -226,10 +226,10 @@ module Maremma
   # keep XML attributes, http://stackoverflow.com/a/10794044
   # escape tags allowed in content
   def self.from_xml(string)
-    # ALLOWED_CONTENT_TAGS.each do |tag| 
-    #   string.gsub!("<#{tag}>", "&lt;#{tag}&gt;")
-    #   string.gsub!("</#{tag}>", "&lt;/#{tag}&gt;")
-    # end
+    ALLOWED_CONTENT_TAGS.each do |tag| 
+      string.gsub!("<#{tag}>", "&lt;#{tag}&gt;")
+      string.gsub!("</#{tag}>", "&lt;/#{tag}&gt;")
+    end
 
     if Nokogiri::XML(string, nil, 'UTF-8').errors.empty?
       Hash.from_xml(string)
