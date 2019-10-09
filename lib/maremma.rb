@@ -11,7 +11,6 @@ require 'uri'
 require 'addressable/uri'
 require 'maremma/xml_converter'
 require 'maremma/version'
-require 'maremma/set_host'
 
 module Maremma
   DEFAULT_TIMEOUT = 60
@@ -65,9 +64,18 @@ module Maremma
 
     response = case options[:method]
                when "get" then conn.get url, {}, options[:headers]
-               when "post" then conn.post url, {}, options[:headers] { |request| request.body = options[:data] }
-               when "put" then conn.put url, {}, options[:headers] { |request| request.body = options[:data] }
-               when "patch" then conn.patch url, {}, options[:headers] { |request| request.body = options[:data] }
+               when "post" then conn.post url, {}, options[:headers] do |request|
+                 request.body = options[:data]
+                 request.headers['Host'] = URI.parse(url.to_s).host
+               end
+               when "put" then conn.put url, {}, options[:headers] do |request|
+                 request.body = options[:data]
+                 request.headers['Host'] = URI.parse(url.to_s).host
+               end
+               when "patch" then conn.patch url, {}, options[:headers] do |request|
+                 request.body = options[:data]
+                 request.headers['Host'] = URI.parse(url.to_s).host
+               end
                when "delete" then conn.delete url, {}, options[:headers]
                when "head" then conn.head url, {}, options[:headers]
                end
@@ -111,7 +119,6 @@ module Maremma
       c.headers['Accept'] = options[:headers]['Accept']
       c.headers['User-Agent'] = options[:headers]['User-Agent']
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
-      c.use      FaradayMiddleware::SetHost
       c.request  :multipart
       c.request  :json if options[:headers]['Accept'] == 'application/json'
       c.response :encoding
