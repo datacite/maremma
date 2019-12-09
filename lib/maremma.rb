@@ -63,7 +63,9 @@ module Maremma
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
     response = case options[:method]
-               when "get" then conn.get url, {}, options[:headers]
+               when "get" then conn.get url, {}, options[:headers] do |request|
+                 request.headers['Host'] = URI.parse(url.to_s).host
+               end
                when "post" then conn.post url, {}, options[:headers] do |request|
                  request.body = options[:data]
                  request.headers['Host'] = URI.parse(url.to_s).host
