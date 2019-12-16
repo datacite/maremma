@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
 
   # Declary dependencies here, rather than in the Gemfile
   s.add_dependency 'builder', '~> 3.2', '>= 3.2.2'
-  s.add_dependency 'excon', '~> 0.67.0'
+  s.add_dependency 'excon', '>= 0.67', '< 0.72'
   s.add_dependency 'faraday', '~> 0.17.0'
   s.add_dependency 'faraday-encoding', '~> 0.0.4'
   s.add_dependency 'faraday_middleware', '~> 0.13.1'
