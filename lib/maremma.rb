@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'active_support/all'
-require 'json'
-require 'nokogiri'
-require 'faraday'
-require 'faraday_middleware'
-require 'faraday/encoding'
-require 'excon'
-require 'uri'
-require 'addressable/uri'
-require 'maremma/xml_converter'
-require 'maremma/version'
+require "active_support/all"
+require "json"
+require "nokogiri"
+require "faraday"
+require "faraday_middleware"
+require "faraday/encoding"
+require "excon"
+require "uri"
+require "addressable/uri"
+require "maremma/xml_converter"
+require "maremma/version"
 
 module Maremma
   DEFAULT_TIMEOUT = 60
@@ -26,7 +26,7 @@ module Maremma
                             NoMethodError,
                             TypeError]
 
-  # ActiveSupport::XmlMini.backend = 'Nokogiri'
+  # ActiveSupport::XmlMini.backend = "Nokogiri"
 
   def self.post(url, options={})
     self.method(url, options.merge(method: "post"))
@@ -64,19 +64,19 @@ module Maremma
 
     response = case options[:method]
                when "get" then conn.get url, {}, options[:headers] do |request|
-                 request.headers['Host'] = URI.parse(url.to_s).host
+                 request.headers["Host"] = URI.parse(url.to_s).host
                end
                when "post" then conn.post url, {}, options[:headers] do |request|
                  request.body = options[:data]
-                 request.headers['Host'] = URI.parse(url.to_s).host
+                 request.headers["Host"] = URI.parse(url.to_s).host
                end
                when "put" then conn.put url, {}, options[:headers] do |request|
                  request.body = options[:data]
-                 request.headers['Host'] = URI.parse(url.to_s).host
+                 request.headers["Host"] = URI.parse(url.to_s).host
                end
                when "patch" then conn.patch url, {}, options[:headers] do |request|
                  request.body = options[:data]
-                 request.headers['Host'] = URI.parse(url.to_s).host
+                 request.headers["Host"] = URI.parse(url.to_s).host
                end
                when "delete" then conn.delete url, {}, options[:headers]
                when "head" then conn.head url, {}, options[:headers]
@@ -84,7 +84,7 @@ module Maremma
 
     # return error if we are close to the rate limit, if supported in headers
     if get_rate_limit_remaining(response.headers) < 3
-      return OpenStruct.new(body: { "errors" => [{ 'status' => 429, 'title' => "Too many requests" }] },
+      return OpenStruct.new(body: { "errors" => [{ "status" => 429, "title" => "Too many requests" }] },
                             headers: response.headers,
                             status: response.status)
     end
@@ -117,12 +117,12 @@ module Maremma
     Faraday.new do |c|
       c.ssl.verify = false if options[:ssl_self_signed]
       c.options.params_encoder = Faraday::FlatParamsEncoder
-      c.headers['Content-type'] = options[:headers]['Content-type'] if options[:headers]['Content-type'].present?
-      c.headers['Accept'] = options[:headers]['Accept']
-      c.headers['User-Agent'] = options[:headers]['User-Agent']
+      c.headers["Content-type"] = options[:headers]["Content-type"] if options[:headers]["Content-type"].present?
+      c.headers["Accept"] = options[:headers]["Accept"]
+      c.headers["User-Agent"] = options[:headers]["User-Agent"]
       c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
       c.request  :multipart
-      c.request  :json if options[:headers]['Accept'] == 'application/json'
+      c.request  :json if options[:headers]["Accept"] == "application/json"
       c.response :encoding
       c.adapter  :excon
     end
@@ -134,30 +134,30 @@ module Maremma
   end
 
   def self.set_request_headers(url, options={})
-    header_options = { "html" => 'text/html;charset=UTF-8',
-                       "xml" => 'application/xml;charset=UTF-8',
-                       "json" => 'application/json;charset=UTF-8' }
+    header_options = { "html" => "text/html;charset=UTF-8",
+                       "xml" => "application/xml;charset=UTF-8",
+                       "json" => "application/json;charset=UTF-8" }
 
     headers = options[:headers] ||= {}
 
     # set useragent
-    headers['User-Agent'] = ENV['USER_AGENT'] || "Mozilla/5.0 (compatible; Maremma/#{Maremma::VERSION}; +https://github.com/datacite/maremma)"
+    headers["User-Agent"] = ENV["USER_AGENT"] || "Mozilla/5.0 (compatible; Maremma/#{Maremma::VERSION}; +https://github.com/datacite/maremma)"
 
     # set host, needed for some services behind proxy
-    #headers['Host'] = URI.parse(url).host #if options[:host]
+    #headers["Host"] = URI.parse(url).host #if options[:host]
 
     # set Content-Type
-    headers['Content-type'] = header_options.fetch(options[:content_type], options[:content_type]) if options[:content_type].present?
+    headers["Content-type"] = header_options.fetch(options[:content_type], options[:content_type]) if options[:content_type].present?
 
     if options[:accept].present?
-      headers['Accept'] = header_options.fetch(options[:accept], options[:accept])
+      headers["Accept"] = header_options.fetch(options[:accept], options[:accept])
     else
       # accept all content
-      headers['Accept'] ||= "text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5"
+      headers["Accept"] ||= "text/html,application/json,application/xml;q=0.9, text/plain;q=0.8,image/png,*/*;q=0.5"
     end
 
     if options[:bearer].present?
-      headers['Authorization'] = "Bearer #{options[:bearer]}"
+      headers["Authorization"] = "Bearer #{options[:bearer]}"
     elsif options[:token].present?
       headers["Authorization"] = "Token token=#{options[:token]}"
     elsif options[:github_token].present?
@@ -173,18 +173,18 @@ module Maremma
 
   def self.rescue_faraday_error(error, response)
     if error.is_a?(Faraday::ResourceNotFound)
-      { 'errors' => [{ 'status' => 404, 'title' => "Not found" }] }
+      { "errors" => [{ "status" => 404, "title" => "Not found" }] }
     elsif error.message == "the server responded with status 401" || error.try(:response) && error.response[:status] == 401
-      { 'errors' => [{ 'status' => 401, 'title' =>"Unauthorized" }] }
+      { "errors" => [{ "status" => 401, "title" =>"Unauthorized" }] }
     elsif error.is_a?(Faraday::ConnectionFailed)
-      { 'errors' => [{ 'status' => 403, 'title' => parse_error_response(error.message) }] }
+      { "errors" => [{ "status" => 403, "title" => parse_error_response(error.message) }] }
 
     elsif error.is_a?(Faraday::TimeoutError) || (error.try(:response) && error.response[:status] == 408)
-      { 'errors' => [{ 'status' => 408, 'title' =>"Request timeout" }] }
+      { "errors" => [{ "status" => 408, "title" =>"Request timeout" }] }
     else
       status = response ? response.status : 400
       title = response ? parse_error_response(response.body) : parse_error_response(error.message)
-      { 'errors' => [{ 'status' => status, 'title' => title }] }
+      { "errors" => [{ "status" => status, "title" => title }] }
     end
   end
 
@@ -195,9 +195,9 @@ module Maremma
 
     if string.blank?
       { "data" => nil }
-    elsif string.is_a?(Hash) && string['hash']
-      { "data" => string['hash'] }
-    elsif string.is_a?(Hash) && string['data']
+    elsif string.is_a?(Hash) && string["hash"]
+      { "data" => string["hash"] }
+    elsif string.is_a?(Hash) && string["data"]
       string
     else
       { "data" => string }
@@ -207,19 +207,19 @@ module Maremma
   def self.parse_error_response(string)
     string = parse_response(string)
 
-    string = string['hash'] if string.is_a?(Hash) && string['hash']
+    string = string["hash"] if string.is_a?(Hash) && string["hash"]
 
-    if string.is_a?(Hash) && string['error']
-      string['error']
-    elsif string.is_a?(Hash) && string['errors']
-      string.dig('errors', 0, "title")
+    if string.is_a?(Hash) && string["error"]
+      string["error"]
+    elsif string.is_a?(Hash) && string["errors"]
+      string.dig("errors", 0, "title")
     else
       string
     end
   end
 
   def self.parse_response(string, options={})
-    string = string.dup.force_encoding('UTF-8')
+    string = string.dup.force_encoding("UTF-8")
     return string if options[:raw]
 
     from_json(string) || from_xml(string) || from_string(string)
@@ -240,7 +240,7 @@ module Maremma
       string.gsub!("</#{tag}>", "&lt;/#{tag}&gt;")
     end
 
-    if Nokogiri::XML(string, nil, 'UTF-8').errors.empty?
+    if Nokogiri::XML(string, nil, "UTF-8").errors.empty?
       Hash.from_xml(string)
     else
       nil
