@@ -1,17 +1,23 @@
 language: ruby
 rvm:
-- 2.3.3
+- 2.6.5
 
 addons:
   code_climate:
     repo_token: $CODECLIMATE_REPO_TOKEN
     
 install:
-- travis_retry bundle install
+  - travis_retry bundle install
+
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
 script:
-- bundle exec rspec
-- bundle exec codeclimate-test-reporter
+  - bundle exec rspec spec
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
 deploy:
   provider: rubygems

@@ -1,3 +1,3 @@
 module Maremma
-  VERSION = "4.5"
+  VERSION = "4.6"
 end

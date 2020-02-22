@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
 
   # Declary dependencies here, rather than in the Gemfile
-  s.add_dependency "activesupport", ">= 4.2.5", "< 6"
+  s.add_dependency "activesupport", ">= 4.2.5"
   s.add_dependency "addressable", ">= 2.3.6"
   s.add_dependency "builder", "~> 3.2", ">= 3.2.2"
   s.add_dependency "excon", "~> 0.71.0"
@@ -29,7 +29,6 @@ Gem::Specification.new do |s|
   s.add_dependency "oj", ">= 2.8.3"
   s.add_dependency "oj_mimic_json", "~> 1.0", ">= 1.0.1"
   s.add_development_dependency "bundler", "~> 2.0"
-  s.add_development_dependency "codeclimate-test-reporter", "~> 1.0"
   s.add_development_dependency "rack-test", "~> 0"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec", "~> 3.4"
