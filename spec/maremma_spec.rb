@@ -68,6 +68,21 @@ describe Maremma do
       expect(response.headers).to eq("Content-Type"=>"application/xml")
       expect(stub).to have_been_requested
     end
+
+    it "get json compressed", vcr: true do
+      response = subject.get("https://api.datacite.org/works", :headers => { "Content-Type" => "application/json", "Accept-Encoding" => "gzip"})
+      expect(response.body["data"].length).to eq(25)
+    end
+
+    it "get html compressed", vcr: true do
+      response = subject.get("https://datacite.org/", :headers => {"Accept-Encoding" => "gzip"})
+      expect(response.body["data"]).to include("html")
+    end
+
+    it "get xml compressed", vcr: true do
+      response = subject.get("https://data.crosscite.org/application/vnd.datacite.datacite+xml/10.5061/dryad.8515", :headers => { "Accept-Encoding" => "gzip"})
+      expect(response.body["data"]).to be_a(Hash)
+    end
   end
 
   context "head" do
