@@ -353,28 +353,28 @@ describe Maremma do
 
   context "unauthorized" do
     it "get json" do
-      stub = stub_request(:get, url).to_raise(Faraday::Error::ClientError.new("the server responded with status 401"))
+      stub = stub_request(:get, url).to_raise(Faraday::ClientError.new("the server responded with status 401"))
       response = subject.get(url)
       expect(response.body).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
       expect(stub).to have_been_requested
     end
 
     it "get xml" do
-      stub = stub_request(:get, url).to_raise(Faraday::Error::ClientError.new("the server responded with status 401"))
+      stub = stub_request(:get, url).to_raise(Faraday::ClientError.new("the server responded with status 401"))
       response = subject.get(url, accept: "xml")
       expect(response.body).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
       expect(stub).to have_been_requested
     end
 
     it "get html" do
-      stub = stub_request(:get, url).to_raise(Faraday::Error::ClientError.new("the server responded with status 401"))
+      stub = stub_request(:get, url).to_raise(Faraday::ClientError.new("the server responded with status 401"))
       response = subject.get(url, accept: "html")
       expect(response.body).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
       expect(stub).to have_been_requested
     end
 
     it "post xml" do
-      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_raise(Faraday::Error::ClientError.new("the server responded with status 401"))
+      stub = stub_request(:post, url).with(:body => post_data.to_xml).to_raise(Faraday::ClientError.new("the server responded with status 401"))
       subject.post(url, accept: "xml", data: post_data.to_xml) do |response|
         expect(response.body).to be_nil
         expect(response.status).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
@@ -383,7 +383,7 @@ describe Maremma do
     end
 
     it "put xml" do
-      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_raise(Faraday::Error::ClientError.new("the server responded with status 401"))
+      stub = stub_request(:put, url).with(:body => post_data.to_xml).to_raise(Faraday::ClientError.new("the server responded with status 401"))
       subject.put(url, accept: "xml", data: post_data.to_xml) do |response|
         expect(response.body).to be_nil
         expect(response.status).to eq("errors"=>[{"status"=>401, "title"=>"Unauthorized"}])
