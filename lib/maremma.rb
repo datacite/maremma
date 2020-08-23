@@ -55,6 +55,9 @@ module Maremma
   def self.method(url, options={})
     is_valid_url?(url)
 
+    # normalize url
+    url = Addressable::URI.parse(url).normalize
+
     options[:data] ||= {}
     options[:headers] = set_request_headers(url, options)
 

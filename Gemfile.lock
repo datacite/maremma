@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maremma (4.7.1)
+    maremma (4.7.2)
       activesupport (>= 4.2.5)
       addressable (>= 2.3.6)
       builder (~> 3.2, >= 3.2.2)
@@ -25,8 +25,9 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
+    bigdecimal (2.0.0)
     builder (3.2.4)
-    concurrent-ruby (1.1.6)
+    concurrent-ruby (1.1.7)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.4.4)
@@ -39,7 +40,7 @@ GEM
     faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
     hashdiff (1.0.1)
-    i18n (1.8.3)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
     mini_portile2 (2.4.0)
@@ -47,7 +48,8 @@ GEM
     multipart-post (2.1.1)
     nokogiri (1.10.10)
       mini_portile2 (~> 2.4.0)
-    oj (3.10.6)
+    oj (3.10.12)
+      bigdecimal (>= 1.0, < 3)
     oj_mimic_json (1.0.1)
     parallel (1.19.2)
     parser (2.7.1.4)
@@ -82,7 +84,7 @@ GEM
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
     safe_yaml (1.0.5)
-    simplecov (0.18.5)
+    simplecov (0.19.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
     simplecov-html (0.12.2)
@@ -95,7 +97,7 @@ GEM
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    zeitwerk (2.3.1)
+    zeitwerk (2.4.0)
 
 PLATFORMS
   ruby
