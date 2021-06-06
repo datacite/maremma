@@ -21,8 +21,9 @@ Gem::Specification.new do |s|
   s.add_dependency "activesupport", ">= 4.2.5"
   s.add_dependency "addressable", ">= 2.3.6"
   s.add_dependency "builder", "~> 3.2", ">= 3.2.2"
+  s.add_dependency "charlock_holmes", "~> 0.7.7"
   s.add_dependency "excon", "~> 0.71.0"
-  s.add_dependency 'faraday', "~> 0.17.3"
+  s.add_dependency "faraday", "~> 0.17.3"
   s.add_dependency "faraday-encoding", "~> 0.0.4"
   s.add_dependency "faraday_middleware", "~> 0.14.0"
   s.add_dependency "nokogiri", "~> 1.11.2"
@@ -37,5 +38,4 @@ Gem::Specification.new do |s|
   s.add_development_dependency "simplecov"
   s.add_development_dependency "vcr", "~> 3.0", ">= 3.0.3"
   s.add_development_dependency "webmock", "~> 3.0", ">= 3.0.1"
-
 end

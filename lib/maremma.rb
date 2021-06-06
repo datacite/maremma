@@ -11,10 +11,11 @@ require "uri"
 require "addressable/uri"
 require "maremma/xml_converter"
 require "maremma/version"
+require "charlock_holmes"
 
 module Maremma
   DEFAULT_TIMEOUT = 60
-  ALLOWED_CONTENT_TAGS = %w(strong em b i code pre sub sup br)
+  ALLOWED_CONTENT_TAGS = %w(strong em b i code pre sub sup br).freeze
   NETWORKABLE_EXCEPTIONS = [Faraday::ClientError,
                             Faraday::TimeoutError,
                             Faraday::ResourceNotFound,
@@ -24,35 +25,35 @@ module Maremma
                             Encoding::UndefinedConversionError,
                             ArgumentError,
                             NoMethodError,
-                            TypeError]
+                            TypeError].freeze
 
   # ActiveSupport::XmlMini.backend = "Nokogiri"
 
-  def self.post(url, options={})
-    self.method(url, options.merge(method: "post"))
+  def self.post(url, options = {})
+    method(url, options.merge(method: "post"))
   end
 
-  def self.put(url, options={})
-    self.method(url, options.merge(method: "put"))
+  def self.put(url, options = {})
+    method(url, options.merge(method: "put"))
   end
 
-  def self.patch(url, options={})
-    self.method(url, options.merge(method: "patch"))
+  def self.patch(url, options = {})
+    method(url, options.merge(method: "patch"))
   end
 
-  def self.delete(url, options={})
-    self.method(url, options.merge(method: "delete"))
+  def self.delete(url, options = {})
+    method(url, options.merge(method: "delete"))
   end
 
-  def self.get(url, options={})
-    self.method(url, options.merge(method: "get"))
+  def self.get(url, options = {})
+    method(url, options.merge(method: "get"))
   end
 
-  def self.head(url, options={})
-    self.method(url, options.merge(method: "head"))
+  def self.head(url, options = {})
+    method(url, options.merge(method: "head"))
   end
 
-  def self.method(url, options={})
+  def self.method(url, options = {})
     is_valid_url?(url)
 
     # normalize url
@@ -66,23 +67,29 @@ module Maremma
     conn.options[:timeout] = options[:timeout] || DEFAULT_TIMEOUT
 
     response = case options[:method]
-               when "get" then conn.get url, {}, options[:headers] do |request|
-                 request.headers["Host"] = URI.parse(url.to_s).host
-               end
-               when "post" then conn.post url, {}, options[:headers] do |request|
-                 request.body = options[:data]
-                 request.headers["Host"] = URI.parse(url.to_s).host
-               end
-               when "put" then conn.put url, {}, options[:headers] do |request|
-                 request.body = options[:data]
-                 request.headers["Host"] = URI.parse(url.to_s).host
-               end
-               when "patch" then conn.patch url, {}, options[:headers] do |request|
-                 request.body = options[:data]
-                 request.headers["Host"] = URI.parse(url.to_s).host
-               end
-               when "delete" then conn.delete url, {}, options[:headers]
-               when "head" then conn.head url, {}, options[:headers]
+               when "get"
+                 conn.get url, {}, options[:headers] do |request|
+                   request.headers["Host"] = URI.parse(url.to_s).host
+                 end
+               when "post"
+                 conn.post url, {}, options[:headers] do |request|
+                   request.body = options[:data]
+                   request.headers["Host"] = URI.parse(url.to_s).host
+                 end
+               when "put"
+                 conn.put url, {}, options[:headers] do |request|
+                   request.body = options[:data]
+                   request.headers["Host"] = URI.parse(url.to_s).host
+                 end
+               when "patch"
+                 conn.patch url, {}, options[:headers] do |request|
+                   request.body = options[:data]
+                   request.headers["Host"] = URI.parse(url.to_s).host
+                 end
+               when "delete"
+                 conn.delete url, {}, options[:headers]
+               when "head"
+                 conn.head url, {}, options[:headers]
                end
 
     # return error if we are close to the rate limit, if supported in headers
@@ -102,8 +109,8 @@ module Maremma
                    headers: response.headers,
                    status: response.status,
                    url: response.env[:url].to_s)
-  rescue *NETWORKABLE_EXCEPTIONS => error
-    error_response = rescue_faraday_error(error, response)
+  rescue *NETWORKABLE_EXCEPTIONS => e
+    error_response = rescue_faraday_error(e, response)
     OpenStruct.new(body: error_response,
                    status: error_response.fetch("errors", {}).first.fetch("status", 400),
                    headers: response ? response.headers : nil,
@@ -137,7 +144,7 @@ module Maremma
     raise TypeError, "Invalid URL: #{url}" unless %w(http https).include?(parsed.scheme)
   end
 
-  def self.set_request_headers(url, options={})
+  def self.set_request_headers(_url, options = {})
     header_options = { "html" => "text/html;charset=UTF-8",
                        "xml" => "application/xml;charset=UTF-8",
                        "json" => "application/json;charset=UTF-8" }
@@ -148,7 +155,7 @@ module Maremma
     headers["User-Agent"] = ENV["USER_AGENT"] || "Mozilla/5.0 (compatible; Maremma/#{Maremma::VERSION}; +https://github.com/datacite/maremma)"
 
     # set host, needed for some services behind proxy
-    #headers["Host"] = URI.parse(url).host #if options[:host]
+    # headers["Host"] = URI.parse(url).host #if options[:host]
 
     # set Content-Type
     headers["Content-type"] = header_options.fetch(options[:content_type], options[:content_type]) if options[:content_type].present?
@@ -179,12 +186,12 @@ module Maremma
     if error.is_a?(Faraday::ResourceNotFound)
       { "errors" => [{ "status" => 404, "title" => "Not found" }] }
     elsif error.message == "the server responded with status 401" || error.try(:response) && error.response[:status] == 401
-      { "errors" => [{ "status" => 401, "title" =>"Unauthorized" }] }
+      { "errors" => [{ "status" => 401, "title" => "Unauthorized" }] }
     elsif error.is_a?(Faraday::ConnectionFailed)
       { "errors" => [{ "status" => 403, "title" => parse_error_response(error.message) }] }
 
     elsif error.is_a?(Faraday::TimeoutError) || (error.try(:response) && error.response[:status] == 408)
-      { "errors" => [{ "status" => 408, "title" =>"Request timeout" }] }
+      { "errors" => [{ "status" => 408, "title" => "Request timeout" }] }
     else
       status = response ? response.status : 400
       title = response ? parse_error_response(response.body) : parse_error_response(error.message)
@@ -192,7 +199,7 @@ module Maremma
     end
   end
 
-  def self.parse_success_response(string, options={})
+  def self.parse_success_response(string, options = {})
     return nil if options[:method] == "head"
 
     string = parse_response(string, options)
@@ -222,11 +229,16 @@ module Maremma
     end
   end
 
-  def self.parse_response(string, options={})
-    string = string.dup.force_encoding("UTF-8")
-    return string if options[:raw]
+  def self.parse_response(string, options = {})
+    detection = CharlockHolmes::EncodingDetector.detect(string)
+    utf8_encoded_content = CharlockHolmes::Converter.convert(string, detection[:encoding], "UTF-8")
+    return utf8_encoded_content if options[:raw]
 
-    from_json(string) || from_xml(string) || from_string(string)
+    from_json(utf8_encoded_content) || from_xml(utf8_encoded_content) || from_string(utf8_encoded_content)
+  rescue ArgumentError
+    # handle U_STRING_NOT_TERMINATED_WARNING
+    from_json(string.force_encoding("UTF-8")) || from_xml(string.force_encoding("UTF-8")) ||
+      from_string(string.force_encoding("UTF-8"))
   end
 
   # currently supported by Twitter and Github
@@ -239,15 +251,13 @@ module Maremma
   # keep XML attributes, http://stackoverflow.com/a/10794044
   # escape tags allowed in content
   def self.from_xml(string)
-    ALLOWED_CONTENT_TAGS.each do |tag| 
+    ALLOWED_CONTENT_TAGS.each do |tag|
       string.gsub!("<#{tag}>", "&lt;#{tag}&gt;")
       string.gsub!("</#{tag}>", "&lt;/#{tag}&gt;")
     end
 
     if Nokogiri::XML(string, nil, "UTF-8").errors.empty?
       Hash.from_xml(string)
-    else
-      nil
     end
   end
 
