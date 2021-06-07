@@ -229,7 +229,9 @@ module Maremma
   end
 
   def self.parse_response(string, options = {})
-    string = string.dup.encode(Encoding.find("UTF-8"), invalid: :replace, undef: :replace, replace: "")
+    string = string.dup.encode(Encoding.find("UTF-8"), invalid: :replace,
+                                                       undef: :replace,
+                                                       replace: "?")
     return string if options[:raw]
 
     from_json(string) || from_xml(string) || from_string(string)
