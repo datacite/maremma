@@ -78,20 +78,20 @@ describe Maremma do
       expect(stub).to have_been_requested
     end
 
-    # it "get json compressed", vcr: true do
-    #   response = subject.get("https://api.datacite.org/works", :headers => { "Content-Type" => "application/json", "Accept-Encoding" => "gzip"})
-    #   expect(response.body["data"].length).to eq(25)
-    # end
+    it "get json compressed", vcr: true do
+      response = subject.get("https://api.datacite.org/works", headers: { "Content-Type" => "application/json", "Accept-Encoding" => "gzip" })
+      expect(response.body["data"].length).to eq(25)
+    end
 
-    # it "get html compressed", vcr: true do
-    #   response = subject.get("https://datacite.org/", :headers => {"Accept-Encoding" => "gzip"})
-    #   expect(response.body["data"]).to include("html")
-    # end
+    it "get html compressed", vcr: true do
+      response = subject.get("https://datacite.org/", headers: { "Accept-Encoding" => "gzip" })
+      expect(response.body["data"]).to include("html")
+    end
 
-    # it "get xml compressed", vcr: true do
-    #   response = subject.get("https://data.crosscite.org/application/vnd.datacite.datacite+xml/10.5061/dryad.8515", :headers => { "Accept-Encoding" => "gzip"})
-    #   expect(response.body["data"]).to be_a(Hash)
-    # end
+    it "get xml compressed", vcr: true do
+      response = subject.get("https://data.crosscite.org/application/vnd.datacite.datacite+xml/10.5061/dryad.8515", headers: { "Accept-Encoding" => "gzip" })
+      expect(response.body["data"]).to be_a(Hash)
+    end
   end
 
   context "head" do
@@ -99,7 +99,7 @@ describe Maremma do
       stub = stub_request(:head, url).to_return(status: 200, headers: { "Content-Type" => "text/html" })
       response = subject.head(url, accept: "html")
       expect(response.body).to be_nil
-      expect(response.headers).to eq("Content-Type" => "text/html")
+      expect(response.headers).to eq("Content-Length" => 0, "Content-Type" => "text/html")
       expect(stub).to have_been_requested
     end
   end
@@ -151,7 +151,7 @@ describe Maremma do
       stub = stub_request(:get, url).to_return(body: nil, status: 200, headers: { "Content-Type" => "application/json" })
       response = subject.get(url)
       expect(response.body).to eq("data" => nil)
-      expect(response.headers).to eq("Content-Type" => "application/json")
+      expect(response.headers).to eq("Content-Length" => 0, "Content-Type" => "application/json")
       expect(stub).to have_been_requested
     end
 
@@ -159,7 +159,7 @@ describe Maremma do
       stub = stub_request(:get, url).to_return(body: nil, status: 200, headers: { "Content-Type" => "application/xml" })
       response = subject.get(url, accept: "xml")
       expect(response.body).to eq("data" => nil)
-      expect(response.headers).to eq("Content-Type" => "application/xml")
+      expect(response.headers).to eq("Content-Length" => 0, "Content-Type" => "application/xml")
       expect(stub).to have_been_requested
     end
 
@@ -167,7 +167,7 @@ describe Maremma do
       stub = stub_request(:get, url).to_return(body: nil, status: 200, headers: { "Content-Type" => "text/html" })
       response = subject.get(url, accept: "html")
       expect(response.body).to eq("data" => nil)
-      expect(response.headers).to eq("Content-Type" => "text/html")
+      expect(response.headers).to eq("Content-Length" => 0, "Content-Type" => "text/html")
       expect(stub).to have_been_requested
     end
 
@@ -319,7 +319,7 @@ describe Maremma do
       stub = stub_request(:delete, url).to_return(status: 204, headers: { "Content-Type" => "text/html" })
       response = subject.delete(url)
       expect(response.body).to eq("data" => nil)
-      expect(response.headers).to eq("Content-Type" => "text/html")
+      expect(response.headers).to eq("Content-Length" => 0, "Content-Type" => "text/html")
       expect(response.status).to eq(204)
       expect(stub).to have_been_requested
     end
