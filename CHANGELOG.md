@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.9.2](https://github.com/datacite/maremma/tree/4.9.2) (2021-06-07)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.1...4.9.2)
+
 ## [4.9.1](https://github.com/datacite/maremma/tree/4.9.1) (2021-06-06)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9...4.9.1)
@@ -271,15 +275,15 @@
 
 ## [v.3.0](https://github.com/datacite/maremma/tree/v.3.0) (2016-11-25)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.4...v.3.0)
-
-## [v.2.5.4](https://github.com/datacite/maremma/tree/v.2.5.4) (2016-11-23)
-
-[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.5...v.2.5.4)
+[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.5...v.3.0)
 
 ## [v.2.5.5](https://github.com/datacite/maremma/tree/v.2.5.5) (2016-11-23)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.3...v.2.5.5)
+[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.4...v.2.5.5)
+
+## [v.2.5.4](https://github.com/datacite/maremma/tree/v.2.5.4) (2016-11-23)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.3...v.2.5.4)
 
 ## [v.2.5.3](https://github.com/datacite/maremma/tree/v.2.5.3) (2016-11-18)
 
