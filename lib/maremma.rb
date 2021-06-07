@@ -11,7 +11,6 @@ require "uri"
 require "addressable/uri"
 require "maremma/xml_converter"
 require "maremma/version"
-require "charlock_holmes"
 
 module Maremma
   DEFAULT_TIMEOUT = 60
@@ -230,15 +229,10 @@ module Maremma
   end
 
   def self.parse_response(string, options = {})
-    detection = CharlockHolmes::EncodingDetector.detect(string)
-    utf8_encoded_content = CharlockHolmes::Converter.convert(string, detection[:encoding], "UTF-8")
-    return utf8_encoded_content if options[:raw]
+    string = string.dup.encode(Encoding.find("UTF-8"), invalid: :replace, undef: :replace, replace: "")
+    return string if options[:raw]
 
-    from_json(utf8_encoded_content) || from_xml(utf8_encoded_content) || from_string(utf8_encoded_content)
-  rescue ArgumentError
-    # handle U_STRING_NOT_TERMINATED_WARNING
-    from_json(string.force_encoding("UTF-8")) || from_xml(string.force_encoding("UTF-8")) ||
-      from_string(string.force_encoding("UTF-8"))
+    from_json(string) || from_xml(string) || from_string(string)
   end
 
   # currently supported by Twitter and Github
