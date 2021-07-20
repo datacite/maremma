@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.9.5](https://github.com/datacite/maremma/tree/4.9.5) (2021-07-20)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.4...4.9.5)
+
 ## [4.9.4](https://github.com/datacite/maremma/tree/4.9.4) (2021-06-07)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.3...4.9.4)
