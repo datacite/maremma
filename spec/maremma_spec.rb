@@ -92,6 +92,20 @@ describe Maremma do
       response = subject.get("https://data.crosscite.org/application/vnd.datacite.datacite+xml/10.5061/dryad.8515", headers: { "Accept-Encoding" => "gzip" })
       expect(response.body["data"]).to be_a(Hash)
     end
+
+    it "get utf8 bad encoding", vcr: true do
+      response = subject.get("https://pub.sandbox.orcid.org/v3.0/0000-0002-5721-4355", accept: "json")
+      expect(response.body["data"]).to be_a(Hash)
+      expect(response.body["data"]["person"]["name"]["given-names"]["value"]).to eq("DataC??t??")
+      expect(response.body["data"]["person"]["name"]["family-name"]["value"]).to eq("UTF8 T??st")
+    end
+
+    it "get utf8 skip encoding", vcr: true do
+      response = subject.get("https://pub.sandbox.orcid.org/v3.0/0000-0002-5721-4355", accept: "json", skip_encoding: true)
+      expect(response.body["data"]).to be_a(Hash)
+      expect(response.body["data"]["person"]["name"]["given-names"]["value"]).to eq("DataCíté")
+      expect(response.body["data"]["person"]["name"]["family-name"]["value"]).to eq("UTF8 Tést")
+    end
   end
 
   context "head" do
