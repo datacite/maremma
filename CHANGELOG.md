@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.5...HEAD)
+
+**Merged pull requests:**
+
+- Add option to skip the encoding of the response body. [\#16](https://github.com/datacite/maremma/pull/16) ([jrhoads](https://github.com/jrhoads))
+
 ## [4.9.5](https://github.com/datacite/maremma/tree/4.9.5) (2021-07-20)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.4...4.9.5)
