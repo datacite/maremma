@@ -1,0 +1,59 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://pub.sandbox.orcid.org/v3.0/0000-0002-5721-4355
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Mozilla/5.0 (compatible; Maremma/4.9.5; +https://github.com/datacite/maremma)
+      Accept:
+      - application/json;charset=UTF-8
+      Accept-Encoding:
+      - gzip,deflate
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Date:
+      - Wed, 27 Oct 2021 13:46:08 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Pragma:
+      - no-cache
+      Expires:
+      - '0'
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Frame-Options:
+      - DENY
+      X-Content-Type-Options:
+      - nosniff
+      Vary:
+      - accept-encoding
+      Content-Encoding:
+      - gzip
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 6a4c5e69ad5f1a07-EWR
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAALRVy27bMBD8FYOnFrDiWH77mqRFr0V6KnqgxbW1DUWqJKXECPJBOeTQb/CPdemnHKumW9gGLAjicGZ3uBo9M20SFBEKUA6nCIaNn1lhkI1Z6lxux62W5UpM9NPVEknXWeuafhH946g3iNtRt9PrsSbLuUtpW/1iqq2jxQMu9kIbDUzBgErAenWpEy6BwKD8aorWaTP3K4kB7lCrKAOXakGQ2y9f727uiT/RWS5huSi4o92qkLLJbDHJ0Nrd42dWclnQTbvf6Q66o+F13Bt0SEZy66JMC2+CqAOPOnGn0437AwInkmMGVIAzBZCKLkyy1RTAE4clPyimBLNih4yj3GzePs0NZtzMq6veHDBWq6UvNRWuiBXPYOtPffXLVjvX7f6/tBoTeIYlqMgr2AqK3XLHbxZvbvHqz2jKM5TzaFPHBvTt/tOwcb94paP3phkQ6Nag9fHsGVeixQlKdHTYLC8mEpPjY0Wk2qVgduX93aMdkI2//9jS1s1yq0pKGhPUM8PzdH6Cx0O6dE/xmHCj/iCOR94ZrRy9f1TOnU0M0rg3Gz/pJbSONxuoSrAOZ1xo0/jwmV6gxRs9vrM5X/ymm/Zo2P54xQL21fa5a4yKMGCBm8R3XhgZcHMfHHb0PTnpLcc8ILN+FULsKxhxciFIyYZmYQ0LE2+ARP0A80dtRIB5jQozb+m8E08OjOKyksIhXw53nOBSnczL8T3r9PHW+kxDh2AjW2Q+qI6XKGh6USU+BEOnMZ3S1K7icmZ0kYdb2SP3Dooi4ZeRqlAvhzaXep6RfxdQqnD7TC2UQDUL6JzIvSUjYgoU9AmWa4uX8exQgWQzyCY0TSnm5xesci+/mZQzBkqEx/PYt0dIAr8KLonsUjP3jr4SzlTE6pt5nr5qaEnMgikxKPEffW2JSYTS7+E8TayYAkG2i68Akr38AQAA//8DAEWCRUMUCwAA
+    http_version:
+  recorded_at: Wed, 27 Oct 2021 13:46:00 GMT
+recorded_with: VCR 3.0.3
