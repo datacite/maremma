@@ -1,6 +1,6 @@
 [![Identifier](https://img.shields.io/badge/doi-10.5438%2Fqeg0--3gm3-fca709.svg)](https://doi.org/10.5438/qeg0-3gm3)
 [![Gem Version](https://badge.fury.io/rb/maremma.svg)](https://badge.fury.io/rb/maremma)
-[![Build Status](https://travis-ci.org/datacite/maremma.svg?branch=master)](https://travis-ci.org/datacite/maremma)
+[![Build Status](https://github.com/datacite/maremma/actions/workflows/ci.yml/badge.svg)](https://github.com/datacite/maremma/actions/workflows/ci.yml)
 [![Code Climate](https://codeclimate.com/github/datacite/maremma/badges/gpa.svg)](https://codeclimate.com/github/datacite/maremma)
 [![Test Coverage](https://codeclimate.com/github/datacite/maremma/badges/coverage.svg)](https://codeclimate.com/github/datacite/maremma/coverage)
 
