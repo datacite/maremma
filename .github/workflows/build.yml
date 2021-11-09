@@ -1,9 +1,10 @@
-name: Build Ruby Gem
+name: Ruby CI
 
 on:
   push:
-    branches:
-      - "master"
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,16 +23,11 @@ jobs:
         bundle install
         bundle exec rspec
 
-    # - name: Publish code coverage
-    #   uses: paambaati/codeclimate-action@v2.7.4
-    #   env:
-    #     CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-
     - name: Notify Slack
       uses: adamkdean/simple-slack-notify@1.0.4
       with:
         channel: '#ops'
         username: 'GitHub Actions'
         color: 'good'
-        text: 'A new version of the maremma gem has been built.'
+        text: 'A new version of the maremma passes all tests.'
 
