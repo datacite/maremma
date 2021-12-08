@@ -1,0 +1,19 @@
+---
+cff-version: 1.2.0
+message: 'If you use Maremma: a Ruby library for simplified network calls in your
+  work, please cite it using the following metadata'
+doi: https://doi.org/10.5438/qeg0-3gm3
+repository-code: https://github.com/datacite/maremma
+title: 'Maremma: a Ruby library for simplified network calls'
+authors:
+- given-names: Martin
+  family-names: Fenner
+  orcid: https://orcid.org/0000-0003-0077-4738
+abstract: Ruby utility library for network requests. Based on Faraday and Excon, provides
+  a wrapper for XML/JSON parsing and error handling. All successful responses are
+  returned as hash with key data, all errors in a JSONAPI-friendly hash with key errors.
+keywords:
+- faraday
+- excon
+- net/http
+date-released: '2017-02-24'
