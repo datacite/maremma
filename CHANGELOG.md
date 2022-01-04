@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
+## [4.9.7](https://github.com/datacite/maremma/tree/4.9.7) (2022-01-04)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/4.9.6...HEAD)
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.6...4.9.7)
 
 **Merged pull requests:**
 
