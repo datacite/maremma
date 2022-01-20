@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    maremma (4.9.5)
+    maremma (4.9.7)
       activesupport (>= 4.2.5)
       addressable (>= 2.3.6)
       builder (~> 3.2, >= 3.2.2)
@@ -9,19 +9,18 @@ PATH
       faraday (~> 0.17.3)
       faraday-encoding (~> 0.0.4)
       faraday_middleware (~> 0.14.0)
-      nokogiri (~> 1.11.2)
+      nokogiri (~> 1.13.1)
       oj (>= 2.8.3)
       oj_mimic_json (~> 1.0, >= 1.0.1)
 
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (6.1.4)
+    activesupport (7.0.1)
       concurrent-ruby (~> 1.0, >= 1.0.2)
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-      zeitwerk (~> 2.3)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
@@ -29,7 +28,7 @@ GEM
     concurrent-ruby (1.1.9)
     crack (0.4.5)
       rexml
-    diff-lcs (1.4.4)
+    diff-lcs (1.5.0)
     docile (1.4.0)
     excon (0.71.1)
     faraday (0.17.4)
@@ -39,26 +38,26 @@ GEM
     faraday_middleware (0.14.0)
       faraday (>= 0.7.4, < 1.0)
     hashdiff (1.0.1)
-    i18n (1.8.10)
+    i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
-    mini_portile2 (2.5.3)
-    minitest (5.14.4)
+    mini_portile2 (2.7.1)
+    minitest (5.15.0)
     multipart-post (2.1.1)
-    nokogiri (1.11.7)
-      mini_portile2 (~> 2.5.0)
+    nokogiri (1.13.1)
+      mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
-    oj (3.12.1)
+    oj (3.13.11)
     oj_mimic_json (1.0.1)
-    parallel (1.20.1)
-    parser (3.0.2.0)
+    parallel (1.21.0)
+    parser (3.1.0.0)
       ast (~> 2.4.1)
     public_suffix (4.0.6)
-    racc (1.5.2)
+    racc (1.6.0)
     rack (2.2.3)
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
-    rainbow (3.0.0)
+    rainbow (3.1.1)
     rake (13.0.6)
     rexml (3.2.5)
     rspec (3.10.0)
@@ -67,13 +66,13 @@ GEM
       rspec-mocks (~> 3.10.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
-    rspec-expectations (3.10.1)
+    rspec-expectations (3.10.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
     rspec-mocks (3.10.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.10.0)
-    rspec-support (3.10.2)
+    rspec-support (3.10.3)
     rubocop (0.77.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -94,11 +93,10 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (1.6.1)
     vcr (3.0.3)
-    webmock (3.13.0)
-      addressable (>= 2.3.6)
+    webmock (3.14.0)
+      addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-    zeitwerk (2.4.2)
 
 PLATFORMS
   ruby
@@ -116,4 +114,4 @@ DEPENDENCIES
   webmock (~> 3.0, >= 3.0.1)
 
 BUNDLED WITH
-   2.2.19
+   2.2.22
