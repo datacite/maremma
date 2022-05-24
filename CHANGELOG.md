@@ -1,5 +1,14 @@
 # Changelog
 
+## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.7...HEAD)
+
+**Merged pull requests:**
+
+- Update nokogiri requirement from \>= 1.11.2, \< 1.13.0 to \>= 1.11.2, \< 1.14.0 [\#22](https://github.com/datacite/maremma/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
+- Create CITATION.cff [\#18](https://github.com/datacite/maremma/pull/18) ([mfenner](https://github.com/mfenner))
+
 ## [4.9.7](https://github.com/datacite/maremma/tree/4.9.7) (2022-01-04)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.6...4.9.7)
