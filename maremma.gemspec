@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.version       = Maremma::VERSION
   s.extra_rdoc_files = ["README.md"]
   s.license       = "MIT"
+  s.required_ruby_version = ['>=2.3']
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
