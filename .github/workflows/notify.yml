@@ -1,0 +1,16 @@
+name: Notify Slack
+
+on: workflow_dispatch
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    env:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    - name: Notify Slack
+      id: slack
+      uses: slackapi/slack-github-action@v1.23.0
+      with:
+        channel: '#ops'
+        username: 'GitHub Actions'
+        color: 'good'
+        text: 'Testing a new slack action'
