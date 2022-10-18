@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Actions [\#27](https://github.com/datacite/maremma/pull/27) ([jrhoads](https://github.com/jrhoads))
 - Update faraday [\#26](https://github.com/datacite/maremma/pull/26) ([jrhoads](https://github.com/jrhoads))
 - Update workflows to test against multiple versions of ruby \(2.6, 2.7, 3.0, 3.1\) [\#25](https://github.com/datacite/maremma/pull/25) ([jrhoads](https://github.com/jrhoads))
 
