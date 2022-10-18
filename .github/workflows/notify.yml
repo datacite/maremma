@@ -13,4 +13,7 @@ jobs:
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
       with:
-        text: 'Testing a new slack action'
+        payload: |
+          {
+            "text": "Testing a new slack action"
+          }
