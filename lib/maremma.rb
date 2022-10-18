@@ -4,9 +4,11 @@ require "active_support/all"
 require "json"
 require "nokogiri"
 require "faraday"
-require "faraday_middleware"
+require "faraday/follow_redirects"
+require "faraday/gzip"
 require "faraday/encoding"
-require "excon"
+require 'faraday/multipart'
+require "faraday/excon"
 require "uri"
 require "addressable/uri"
 require "maremma/xml_converter"
@@ -129,10 +131,10 @@ module Maremma
       c.headers["Content-type"] = options[:headers]["Content-type"] if options[:headers]["Content-type"].present?
       c.headers["Accept"] = options[:headers]["Accept"]
       c.headers["User-Agent"] = options[:headers]["User-Agent"]
-      c.use      FaradayMiddleware::FollowRedirects, limit: limit, cookie: :all if limit > 0
-      c.use      FaradayMiddleware::Gzip
+      c.request  :gzip
       c.request  :multipart
       c.request  :json if options[:headers]["Accept"] == "application/json"
+      c.response :follow_redirects, limit: limit, cookie: :all if limit > 0
       c.response :encoding
       c.adapter  :excon
     end
