@@ -12,7 +12,5 @@ jobs:
       id: slack
       uses: slackapi/slack-github-action@v1.23.0
       with:
-        channel: '#ops'
-        username: 'GitHub Actions'
-        color: 'good'
-        text: 'Testing a new slack action'
+        channel-id: '#ops'
+        slack-message: 'Testing a new slack action'
