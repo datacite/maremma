@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.8...HEAD)
+
+**Merged pull requests:**
+
+- Update workflows to test against multiple versions of ruby \(2.6, 2.7, 3.0, 3.1\) [\#25](https://github.com/datacite/maremma/pull/25) ([jrhoads](https://github.com/jrhoads))
+
 ## [4.9.8](https://github.com/datacite/maremma/tree/4.9.8) (2022-05-24)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.7...4.9.8)
@@ -84,6 +92,7 @@
 **Merged pull requests:**
 
 - enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
+- use example securely [\#3](https://github.com/datacite/maremma/pull/3) ([katrinleinweber](https://github.com/katrinleinweber))
 
 ## [4.6](https://github.com/datacite/maremma/tree/4.6) (2020-02-22)
 
@@ -205,10 +214,6 @@
 ## [v.3.6.1](https://github.com/datacite/maremma/tree/v.3.6.1) (2018-01-09)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/v.3.6...v.3.6.1)
-
-**Merged pull requests:**
-
-- use example securely [\#3](https://github.com/datacite/maremma/pull/3) ([katrinleinweber](https://github.com/katrinleinweber))
 
 ## [v.3.6](https://github.com/datacite/maremma/tree/v.3.6) (2017-10-14)
 
