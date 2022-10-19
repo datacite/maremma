@@ -40,6 +40,6 @@ jobs:
       with:
         payload: |
           {
-            "color": "good"
+            "color": "good",
             "text": "A new version of the maremma gem has been released."
           }

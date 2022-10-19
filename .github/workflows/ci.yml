@@ -32,6 +32,6 @@ jobs:
       with:
         payload: |
           {
-            "color": "good"
+            "color": "good",
             "text": "A new version of the maremma passes all tests."
           }
