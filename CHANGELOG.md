@@ -15,7 +15,7 @@
 - Actions [\#27](https://github.com/datacite/maremma/pull/27) ([jrhoads](https://github.com/jrhoads))
 - Update faraday [\#26](https://github.com/datacite/maremma/pull/26) ([jrhoads](https://github.com/jrhoads))
 - Update workflows to test against multiple versions of ruby \(2.6, 2.7, 3.0, 3.1\) [\#25](https://github.com/datacite/maremma/pull/25) ([jrhoads](https://github.com/jrhoads))
-- Add option to skip the encoding of the response body. [\#16](https://github.com/datacite/maremma/pull/16) ([jrhoads](https://github.com/jrhoads))
+- enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
 
 ## [4.9.8](https://github.com/datacite/maremma/tree/4.9.8) (2022-05-24)
 
@@ -37,6 +37,10 @@
 ## [4.9.6](https://github.com/datacite/maremma/tree/4.9.6) (2021-10-28)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.5...4.9.6)
+
+**Merged pull requests:**
+
+- Add option to skip the encoding of the response body. [\#16](https://github.com/datacite/maremma/pull/16) ([jrhoads](https://github.com/jrhoads))
 
 ## [4.9.5](https://github.com/datacite/maremma/tree/4.9.5) (2021-07-20)
 
@@ -93,10 +97,6 @@
 ## [4.6.1](https://github.com/datacite/maremma/tree/4.6.1) (2020-03-05)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.6...4.6.1)
-
-**Merged pull requests:**
-
-- enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
 
 ## [4.6](https://github.com/datacite/maremma/tree/4.6) (2020-02-22)
 
