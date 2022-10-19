@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "faraday-excon", "~>2.1.0"
   s.add_dependency "faraday-gzip", "~> 0.1.0"
   s.add_dependency "faraday-multipart", "~> 1.0.4"
-  s.add_dependency "nokogiri", ">= 1.11.2", "< 1.14.0"
+  s.add_dependency "nokogiri", ">= 1.13.1", "< 1.14.0"
   s.add_dependency "oj", ">= 2.8.3"
   s.add_dependency "oj_mimic_json", "~> 1.0", ">= 1.0.1"
   s.add_development_dependency "bundler", "~> 2.0"
