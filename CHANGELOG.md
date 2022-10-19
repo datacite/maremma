@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
+## [4.9.9](https://github.com/datacite/maremma/tree/4.9.9) (2022-10-19)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/4.9.8...HEAD)
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.8...4.9.9)
 
 **Closed issues:**
 
@@ -15,6 +15,7 @@
 - Actions [\#27](https://github.com/datacite/maremma/pull/27) ([jrhoads](https://github.com/jrhoads))
 - Update faraday [\#26](https://github.com/datacite/maremma/pull/26) ([jrhoads](https://github.com/jrhoads))
 - Update workflows to test against multiple versions of ruby \(2.6, 2.7, 3.0, 3.1\) [\#25](https://github.com/datacite/maremma/pull/25) ([jrhoads](https://github.com/jrhoads))
+- Add option to skip the encoding of the response body. [\#16](https://github.com/datacite/maremma/pull/16) ([jrhoads](https://github.com/jrhoads))
 
 ## [4.9.8](https://github.com/datacite/maremma/tree/4.9.8) (2022-05-24)
 
@@ -36,10 +37,6 @@
 ## [4.9.6](https://github.com/datacite/maremma/tree/4.9.6) (2021-10-28)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.5...4.9.6)
-
-**Merged pull requests:**
-
-- Add option to skip the encoding of the response body. [\#16](https://github.com/datacite/maremma/pull/16) ([jrhoads](https://github.com/jrhoads))
 
 ## [4.9.5](https://github.com/datacite/maremma/tree/4.9.5) (2021-07-20)
 
@@ -100,7 +97,6 @@
 **Merged pull requests:**
 
 - enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
-- Bump rack from 2.0.7 to 2.0.8 [\#8](https://github.com/datacite/maremma/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.6](https://github.com/datacite/maremma/tree/4.6) (2020-02-22)
 
@@ -116,6 +112,7 @@
 
 **Merged pull requests:**
 
+- Bump rack from 2.0.7 to 2.0.8 [\#8](https://github.com/datacite/maremma/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 - add Host header for GET requests [\#6](https://github.com/datacite/maremma/pull/6) ([phromo](https://github.com/phromo))
 
 ## [v.4.4](https://github.com/datacite/maremma/tree/v.4.4) (2019-10-09)
