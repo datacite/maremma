@@ -1,6 +1,7 @@
 name: Ruby CI
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
   pull_request:
@@ -12,8 +13,6 @@ jobs:
       matrix:
         ruby: ["2.6", "2.7", "3.0", "3.1"]
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Ruby ${{matrix.ruby}}
@@ -24,12 +23,3 @@ jobs:
     - name: Run tests
       run: |
         bundle exec rspec
-
-    - name: Notify Slack
-      uses: adamkdean/simple-slack-notify@1.0.4
-      with:
-        channel: '#ops'
-        username: 'GitHub Actions'
-        color: 'good'
-        text: 'A new version of the maremma passes all tests.'
-
