@@ -4,8 +4,13 @@
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.8...HEAD)
 
+**Closed issues:**
+
+- Upgrade Github Actions [\#24](https://github.com/datacite/maremma/issues/24)
+
 **Merged pull requests:**
 
+- Update GH workflows; remove slack action [\#29](https://github.com/datacite/maremma/pull/29) ([jrhoads](https://github.com/jrhoads))
 - Update Dependencies [\#28](https://github.com/datacite/maremma/pull/28) ([jrhoads](https://github.com/jrhoads))
 - Actions [\#27](https://github.com/datacite/maremma/pull/27) ([jrhoads](https://github.com/jrhoads))
 - Update faraday [\#26](https://github.com/datacite/maremma/pull/26) ([jrhoads](https://github.com/jrhoads))
@@ -95,6 +100,7 @@
 **Merged pull requests:**
 
 - enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
+- Bump rack from 2.0.7 to 2.0.8 [\#8](https://github.com/datacite/maremma/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.6](https://github.com/datacite/maremma/tree/4.6) (2020-02-22)
 
@@ -110,7 +116,6 @@
 
 **Merged pull requests:**
 
-- Bump rack from 2.0.7 to 2.0.8 [\#8](https://github.com/datacite/maremma/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
 - add Host header for GET requests [\#6](https://github.com/datacite/maremma/pull/6) ([phromo](https://github.com/phromo))
 
 ## [v.4.4](https://github.com/datacite/maremma/tree/v.4.4) (2019-10-09)
