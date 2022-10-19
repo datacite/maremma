@@ -1,6 +1,7 @@
 name: Ruby CI
 
 on:
+  workflow_call:
   workflow_dispatch:
   push:
     branches: [ master ]
