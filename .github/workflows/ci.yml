@@ -12,9 +12,6 @@ jobs:
       matrix:
         ruby: ["2.6", "2.7", "3.0", "3.1"]
     runs-on: ubuntu-latest
-    env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
     steps:
     - uses: actions/checkout@v3
     - name: Set up Ruby ${{matrix.ruby}}
@@ -25,13 +22,3 @@ jobs:
     - name: Run tests
       run: |
         bundle exec rspec
-
-    - name: Notify Slack
-      id: slack
-      uses: slackapi/slack-github-action@v1.23.0
-      with:
-        payload: |
-          {
-            "color": "good",
-            "text": "A new version of the maremma passes all tests."
-          }
