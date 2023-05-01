@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.9...HEAD)
+
+**Merged pull requests:**
+
+- Bump rack from 2.2.4 to 2.2.6.4 [\#30](https://github.com/datacite/maremma/pull/30) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [4.9.9](https://github.com/datacite/maremma/tree/4.9.9) (2022-10-19)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.8...4.9.9)
@@ -15,7 +23,6 @@
 - Actions [\#27](https://github.com/datacite/maremma/pull/27) ([jrhoads](https://github.com/jrhoads))
 - Update faraday [\#26](https://github.com/datacite/maremma/pull/26) ([jrhoads](https://github.com/jrhoads))
 - Update workflows to test against multiple versions of ruby \(2.6, 2.7, 3.0, 3.1\) [\#25](https://github.com/datacite/maremma/pull/25) ([jrhoads](https://github.com/jrhoads))
-- enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
 
 ## [4.9.8](https://github.com/datacite/maremma/tree/4.9.8) (2022-05-24)
 
@@ -25,14 +32,11 @@
 
 - Update nokogiri requirement from \>= 1.11.2, \< 1.13.0 to \>= 1.11.2, \< 1.14.0 [\#22](https://github.com/datacite/maremma/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Create CITATION.cff [\#18](https://github.com/datacite/maremma/pull/18) ([mfenner](https://github.com/mfenner))
+- Update nokogiri requirement from ~\> 1.11.2 to \>= 1.11.2, \< 1.13.0 [\#15](https://github.com/datacite/maremma/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.9.7](https://github.com/datacite/maremma/tree/4.9.7) (2022-01-04)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.6...4.9.7)
-
-**Merged pull requests:**
-
-- Update nokogiri requirement from ~\> 1.11.2 to \>= 1.11.2, \< 1.13.0 [\#15](https://github.com/datacite/maremma/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.9.6](https://github.com/datacite/maremma/tree/4.9.6) (2021-10-28)
 
@@ -97,6 +101,10 @@
 ## [4.6.1](https://github.com/datacite/maremma/tree/4.6.1) (2020-03-05)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.6...4.6.1)
+
+**Merged pull requests:**
+
+- enable gzip request [\#9](https://github.com/datacite/maremma/pull/9) ([kjgarza](https://github.com/kjgarza))
 
 ## [4.6](https://github.com/datacite/maremma/tree/4.6) (2020-02-22)
 
