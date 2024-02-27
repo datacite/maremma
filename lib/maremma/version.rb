@@ -1,3 +1,3 @@
 module Maremma
-  VERSION = "4.9.9".freeze
+  VERSION = "5.0.0".freeze
 end
