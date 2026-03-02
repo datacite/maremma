@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.version       = Maremma::VERSION
   s.extra_rdoc_files = ["README.md"]
   s.license       = "MIT"
-  s.required_ruby_version = ['>=2.3']
+  s.required_ruby_version = ['>=3.2.0']
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   # Declary dependencies here, rather than in the Gemfile
   s.add_dependency "activesupport", "~> 8.1", ">= 8.1.2"
   s.add_dependency "addressable", "~> 2.8", ">= 2.8.9"
-  s.add_dependency "builder", "~> 3.2", ">= 3.2.2" # seems unused
+  s.add_dependency "builder", "~> 3.2", ">= 3.2.2"
   s.add_dependency "excon", "~> 1.3", ">= 1.3.2"
   s.add_dependency "faraday", ">=2.0"
   s.add_dependency "faraday-follow_redirects", "~> 0.5.0"
