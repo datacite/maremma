@@ -7,7 +7,6 @@ require "simplecov"
 SimpleCov.start
 
 require "ostruct"
-require "nokogiri"
 require "maremma"
 require "rspec"
 require "rack/test"
