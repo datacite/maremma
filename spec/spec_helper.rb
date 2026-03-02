@@ -6,6 +6,7 @@ Bundler.setup
 require "simplecov"
 SimpleCov.start
 
+require "ostruct"
 require "maremma"
 require "rspec"
 require "rack/test"
