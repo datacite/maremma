@@ -14,11 +14,20 @@ jobs:
   generate_changelog:
     runs-on: ubuntu-latest
     name: Generate changelog
+    # Skip if the PR was created by the GitHub Action or is a changelog update (to prevent infinite loops)
+    if: >
+      github.event_name != 'pull_request' ||
+      (
+        github.event.pull_request.merged == true &&
+        github.event.pull_request.user.login != 'github-actions[bot]' &&
+        !contains(github.event.pull_request.head.ref, 'changelog-update') &&
+        !contains(github.event.pull_request.title, 'Auto-update CHANGELOG.md')
+      )
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
       - name: Generate changelog
-        uses: charmixer/auto-changelog-action@v1
+        uses: charmixer/auto-changelog-action@v1.1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
