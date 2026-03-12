@@ -2,10 +2,36 @@
 
 ## [Unreleased](https://github.com/datacite/maremma/tree/HEAD)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/4.9.9...HEAD)
+[Full Changelog](https://github.com/datacite/maremma/compare/6.0.0...HEAD)
 
 **Merged pull requests:**
 
+- update changelog workflow [\#39](https://github.com/datacite/maremma/pull/39) ([kaysiz](https://github.com/kaysiz))
+
+## [6.0.0](https://github.com/datacite/maremma/tree/6.0.0) (2026-03-12)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/5.0.0...6.0.0)
+
+**Closed issues:**
+
+- Update version file to 4.9.11 [\#34](https://github.com/datacite/maremma/issues/34)
+
+**Merged pull requests:**
+
+- Upgrade: Ruby 3.0 → 4.0 [\#38](https://github.com/datacite/maremma/pull/38) ([kaysiz](https://github.com/kaysiz))
+
+## [5.0.0](https://github.com/datacite/maremma/tree/5.0.0) (2024-02-27)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/4.9.9...5.0.0)
+
+**Closed issues:**
+
+- Upgrade nokogiri  [\#32](https://github.com/datacite/maremma/issues/32)
+
+**Merged pull requests:**
+
+- create version 5.0.0 [\#36](https://github.com/datacite/maremma/pull/36) ([wendelfabianchinsamy](https://github.com/wendelfabianchinsamy))
+- upgrade nokogiri [\#33](https://github.com/datacite/maremma/pull/33) ([wendelfabianchinsamy](https://github.com/wendelfabianchinsamy))
 - Bump rack from 2.2.4 to 2.2.6.4 [\#30](https://github.com/datacite/maremma/pull/30) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.9.9](https://github.com/datacite/maremma/tree/4.9.9) (2022-10-19)
@@ -32,11 +58,14 @@
 
 - Update nokogiri requirement from \>= 1.11.2, \< 1.13.0 to \>= 1.11.2, \< 1.14.0 [\#22](https://github.com/datacite/maremma/pull/22) ([dependabot[bot]](https://github.com/apps/dependabot))
 - Create CITATION.cff [\#18](https://github.com/datacite/maremma/pull/18) ([mfenner](https://github.com/mfenner))
-- Update nokogiri requirement from ~\> 1.11.2 to \>= 1.11.2, \< 1.13.0 [\#15](https://github.com/datacite/maremma/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.9.7](https://github.com/datacite/maremma/tree/4.9.7) (2022-01-04)
 
 [Full Changelog](https://github.com/datacite/maremma/compare/4.9.6...4.9.7)
+
+**Merged pull requests:**
+
+- Update nokogiri requirement from ~\> 1.11.2 to \>= 1.11.2, \< 1.13.0 [\#15](https://github.com/datacite/maremma/pull/15) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [4.9.6](https://github.com/datacite/maremma/tree/4.9.6) (2021-10-28)
 
@@ -333,15 +362,15 @@
 
 ## [v.3.0](https://github.com/datacite/maremma/tree/v.3.0) (2016-11-25)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.4...v.3.0)
-
-## [v.2.5.4](https://github.com/datacite/maremma/tree/v.2.5.4) (2016-11-23)
-
-[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.5...v.2.5.4)
+[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.5...v.3.0)
 
 ## [v.2.5.5](https://github.com/datacite/maremma/tree/v.2.5.5) (2016-11-23)
 
-[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.3...v.2.5.5)
+[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.4...v.2.5.5)
+
+## [v.2.5.4](https://github.com/datacite/maremma/tree/v.2.5.4) (2016-11-23)
+
+[Full Changelog](https://github.com/datacite/maremma/compare/v.2.5.3...v.2.5.4)
 
 ## [v.2.5.3](https://github.com/datacite/maremma/tree/v.2.5.3) (2016-11-18)
 
