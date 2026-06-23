@@ -48,7 +48,7 @@ GEM
     drb (2.2.3)
     excon (1.4.0)
       logger
-    faraday (2.14.1)
+    faraday (2.14.3)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -64,11 +64,12 @@ GEM
       zlib (~> 3.0)
     faraday-multipart (1.2.0)
       multipart-post (~> 2.0)
-    faraday-net_http (3.0.1)
+    faraday-net_http (3.4.4)
+      net-http (~> 0.5)
     hashdiff (1.2.1)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
-    json (2.18.1)
+    json (2.20.0)
     json-schema (6.1.0)
       addressable (~> 2.8)
       bigdecimal (>= 3.1, < 5)
@@ -82,6 +83,8 @@ GEM
       drb (~> 2.0)
       prism (~> 1.5)
     multipart-post (2.2.3)
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     nokogiri (1.19.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
